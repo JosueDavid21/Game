@@ -47,6 +47,7 @@ public class VistaMenu extends javax.swing.JDialog {
         
             try {
                 clip = AudioSystem.getClip();
+                
             } catch (LineUnavailableException ex) {
                 Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -38,25 +38,25 @@ public class VistaInicial extends javax.swing.JFrame {
 //            musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav", this);
 //        } catch (Exception e) {
 //        }
-            try {
-            clip = AudioSystem.getClip();
-           
-                AudioInputStream audioInputStream =null;
-            try {
-                audioInputStream = AudioSystem.getAudioInputStream(new File(nombresonido).getAbsoluteFile());
-            } catch (UnsupportedAudioFileException ex) {
-                Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-                clip.open(audioInputStream);
-                clip.start();
-         
-             
-            
-
-        } catch (IOException | LineUnavailableException ex) {
-            System.out.println("Error al reproducir el sonido.");
-        }
+//            try {
+//            clip = AudioSystem.getClip();
+//           
+//                AudioInputStream audioInputStream =null;
+//            try {
+//                audioInputStream = AudioSystem.getAudioInputStream(new File(nombresonido).getAbsoluteFile());
+//            } catch (UnsupportedAudioFileException ex) {
+//                Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//                clip.open(audioInputStream);
+//                clip.start();
+//         
+//             
+//            
+//
+//        } catch (IOException | LineUnavailableException ex) {
+//            System.out.println("Error al reproducir el sonido.");
+//        }
 
 
         jPanel2.setBackground(new Color(0, 179, 71, 90));
@@ -80,8 +80,8 @@ public class VistaInicial extends javax.swing.JFrame {
                 progreso.setText(Integer.toString(i) + "%");
                 barra.setValue(i);
                 if (i == 100) {
-                    musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav");
-                    clip.stop();
+//                    musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav");
+//                    clip.stop();
                     this.dispose();                   
                     m.setVisible(true);
                     musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav");
