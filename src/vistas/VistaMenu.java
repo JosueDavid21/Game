@@ -36,6 +36,12 @@ public class VistaMenu extends javax.swing.JDialog {
          ImageIcon de = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\menu.gif");
          Icon ide = new ImageIcon(de.getImage().getScaledInstance(Jgiff.getWidth(), Jgiff.getHeight(), Image.SCALE_DEFAULT));
          Jgiff.setIcon(ide);
+         ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\j_1.png");
+        Icon id = new ImageIcon(d.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
+        lb3.setIcon(id);
+         ImageIcon dee = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\sin.png");
+        Icon idd = new ImageIcon(dee.getImage().getScaledInstance(lb4.getWidth(), lb4.getHeight(), Image.SCALE_DEFAULT));
+        lb4.setIcon(idd);
          this.repaint();
          this.setLocationRelativeTo(this);
         
@@ -81,7 +87,9 @@ public class VistaMenu extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lb3 = new javax.swing.JLabel();
+        lb4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Jgiff = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -91,21 +99,76 @@ public class VistaMenu extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 255));
-        jLabel1.setText("            Mute");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lb3.setBackground(new java.awt.Color(51, 51, 255));
+        lb3.setFont(new java.awt.Font("Yu Gothic UI Light", 3, 18)); // NOI18N
+        lb3.setForeground(new java.awt.Color(255, 255, 255));
+        lb3.setText("Mute");
+        lb3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lb3MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 100, 30));
+        getContentPane().add(lb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 50, 40));
+
+        lb4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 50, 40));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("        Iniciar Juego");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 230, 50));
         getContentPane().add(Jgiff, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb3MouseClicked
             try {                                     
+                clip.stop();
+               
+                
+                try {
+                    clip = AudioSystem.getClip();
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                AudioInputStream audioInputStream =null;
+                try {
+                    try {
+                        audioInputStream = AudioSystem.getAudioInputStream(new File(nombresonido).getAbsoluteFile());
+                    } catch (IOException ex) {
+                        Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+         Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+     }
+        
+    }//GEN-LAST:event_lb3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+       
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void lb4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb4MouseClicked
+      try {                                     
                 clip.stop();
                 String nombrs ="src/musica/haga-clic-en_4.wav";
                 
@@ -133,8 +196,7 @@ public class VistaMenu extends javax.swing.JDialog {
             } catch (IOException ex) {
          Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
      }
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_lb4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,7 +242,9 @@ public class VistaMenu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jgiff;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lb3;
+    private javax.swing.JLabel lb4;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import entes.GenerarDimension;
+
 /**
  *
  * @author grace
@@ -16,6 +18,8 @@ public class VistaCargar extends javax.swing.JFrame {
      */
     public VistaCargar() {
         initComponents();
+        
+     
     }
 
     /**
@@ -76,6 +80,10 @@ public class VistaCargar extends javax.swing.JFrame {
                 new VistaCargar().setVisible(true);
             }
         });
+    }
+
+    private void GenerarDimension() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
