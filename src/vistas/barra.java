@@ -8,11 +8,14 @@ package vistas;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
 
 /**
  *
@@ -30,13 +33,13 @@ public class barra {
     public static void main(String[] args) throws Exception {
         String musica = "src/musica/juego-de-tronos.wav";
         VistaInicial pre = new VistaInicial();
-//        IngresoUsuario usuario= new IngresoUsuario();
         pre.setVisible(true);
         pre.progres();
+        
 
     }
 
-    public void ReproducirSonido(String nombreSonido, Frame ven) throws LineUnavailableException, UnsupportedAudioFileException {
+    public void ReproducirSonido(String nombreSonido) throws LineUnavailableException, UnsupportedAudioFileException {
 
         try {
             Clip clip = AudioSystem.getClip();
@@ -53,6 +56,25 @@ public class barra {
             System.out.println("Error al reproducir el sonido.");
         }
 
+    }
+    
+    public void mute (String direccion,JButton bot) throws LineUnavailableException {
+    boolean bandera ;
+        if (bot.isSelected()) {
+            bandera = true;
+        try {
+            ReproducirSonido(direccion);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(barra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else {
+          Clip clip = AudioSystem.getClip();
+          clip.stop();
+        }
+    
+    
+    
+    
     }
 
     

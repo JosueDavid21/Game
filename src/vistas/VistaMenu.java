@@ -6,6 +6,15 @@
 package vistas;
 
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -14,21 +23,49 @@ import javax.swing.ImageIcon;
  * @author grace
  */
 public class VistaMenu extends javax.swing.JDialog {
-
-    /**
-     * Creates new form VistaMenu
-     */
+ barra musica = new barra();
+    String nombresonido ="src/musica/sonido_1.wav";
+    Clip clip = null;
+      
+      
     public VistaMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        
-         ImageIcon de = new ImageIcon("C:\\Users\\edgar\\OneDrive\\Documentos\\NetBeansProjects\\Juego-Algoritmos\\src\\imagenes\\ayuda\\menu.gif");
-        Icon ide = new ImageIcon(de.getImage().getScaledInstance(Jgiff.getWidth(), Jgiff.getHeight(), Image.SCALE_DEFAULT));
-        Jgiff.setIcon(ide);
-         this.repaint();
-           this.setLocationRelativeTo(this);
+     
+         initComponents();
          
-    }
+         ImageIcon de = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\menu.gif");
+         Icon ide = new ImageIcon(de.getImage().getScaledInstance(Jgiff.getWidth(), Jgiff.getHeight(), Image.SCALE_DEFAULT));
+         Jgiff.setIcon(ide);
+         this.repaint();
+         this.setLocationRelativeTo(this);
+        
+            try {
+                clip = AudioSystem.getClip();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+                AudioInputStream audioInputStream =null;
+            try {
+                try {
+                    audioInputStream = AudioSystem.getAudioInputStream(new File(nombresonido).getAbsoluteFile());
+                } catch (IOException ex) {
+                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                clip.open(audioInputStream);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                clip.start();}
+       
+    
 
     VistaMenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -44,6 +81,7 @@ public class VistaMenu extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         Jgiff = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,10 +90,51 @@ public class VistaMenu extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel1.setBackground(new java.awt.Color(51, 51, 255));
+        jLabel1.setText("            Mute");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 100, 30));
         getContentPane().add(Jgiff, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+            try {                                     
+                clip.stop();
+                String nombrs ="src/musica/haga-clic-en_4.wav";
+                
+                try {
+                    clip = AudioSystem.getClip();
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                AudioInputStream audioInputStream =null;
+                try {
+                    try {
+                        audioInputStream = AudioSystem.getAudioInputStream(new File(nombrs).getAbsoluteFile());
+                    } catch (IOException ex) {
+                        Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+         Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+     }
+        
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -101,6 +180,7 @@ public class VistaMenu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jgiff;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
