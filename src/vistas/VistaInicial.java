@@ -71,7 +71,8 @@ public class VistaInicial extends javax.swing.JFrame {
     }
 
     public void progres() {
-        IngresoUsuario iniciar = new IngresoUsuario();
+//        IngresoUsuario iniciar = new IngresoUsuario();
+        VistaMenu m = new VistaMenu(this, rootPaneCheckingEnabled);
         try {
             for (int i = 0; i <= 100; i++) {
                 Thread.sleep(90);
@@ -82,8 +83,8 @@ public class VistaInicial extends javax.swing.JFrame {
                     musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav");
                     clip.stop();
                     this.dispose();                   
-                    iniciar.setVisible(true);
-
+                    m.setVisible(true);
+                    musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav");
                 }
             }
         } catch (Exception e) {

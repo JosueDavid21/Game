@@ -24,7 +24,7 @@ import javax.swing.ImageIcon;
  */
 public class VistaMenu extends javax.swing.JDialog {
  barra musica = new barra();
-    String nombresonido ="src/musica/sonido_1.wav";
+    String nombresonido ="src/musica/juego-de-tronos-2.wav";
     Clip clip = null;
       
       
@@ -69,7 +69,9 @@ public class VistaMenu extends javax.swing.JDialog {
             } catch (IOException ex) {
                 Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
-                clip.start();}
+                clip.start();
+    
+    }
        
     
 
