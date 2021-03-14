@@ -52,6 +52,7 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
     boolean abajo = false;
 
     public VistaIsla(Isla isla) {
+        System.out.println("prieba");
         dimensiones = new GenerarDimension(new Point(16, 10));
         xJugador = dimensiones.getPuntoInicioJugador().x;
         yJugador = dimensiones.getPuntoInicioJugador().y;
