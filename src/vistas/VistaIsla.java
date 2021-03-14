@@ -18,10 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-/**
- *
- * @author grace
- */
 public class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
     /**
@@ -52,14 +48,18 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
     boolean abajo = false;
 
     public VistaIsla(Isla isla) {
-        System.out.println("prieba");
         dimensiones = new GenerarDimension(new Point(16, 10));
         xJugador = dimensiones.getPuntoInicioJugador().x;
         yJugador = dimensiones.getPuntoInicioJugador().y;
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
         rutaIsla = isla.getUrlImagen();
         matrizIsla = isla.getMatriz();
+        
         initComponents();
+        agregarMenu(isla.getNombre());
+        jPanel1.setSize(dimensiones.getDimensionMenu());
+        jPanel1.setLocation(dimensiones.getPuntoInicioMenu());
+        
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(dimensiones.getWIDTH(), dimensiones.getHEIGHT());
         this.setResizable(false);
@@ -67,9 +67,22 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
         this.getContentPane().setBackground(Color.black);
         generarPersonaje(rutaPersonaje);
         generarIsla();
+        
+        isla_nombre=isla.getNombre();
+        jPanel1.updateUI();
     }
     //DAVID INICIO
+String isla_nombre;
+public void agregarMenu(String nombreisla){
+    String menu[]={"jugador","moneda","mapa",nombreisla,"pista"};
+icono2(menu[0], jugador);
+icono2(menu[1], moneda);
+icono2(menu[2], mapa);
+icono2(menu[3], nombre_isla);
+icono2(menu[4], pista);
+jPanel1.updateUI();
 
+}
     public void actualizar() {
         if (animacion < 32000) {
             animacion++;
@@ -95,6 +108,15 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
     }
 
 //DAVID FIN
+    public void icono2(String name,JLabel label){
+        Dimension d = new Dimension(dimensiones.getDimensionMenu().width/5,dimensiones.getDimensionMenu().height);
+        ImageIcon im = new ImageIcon("src/imagenes/menu/"+name+" icono.png");
+        ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(jugador.getWidth(), jugador.getHeight(), Image.SCALE_SMOOTH));
+    label.setSize(d);
+    label.setIcon(icono);
+        jPanel1.add(label);
+        jPanel1.updateUI();
+    }
     private void generarIsla() {
         jLMapa.setLocation(dimensiones.getPuntoInicioJuego());
         jLMapa.setSize(dimensiones.getDimensionJuego());
@@ -198,11 +220,23 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jugador = new javax.swing.JLabel();
+        mapa = new javax.swing.JLabel();
+        moneda = new javax.swing.JLabel();
+        nombre_isla = new javax.swing.JLabel();
+        pista = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(0, 0, 0));
         setUndecorated(true);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -212,6 +246,28 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
             }
         });
         getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(0, 255, 0));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.add(jugador);
+
+        mapa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mapaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(mapa);
+        jPanel1.add(moneda);
+        jPanel1.add(nombre_isla);
+        jPanel1.add(pista);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 250, 400, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -253,7 +309,57 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
         }
 
     }//GEN-LAST:event_formKeyReleased
+Mapa_Vista mapa_pantalla;
+boolean map=false;
+public void validarvisible(){
+    if (mapa_pantalla!=null) {
+        if (mapa_pantalla.isVisible()) {
+        map=true;
+    }
+    }
+    
+}
+boolean pmapa = false;
+    private void mapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaMouseClicked
+        // TODO add your handling code here:
+        validarvisible();
+        System.out.println(map+" map+");
+        if (map==false) {
+            mapa_pantalla = new Mapa_Vista(isla_nombre);
+            mapa_pantalla.setVisible(true);
+            //
+            System.out.println("mapa activado");
+        }
+
+    }//GEN-LAST:event_mapaMouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        System.out.println(pmapa);
+        if (mapa_pantalla != null) {
+            pmapa = mapa_pantalla.isVisible();
+            if (pmapa) {
+                mapa_pantalla.dispose();
+                pmapa=false;
+                map=false;
+            
+                
+            }
+        }
+        
+    }//GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jugador;
+    private javax.swing.JLabel mapa;
+    private javax.swing.JLabel moneda;
+    private javax.swing.JLabel nombre_isla;
+    private javax.swing.JLabel pista;
     // End of variables declaration//GEN-END:variables
 }
