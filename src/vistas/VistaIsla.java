@@ -22,17 +22,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-public class VistaIsla extends javax.swing.JFrame implements ActionListener {
+public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
     private static String rutaPersonaje;
     private static String rutaIsla;
     private final int[][] matrizIsla;
 
     GenerarDimension dimensiones;
-    private final Tecla arriba = new Tecla();
-    private final Tecla abajo = new Tecla();
-    private final Tecla izquierda = new Tecla();
-    private final Tecla derecha = new Tecla();
+//    private final Tecla arriba = new Tecla();
+//    private final Tecla abajo = new Tecla();
+//    private final Tecla izquierda = new Tecla();
+//    private final Tecla derecha = new Tecla();
+    boolean arriba;
+    boolean abajo;
+    boolean izquierda;
+    boolean derecha;
 
     private final Timer tiempo1 = new Timer(1, this);
 
@@ -157,52 +161,52 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
     }
 
     private void mover() {
-        if (izquierda.estaPulsada() & !derecha.estaPulsada() & !arriba.estaPulsada() & !abajo.estaPulsada()) {
+        if (izquierda & !derecha & !arriba & !abajo) {
             if (verificarMovimiento(x - moveX, y)) {
                 x = x - moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("izquierda");
             }
-        } else if (derecha.estaPulsada() & !arriba.estaPulsada() & !abajo.estaPulsada() & !izquierda.estaPulsada()) {
+        } else if (derecha & !arriba & !abajo & !izquierda) {
             if (verificarMovimiento(x + moveX, y)) {
                 x = x + moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("derecha");
             }
-        } else if (arriba.estaPulsada() & !abajo.estaPulsada() & !izquierda.estaPulsada() & !derecha.estaPulsada()) {
+        } else if (arriba & !abajo & !izquierda & !derecha) {
             if (verificarMovimiento(x, y - moveY)) {
                 y = y - moveY;
                 personaje.setLocation(x, y);
                 icono_animacion("arriba");
             }
-        } else if (abajo.estaPulsada() & !izquierda.estaPulsada() & !derecha.estaPulsada() & !arriba.estaPulsada()) {
+        } else if (abajo & !izquierda & !derecha & !arriba) {
             if (verificarMovimiento(x, y + moveY)) {
                 y = y + moveY;
                 personaje.setLocation(x, y);
                 icono_animacion("abajo");
             }
-        } else if (abajo.estaPulsada() & derecha.estaPulsada()) {
+        } else if (abajo & derecha) {
             if (verificarMovimiento(x + moveX, y + moveY)) {
                 y = y + moveY;
                 x = x + moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("derecha");
             }
-        } else if (abajo.estaPulsada() & izquierda.estaPulsada()) {
+        } else if (abajo & izquierda) {
             if (verificarMovimiento(x - moveX, y + moveY)) {
                 y = y + moveY;
                 x = x - moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("izquierda");
             }
-        } else if (arriba.estaPulsada() & derecha.estaPulsada()) {
+        } else if (arriba & derecha) {
             if (verificarMovimiento(x + moveX, y - moveY)) {
                 y = y - moveY;
                 x = x + moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("derecha");
             }
-        } else if (arriba.estaPulsada() & izquierda.estaPulsada()) {
+        } else if (arriba & izquierda) {
             if (verificarMovimiento(x - moveX, y - moveY)) {
                 y = y - moveY;
                 x = x - moveX;
@@ -288,56 +292,88 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        tiempo1.start();
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_W:
-                arriba.teclaPulsada();
-                icono(personaje, "arriba");
-                break;
-            case KeyEvent.VK_S:
-                abajo.teclaPulsada();
-                icono(personaje, "abajo");
-                break;
-            case KeyEvent.VK_A:
-                izquierda.teclaPulsada();
-                icono(personaje, "izquierda");
-                break;
-            case KeyEvent.VK_D:
-                derecha.teclaPulsada();
-                icono(personaje, "derecha");
-                break;
-            case KeyEvent.VK_E:
-                recogiendo = true;
-                break;
-//            case KeyEvent.VK_I:
-//                inventarioActivo = !inventarioActivo;
+//        tiempo1.start();
+//        switch (evt.getKeyCode()) {
+//            case KeyEvent.VK_W:
+//                arriba.teclaPulsada();
+//                icono(personaje, "arriba");
 //                break;
-            case KeyEvent.VK_ESCAPE:
-                tiempo1.stop();
-                System.exit(0);
+//            case KeyEvent.VK_S:
+//                abajo.teclaPulsada();
+//                icono(personaje, "abajo");
+//                break;
+//            case KeyEvent.VK_A:
+//                izquierda.teclaPulsada();
+//                icono(personaje, "izquierda");
+//                break;
+//            case KeyEvent.VK_D:
+//                derecha.teclaPulsada();
+//                icono(personaje, "derecha");
+//                break;
+//            case KeyEvent.VK_E:
+//                recogiendo = true;
+//                break;
+////            case KeyEvent.VK_I:
+////                inventarioActivo = !inventarioActivo;
+////                break;
+//            case KeyEvent.VK_ESCAPE:
+//                tiempo1.stop();
+//                System.exit(0);
+//        }
+tiempo1.start();
+        if (evt.getKeyCode() == 65) {
+            izquierda = true;
+        } else if (evt.getKeyCode() == 68) {
+            derecha = true;
+        } else if (evt.getKeyCode() == 87) {
+            arriba = true;
+        } else if (evt.getKeyCode() == 83) {
+            abajo = true;
+
+        }
+        if (evt.getKeyCode() == evt.VK_ESCAPE) {
+            System.exit(0);
         }
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_W:
-                arriba.teclaLiberada();
-                break;
-            case KeyEvent.VK_S:
-                abajo.teclaLiberada();
-                break;
-            case KeyEvent.VK_A:
-                izquierda.teclaLiberada();
-                break;
-            case KeyEvent.VK_D:
-                derecha.teclaLiberada();
-                break;
-            case KeyEvent.VK_E:
-                recogiendo = false;
-                break;
-        }
-        if ((!arriba.estaPulsada() && !abajo.estaPulsada() && !izquierda.estaPulsada() && !derecha.estaPulsada())) {
+//        switch (evt.getKeyCode()) {
+//            case KeyEvent.VK_W:
+//                arriba=false;
+//                break;
+//            case KeyEvent.VK_S:
+//                abajo=false;
+//                break;
+//            case KeyEvent.VK_A:
+//                izquierda=false;
+//                break;
+//            case KeyEvent.VK_D:
+//                derecha=false;
+//                break;
+//            case KeyEvent.VK_E:
+//                recogiendo = false;
+//                break;
+//        }
+//        if ((!arriba && !abajo && !izquierda && !derecha)) {
+//            icono(personaje, "abajo");
+//            tiempo1.stop();
+//        }
+if (evt.getKeyCode() == 65) {
+
+            izquierda = false;
+            icono(personaje, "izquierda");
+
+        } else if (evt.getKeyCode() == 68) {
+            derecha = false;
+            icono(personaje, "derecha");
+        } else if (evt.getKeyCode() == 87) {
+            arriba = false;
+            icono(personaje, "arriba");
+        } else if (evt.getKeyCode() == 83) {
+            abajo = false;
             icono(personaje, "abajo");
+        }
+        if ((!arriba && !abajo && !izquierda && !derecha)) {
             tiempo1.stop();
         }
     }//GEN-LAST:event_formKeyReleased
