@@ -7,6 +7,7 @@ package control;
 
 import entes.GenerarDimension;
 import entes.Isla;
+import java.awt.Point;
 import java.util.HashMap;
 import listas.ListaMapas;
 import vistas.VistaIsla;
@@ -22,7 +23,7 @@ public class Prueba {
      */
     public static void main(String[] args) {
         HashMap lista = new ListaMapas().getLista();
-        new VistaIsla((Isla) lista.get("volcan")).setVisible(true);
+        new VistaIsla((Isla) lista.get("volcan"), new Point(16, 10)).setVisible(true);
 //        new GenerarDimension().toString();
     }
     

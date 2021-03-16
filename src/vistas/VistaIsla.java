@@ -55,8 +55,8 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
     private final Point pID = new Point();
     private final Tile t = new Tile();
 
-    public VistaIsla(Isla isla) {
-        dimensiones = new GenerarDimension(new Point(16, 10));
+    public VistaIsla(Isla isla, Point jug) {
+        dimensiones = new GenerarDimension(jug);
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
         rutaIsla = isla.getUrlImagen();
         matrizIsla = isla.getMatriz();
@@ -73,11 +73,10 @@ public class VistaIsla extends javax.swing.JFrame implements ActionListener {
         this.setResizable(false);
         this.setLocation(0, 0);
         this.getContentPane().setBackground(Color.black);
-        this.x = personaje.getLocation().x;
-        this.y = personaje.getLocation().y;
-
         generarPersonaje(rutaPersonaje);
         generarIsla();
+        this.x = personaje.getLocation().x;
+        this.y = personaje.getLocation().y;
 
         isla_nombre = isla.getNombre();
         jPanel1.updateUI();
