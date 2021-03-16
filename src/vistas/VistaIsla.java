@@ -5,14 +5,18 @@
  */
 package vistas;
 
+import control.Tecla;
 import entes.GenerarDimension;
 import entes.Isla;
+import entes.Tile;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,69 +24,78 @@ import javax.swing.Timer;
 
 public class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
-    /**
-     * Creates new form Isla
-     */
-    private static int xJugador;
-    private static int yJugador;
     private static String rutaPersonaje;
     private static String rutaIsla;
-    private int[][] matrizIsla;
+    private final int[][] matrizIsla;
 
     GenerarDimension dimensiones;
+    private final Tecla arriba = new Tecla();
+    private final Tecla abajo = new Tecla();
+    private final Tecla izquierda = new Tecla();
+    private final Tecla derecha = new Tecla();
 
+    private final Timer tiempo1 = new Timer(1, this);
+
+    private static final Rectangle recJug = new Rectangle(0, 0, 0, 0);
     JLabel jLfondo = new JLabel();
     JLabel personaje = new JLabel();
     JLabel jLMapa = new JLabel();
-    int x;
-    int y;
-    int animacion;
-//movimiento en x y 
-    int moveX = 1;
-    int moveY = 1;
 
-    Timer tiempo1 = new Timer(1, this);
-    boolean izquierda = false;
-    boolean derecha = false;
-    boolean arriba = false;
-    boolean abajo = false;
+    private int x;
+    private int y;
+    private int animacion;
+    private final int moveX = 1;
+    private final int moveY = 1;
+    private boolean recogiendo = false;
+
+    boolean retorno;
+    private final Point pSI = new Point();
+    private final Point pSD = new Point();
+    private final Point pII = new Point();
+    private final Point pID = new Point();
+    private final Tile t = new Tile();
 
     public VistaIsla(Isla isla) {
         dimensiones = new GenerarDimension(new Point(16, 10));
-        xJugador = dimensiones.getPuntoInicioJugador().x;
-        yJugador = dimensiones.getPuntoInicioJugador().y;
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
         rutaIsla = isla.getUrlImagen();
         matrizIsla = isla.getMatriz();
-        
+
         initComponents();
+
         agregarMenu(isla.getNombre());
+
         jPanel1.setSize(dimensiones.getDimensionMenu());
         jPanel1.setLocation(dimensiones.getPuntoInicioMenu());
-        
+
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(dimensiones.getWIDTH(), dimensiones.getHEIGHT());
         this.setResizable(false);
         this.setLocation(0, 0);
         this.getContentPane().setBackground(Color.black);
+        this.x = personaje.getLocation().x;
+        this.y = personaje.getLocation().y;
+
         generarPersonaje(rutaPersonaje);
         generarIsla();
-        
-        isla_nombre=isla.getNombre();
+
+        isla_nombre = isla.getNombre();
         jPanel1.updateUI();
     }
+    
     //DAVID INICIO
-String isla_nombre;
-public void agregarMenu(String nombreisla){
-    String menu[]={"jugador","moneda","mapa",nombreisla,"pista"};
-icono2(menu[0], jugador);
-icono2(menu[1], moneda);
-icono2(menu[2], mapa);
-icono2(menu[3], nombre_isla);
-icono2(menu[4], pista);
-jPanel1.updateUI();
+    String isla_nombre;
 
-}
+    public void agregarMenu(String nombreisla) {
+        String menu[] = {"jugador", "moneda", "mapa", nombreisla, "pista"};
+        icono2(menu[0], jugador);
+        icono2(menu[1], moneda);
+        icono2(menu[2], mapa);
+        icono2(menu[3], nombre_isla);
+        icono2(menu[4], pista);
+        jPanel1.updateUI();
+    }
+
     public void actualizar() {
         if (animacion < 32000) {
             animacion++;
@@ -108,15 +121,16 @@ jPanel1.updateUI();
     }
 
 //DAVID FIN
-    public void icono2(String name,JLabel label){
-        Dimension d = new Dimension(dimensiones.getDimensionMenu().width/5,dimensiones.getDimensionMenu().height);
-        ImageIcon im = new ImageIcon("src/imagenes/menu/"+name+" icono.png");
+    public void icono2(String name, JLabel label) {
+        Dimension d = new Dimension(dimensiones.getDimensionMenu().width / 5, dimensiones.getDimensionMenu().height);
+        ImageIcon im = new ImageIcon("src/imagenes/menu/" + name + " icono.png");
         ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(jugador.getWidth(), jugador.getHeight(), Image.SCALE_SMOOTH));
-    label.setSize(d);
-    label.setIcon(icono);
+        label.setSize(d);
+        label.setIcon(icono);
         jPanel1.add(label);
         jPanel1.updateUI();
     }
+
     private void generarIsla() {
         jLMapa.setLocation(dimensiones.getPuntoInicioJuego());
         jLMapa.setSize(dimensiones.getDimensionJuego());
@@ -137,78 +151,81 @@ jPanel1.updateUI();
         add(personaje);
     }
 
-    private void mover(/*java.awt.event.KeyEvent evt*/) {
-        if (izquierda & !derecha & !arriba & !abajo) {
-            x = x - moveX;
-            personaje.setLocation(x, y);
-            icono_animacion("izquierda");
-        } else if (derecha & !arriba & !abajo & !izquierda) {
-            x = x + moveX;
-            personaje.setLocation(x, y);
-            icono_animacion("derecha");
-        } else if (arriba & !abajo & !izquierda & !derecha) {
-            y = y - moveY;
-            personaje.setLocation(x, y);
-            icono_animacion("arriba");
-        } else if (abajo & !izquierda & !derecha & !arriba) {
-            y = y + moveY;
-            personaje.setLocation(x, y);
-            icono_animacion("abajo");
-        } else if (abajo & derecha) {
-            y = y + moveY;
-            x = x + moveX;
-            personaje.setLocation(x, y);
-            icono_animacion("abajo");
-            icono_animacion("derecha");
-        } else if (abajo & izquierda) {
-            y = y + moveY;
-            x = x - moveX;
-            personaje.setLocation(x, y);
-            icono_animacion("abajo");
-            icono_animacion("izquierda");
-        } else if (arriba & derecha) {
-            y = y - moveY;
-            x = x + moveX;
-            personaje.setLocation(x, y);
-            icono_animacion("arriba");
-            icono_animacion("derecha");
-        } else if (arriba & izquierda) {
-            y = y - moveY;
-            x = x - moveX;
-            personaje.setLocation(x, y);
-            icono_animacion("arriba");
-            icono_animacion("izquierda");
-        }
-    }
-
-//    public boolean comprobar(char tecla, int x, int y) {
-//        int i = x / dimensiones.getDimensionPersonaje().width;
-//        int j = y / dimensiones.getDimensionPersonaje().height;
-//        int valorProximo = 0;
-//        switch (String.valueOf(tecla)) {
-//            case "w":
-//                valorProximo = matrizIsla[i][j - 1];
-//                break;
-//            case "s":
-//                valorProximo = matrizIsla[i][j + 1];
-//                break;
-//            case "a":
-//                valorProximo = matrizIsla[i - 1][j];
-//                break;
-//            case "d":
-//                valorProximo = matrizIsla[i + 1][j];
-//                break;
-//            default:
-//                break;
-//        }
-//        return valorProximo < 11;
-//    }
-
+    @Override
     public void actionPerformed(ActionEvent c) {
-        x = personaje.getX();
-        y = personaje.getY();
         actualizar();
         mover();
+    }
+
+    private void mover() {
+        if (izquierda.estaPulsada() & !derecha.estaPulsada() & !arriba.estaPulsada() & !abajo.estaPulsada()) {
+            if (verificarMovimiento(x - moveX, y)) {
+                x = x - moveX;
+                personaje.setLocation(x, y);
+                icono_animacion("izquierda");
+            }
+        } else if (derecha.estaPulsada() & !arriba.estaPulsada() & !abajo.estaPulsada() & !izquierda.estaPulsada()) {
+            if (verificarMovimiento(x + moveX, y)) {
+                x = x + moveX;
+                personaje.setLocation(x, y);
+                icono_animacion("derecha");
+            }
+        } else if (arriba.estaPulsada() & !abajo.estaPulsada() & !izquierda.estaPulsada() & !derecha.estaPulsada()) {
+            if (verificarMovimiento(x, y - moveY)) {
+                y = y - moveY;
+                personaje.setLocation(x, y);
+                icono_animacion("arriba");
+            }
+        } else if (abajo.estaPulsada() & !izquierda.estaPulsada() & !derecha.estaPulsada() & !arriba.estaPulsada()) {
+            if (verificarMovimiento(x, y + moveY)) {
+                y = y + moveY;
+                personaje.setLocation(x, y);
+                icono_animacion("abajo");
+            }
+        } else if (abajo.estaPulsada() & derecha.estaPulsada()) {
+            if (verificarMovimiento(x + moveX, y + moveY)) {
+                y = y + moveY;
+                x = x + moveX;
+                personaje.setLocation(x, y);
+                icono_animacion("derecha");
+            }
+        } else if (abajo.estaPulsada() & izquierda.estaPulsada()) {
+            if (verificarMovimiento(x - moveX, y + moveY)) {
+                y = y + moveY;
+                x = x - moveX;
+                personaje.setLocation(x, y);
+                icono_animacion("izquierda");
+            }
+        } else if (arriba.estaPulsada() & derecha.estaPulsada()) {
+            if (verificarMovimiento(x + moveX, y - moveY)) {
+                y = y - moveY;
+                x = x + moveX;
+                personaje.setLocation(x, y);
+                icono_animacion("derecha");
+            }
+        } else if (arriba.estaPulsada() & izquierda.estaPulsada()) {
+            if (verificarMovimiento(x - moveX, y - moveY)) {
+                y = y - moveY;
+                x = x - moveX;
+                personaje.setLocation(x, y);
+                icono_animacion("izquierda");
+            }
+        }
+    }
+    
+    private boolean verificarMovimiento(int xSig, int ySig) {
+        retorno = true;
+        recJug.setLocation(xSig, ySig+(personaje.getHeight()/2));
+        recJug.setSize(personaje.getWidth(), personaje.getHeight()/2);
+        pSI.setLocation(dimensiones.getPuntoActual(recJug.x, recJug.y));
+        pSD.setLocation(dimensiones.getPuntoActual(recJug.x + recJug.width, recJug.y));
+        pII.setLocation(dimensiones.getPuntoActual(recJug.x, recJug.y + recJug.height));
+        pID.setLocation(dimensiones.getPuntoActual(recJug.x + recJug.width, recJug.y + recJug.height));
+        retorno = retorno && t.esCamino(matrizIsla[pSI.x][pSI.y]);
+        retorno = retorno && t.esCamino(matrizIsla[pSD.x][pSD.y]);
+        retorno = retorno && t.esCamino(matrizIsla[pII.x][pII.y]);
+        retorno = retorno && t.esCamino(matrizIsla[pID.x][pID.y]);
+        return retorno;
     }
 
     /**
@@ -273,64 +290,82 @@ jPanel1.updateUI();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         tiempo1.start();
-        if (evt.getKeyCode() == 65) {
-            izquierda = true;
-        } else if (evt.getKeyCode() == 68) {
-            derecha = true;
-        } else if (evt.getKeyCode() == 87) {
-            arriba = true;
-        } else if (evt.getKeyCode() == 83) {
-            abajo = true;
-
-        }
-        if (evt.getKeyCode() == evt.VK_ESCAPE) {
-            System.exit(0);
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_W:
+                arriba.teclaPulsada();
+                icono(personaje, "arriba");
+                break;
+            case KeyEvent.VK_S:
+                abajo.teclaPulsada();
+                icono(personaje, "abajo");
+                break;
+            case KeyEvent.VK_A:
+                izquierda.teclaPulsada();
+                icono(personaje, "izquierda");
+                break;
+            case KeyEvent.VK_D:
+                derecha.teclaPulsada();
+                icono(personaje, "derecha");
+                break;
+            case KeyEvent.VK_E:
+                recogiendo = true;
+                break;
+//            case KeyEvent.VK_I:
+//                inventarioActivo = !inventarioActivo;
+//                break;
+            case KeyEvent.VK_ESCAPE:
+                tiempo1.stop();
+                System.exit(0);
         }
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        if (evt.getKeyCode() == 65) {
-
-            izquierda = false;
-            icono(personaje, "izquierda");
-
-        } else if (evt.getKeyCode() == 68) {
-            derecha = false;
-            icono(personaje, "derecha");
-        } else if (evt.getKeyCode() == 87) {
-            arriba = false;
-            icono(personaje, "arriba");
-        } else if (evt.getKeyCode() == 83) {
-            abajo = false;
-            icono(personaje, "abajo");
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_W:
+                arriba.teclaLiberada();
+                break;
+            case KeyEvent.VK_S:
+                abajo.teclaLiberada();
+                break;
+            case KeyEvent.VK_A:
+                izquierda.teclaLiberada();
+                break;
+            case KeyEvent.VK_D:
+                derecha.teclaLiberada();
+                break;
+            case KeyEvent.VK_E:
+                recogiendo = false;
+                break;
         }
-        if ((!arriba && !abajo && !izquierda && !derecha)) {
+        if ((!arriba.estaPulsada() && !abajo.estaPulsada() && !izquierda.estaPulsada() && !derecha.estaPulsada())) {
+            icono(personaje, "abajo");
             tiempo1.stop();
         }
-
     }//GEN-LAST:event_formKeyReleased
-Mapa_Vista mapa_pantalla;
-boolean map=false;
-public void validarvisible(){
-    if (mapa_pantalla!=null) {
-        if (mapa_pantalla.isVisible()) {
-        map=true;
-    }
-    }
     
-}
-boolean pmapa = false;
+    
+    Mapa_Vista mapa_pantalla;
+    boolean map = false;
+
+    public void validarvisible() {
+        if (mapa_pantalla != null) {
+            if (mapa_pantalla.isVisible()) {
+                map = true;
+            }
+        }
+
+    }
+    boolean pmapa = false;
     private void mapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaMouseClicked
         // TODO add your handling code here:
         validarvisible();
-        System.out.println(map+" map+");
-        if (map==false) {
+        System.out.println(map + " map+");
+        if (map == false) {
             mapa_pantalla = new Mapa_Vista(isla_nombre);
             mapa_pantalla.setVisible(true);
             //
             System.out.println("mapa activado");
         }
-
     }//GEN-LAST:event_mapaMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -345,13 +380,12 @@ boolean pmapa = false;
             pmapa = mapa_pantalla.isVisible();
             if (pmapa) {
                 mapa_pantalla.dispose();
-                pmapa=false;
-                map=false;
-            
-                
+                pmapa = false;
+                map = false;
+
             }
         }
-        
+
     }//GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

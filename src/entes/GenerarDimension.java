@@ -21,6 +21,8 @@ public class GenerarDimension {
     private final int CUADROS_H = 32;
     private final int SOBRA_P = 4;
     private static final double POS_MENU = 0.1;
+    private int sobraX;
+    private int sobraY;
 
     //   Dimensiones de las pantallas
     private Point puntoInicioMenu;
@@ -28,13 +30,10 @@ public class GenerarDimension {
     private Point puntoInicioJugador;
     
     private static Dimension dimensionMenu , dimensionCuadro, dimensionPersonaje, dimensionJuego;
-
-    public GenerarDimension() {
-    }
     
     public GenerarDimension(Point puntoInicial) {
-        int sobraY = (HEIGHT - (int)(HEIGHT*POS_MENU)) % CUADROS_V;
-        int sobraX = WIDTH%CUADROS_H;
+        sobraY = (HEIGHT - (int)(HEIGHT*POS_MENU)) % CUADROS_V;
+        sobraX = WIDTH%CUADROS_H;
         dimensionMenu = new Dimension(WIDTH-sobraX, (int)(HEIGHT*POS_MENU)+sobraY);
         dimensionCuadro = new Dimension(WIDTH/CUADROS_H , (HEIGHT-dimensionMenu.height)/CUADROS_V);
         dimensionPersonaje = new Dimension(dimensionCuadro.width-SOBRA_P, dimensionCuadro.height-SOBRA_P);
@@ -80,9 +79,7 @@ public class GenerarDimension {
         return dimensionCuadro;
     }
     
-    public int[] getPosicionActual(int posX, int posY){
-        int[] retorno = new int[2];
-        
-        return retorno;
+    public Point getPuntoActual(int xV, int yV){
+        return new Point((xV-(sobraX/2))/dimensionCuadro.width, yV/dimensionCuadro.height);
     }
 }
