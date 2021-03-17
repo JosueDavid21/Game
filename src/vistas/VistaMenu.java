@@ -44,34 +44,7 @@ public class VistaMenu extends javax.swing.JDialog {
         lb4.setIcon(idd);
          this.repaint();
          this.setLocationRelativeTo(this);
-        
-            try {
-                clip = AudioSystem.getClip();
-                
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
-                AudioInputStream audioInputStream =null;
-            try {
-                try {
-                    audioInputStream = AudioSystem.getAudioInputStream(new File(nombresonido).getAbsoluteFile());
-                } catch (IOException ex) {
-                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } catch (UnsupportedAudioFileException ex) {
-                Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            try {
-                clip.open(audioInputStream);
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                clip.start();
-    
+               
     }
        
     

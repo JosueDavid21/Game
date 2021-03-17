@@ -37,48 +37,7 @@ public class barra {
         pre.progres();
         
 
-    }
-
-    public void ReproducirSonido(String nombreSonido) throws LineUnavailableException, UnsupportedAudioFileException {
-
-        try {
-            Clip clip = AudioSystem.getClip();
-           
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(nombreSonido).getAbsoluteFile());
-
-                clip.open(audioInputStream);
-                clip.start();
-            
-                clip.stop();
-            
-
-        } catch (IOException | LineUnavailableException ex) {
-            System.out.println("Error al reproducir el sonido.");
-        }
-
-    }
-    
-    public void mute (String direccion,JButton bot) throws LineUnavailableException {
-    boolean bandera ;
-        if (bot.isSelected()) {
-            bandera = true;
-        try {
-            ReproducirSonido(direccion);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(barra.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else {
-          Clip clip = AudioSystem.getClip();
-          clip.stop();
-        }
-    
-    
-    
-    
-    }
-
-    
+    }   
 }
 
-//}
 

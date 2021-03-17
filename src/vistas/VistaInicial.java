@@ -26,37 +26,10 @@ import javax.swing.ImageIcon;
  */
 public class VistaInicial extends javax.swing.JFrame {
 
-    barra musica = new barra();
-    String nombresonido ="src/musica/juego-de-tronos-2.wav";
-    Clip clip = null;
+   
     public VistaInicial() {
 
         initComponents();
-
-//        try {
-//
-//            musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav", this);
-//        } catch (Exception e) {
-//        }
-//            try {
-//            clip = AudioSystem.getClip();
-//           
-//                AudioInputStream audioInputStream =null;
-//            try {
-//                audioInputStream = AudioSystem.getAudioInputStream(new File(nombresonido).getAbsoluteFile());
-//            } catch (UnsupportedAudioFileException ex) {
-//                Logger.getLogger(VistaInicial.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//                clip.open(audioInputStream);
-//                clip.start();
-//         
-//             
-//            
-//
-//        } catch (IOException | LineUnavailableException ex) {
-//            System.out.println("Error al reproducir el sonido.");
-//        }
 
 
         jPanel2.setBackground(new Color(0, 179, 71, 90));
@@ -84,8 +57,7 @@ public class VistaInicial extends javax.swing.JFrame {
 //                    clip.stop();
                     this.dispose();                   
                     m.setVisible(true);
-                    musica.ReproducirSonido("src/musica/juego-de-tronos-2.wav");
-                }
+                                }
             }
         } catch (Exception e) {
 
