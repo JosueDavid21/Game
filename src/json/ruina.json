@@ -242,7 +242,7 @@
                     "x": 29,
                     "y": 0,
                     "index": 29,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -274,7 +274,7 @@
                     "x": 1,
                     "y": 1,
                     "index": 33,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -282,7 +282,7 @@
                     "x": 2,
                     "y": 1,
                     "index": 34,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -370,7 +370,7 @@
                     "x": 13,
                     "y": 1,
                     "index": 45,
-                    "tile": 70,
+                    "tile": 69,
                     "rot": 0,
                     "flipX": false
                 },
@@ -378,7 +378,7 @@
                     "x": 14,
                     "y": 1,
                     "index": 46,
-                    "tile": 71,
+                    "tile": 70,
                     "rot": 0,
                     "flipX": false
                 },
@@ -490,7 +490,7 @@
                     "x": 28,
                     "y": 1,
                     "index": 60,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -498,7 +498,7 @@
                     "x": 29,
                     "y": 1,
                     "index": 61,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -506,7 +506,7 @@
                     "x": 30,
                     "y": 1,
                     "index": 62,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -746,7 +746,7 @@
                     "x": 28,
                     "y": 2,
                     "index": 92,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -754,7 +754,7 @@
                     "x": 29,
                     "y": 2,
                     "index": 93,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -762,7 +762,7 @@
                     "x": 30,
                     "y": 2,
                     "index": 94,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -1002,7 +1002,7 @@
                     "x": 28,
                     "y": 3,
                     "index": 124,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -1010,7 +1010,7 @@
                     "x": 29,
                     "y": 3,
                     "index": 125,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -1106,7 +1106,7 @@
                     "x": 9,
                     "y": 4,
                     "index": 137,
-                    "tile": 64,
+                    "tile": 63,
                     "rot": 0,
                     "flipX": false
                 },
@@ -2466,7 +2466,7 @@
                     "x": 19,
                     "y": 9,
                     "index": 307,
-                    "tile": 64,
+                    "tile": 63,
                     "rot": 0,
                     "flipX": false
                 },
@@ -3410,7 +3410,7 @@
                     "x": 9,
                     "y": 13,
                     "index": 425,
-                    "tile": 65,
+                    "tile": 64,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4058,7 +4058,7 @@
                     "x": 26,
                     "y": 15,
                     "index": 506,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4066,7 +4066,7 @@
                     "x": 27,
                     "y": 15,
                     "index": 507,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4074,7 +4074,7 @@
                     "x": 28,
                     "y": 15,
                     "index": 508,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4314,7 +4314,7 @@
                     "x": 26,
                     "y": 16,
                     "index": 538,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4322,7 +4322,7 @@
                     "x": 27,
                     "y": 16,
                     "index": 539,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4330,7 +4330,7 @@
                     "x": 28,
                     "y": 16,
                     "index": 540,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4338,7 +4338,7 @@
                     "x": 29,
                     "y": 16,
                     "index": 541,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4370,7 +4370,7 @@
                     "x": 1,
                     "y": 17,
                     "index": 545,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4586,7 +4586,7 @@
                     "x": 28,
                     "y": 17,
                     "index": 572,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4594,7 +4594,7 @@
                     "x": 29,
                     "y": 17,
                     "index": 573,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4602,7 +4602,7 @@
                     "x": 30,
                     "y": 17,
                     "index": 574,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4626,7 +4626,7 @@
                     "x": 1,
                     "y": 18,
                     "index": 577,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4634,7 +4634,7 @@
                     "x": 2,
                     "y": 18,
                     "index": 578,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4850,7 +4850,7 @@
                     "x": 29,
                     "y": 18,
                     "index": 605,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
@@ -4858,7 +4858,7 @@
                     "x": 30,
                     "y": 18,
                     "index": 606,
-                    "tile": 69,
+                    "tile": 68,
                     "rot": 0,
                     "flipX": false
                 },
