@@ -107,9 +107,9 @@ public class VistaPrincipal extends javax.swing.JDialog {
         if (Nombreper.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Ingrese un nombre para poder continuar ");
         }else{
-            VistaEmpezar p = new VistaEmpezar();
-                p.setVisible(true);
-                this.dispose();  
+            VistaEmpezar g = new VistaEmpezar();
+            g.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_InicioMouseClicked
 
