@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import control.Grafo;
 import control.Tecla;
 import entes.GenerarDimension;
 import entes.Isla;
@@ -17,6 +18,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -53,15 +55,16 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private final int moveY = 1;
     private boolean recogiendo = false;
 private String nombre_jugador ;
-private int cant_moneda=0;
-private int cant_tesoros=0;
+private int cant_moneda;
+private int cant_tesoros;
     boolean retorno;
     private final Point pSI = new Point();
     private final Point pSD = new Point();
     private final Point pII = new Point();
     private final Point pID = new Point();
     private final Tile t = new Tile();
-    
+    Grafo g = new Grafo("abcdefghijk");
+
     public VistaIsla(Isla isla, Point jug) {
         dimensiones = new GenerarDimension(jug);
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
@@ -69,10 +72,13 @@ private int cant_tesoros=0;
         matrizIsla = isla.getMatriz();
 
         initComponents();
+        g.iniciargrafo(g);
+        isla_nombre = isla.getNombre();
 nombre_jugador="david";
-//cant_moneda=0;
-//cant_tesoros=0;
-isla_nombre = isla.getNombre();
+System.out.println(Arrays.toString(g.rutaDificultad(g.String_char(isla_nombre),"difiCil")));
+cant_moneda=g.dificil;
+cant_tesoros=0;
+
         agregarMenu(isla.getNombre());
 
         jPanel1.setSize(dimensiones.getDimensionMenu());

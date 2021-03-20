@@ -19,7 +19,7 @@ public class Grafo {
     List<Nodo> listos = null;
 
     // construye el grafo con la serie de identificadores de nodo en una cadena
-    Grafo(String serieNodos) {
+    public Grafo(String serieNodos) {
         nodos = serieNodos.toCharArray();
         grafo = new int[nodos.length][nodos.length];
     }
@@ -33,7 +33,7 @@ public class Grafo {
     }
 
     // retorna la posicion en el arreglo de un nodo especifico
-    private int posicionNodo(char nodo) {
+    public int posicionNodo(char nodo) {
         for (int i = 0; i < nodos.length; i++) {
             if (nodos[i] == nodo) {
                 return i;
@@ -43,9 +43,9 @@ public class Grafo {
     }
     char arregloruta[];
 int distanciatotal;
-int facil;
-        int medio;
-        int dificil;
+public int facil;
+   public     int medio;
+   public     int dificil;
     // encuentra la ruta mas corta desde un nodo origen a un nodo destino
     public String encontrarRutaMinimaDijkstra(char inicio, char fin) {
         // calcula la ruta mas corta del inicio a los demas
@@ -170,6 +170,57 @@ public void iniciargrafo(Grafo g) {
         }
 
         return recorridoislas;
+    }
+    public char String_char(String nombre_isla) {
+char char_isla=' ';
+switch (nombre_isla){
+    case"volcan":{
+        char_isla='a';
+        break;
+    }case"desierto":{
+        char_isla='b';
+        break;
+    }
+    case"flor":{
+        char_isla='c';
+        break;
+    }
+    case"amor":{
+        char_isla='d';
+        break;
+    }
+    case"calavera":{
+        char_isla='e';
+        break;
+    }
+    case"circo":{
+        char_isla='f';
+        break;
+    }
+    case"militar":{
+        char_isla='g';
+        break;
+    }
+    case"ruina":{
+        char_isla='h';
+        break;
+    }
+    case"selva":{
+        char_isla='i';
+        break;
+    }
+    case"playa":{
+        char_isla='j';
+        break;
+    }
+    case"dulce":{
+        char_isla='k';
+        break;
+    }
+    
+    
+}
+        return char_isla;
     }
 
 
