@@ -6,6 +6,7 @@
 package vistas;
 
 import control.Grafo;
+import control.Reproducir;
 import control.Tecla;
 import entes.GenerarDimension;
 import entes.Isla;
@@ -64,7 +65,7 @@ private int cant_tesoros;
     private final Point pID = new Point();
     private final Tile t = new Tile();
     Grafo g = new Grafo("abcdefghijk");
-
+    Reproducir musica = new Reproducir();
     public VistaIsla(Isla isla, Point jug) {
         dimensiones = new GenerarDimension(jug);
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
@@ -72,6 +73,11 @@ private int cant_tesoros;
         matrizIsla = isla.getMatriz();
 
         initComponents();
+        try {
+            musica.ReproducirSonido("src/musica/sonido_1.wav");
+        } catch (Exception e) {
+        }
+        
         g.iniciargrafo(g);
         isla_nombre = isla.getNombre();
 nombre_jugador="david";
@@ -512,6 +518,12 @@ public void fondo(JLabel label,int tipo){
 
         mutehelp_Panel.setBackground(new java.awt.Color(102, 255, 255));
         mutehelp_Panel.setLayout(null);
+
+        mutehelp_mute_icono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mutehelp_mute_iconoMouseClicked(evt);
+            }
+        });
         mutehelp_Panel.add(mutehelp_mute_icono);
         mutehelp_mute_icono.setBounds(0, 0, 0, 0);
 
@@ -668,6 +680,11 @@ if (evt.getKeyCode() == 65) {
             System.out.println("mapa activado");
         }
     }//GEN-LAST:event_mapa_iconoMouseClicked
+
+    private void mutehelp_mute_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_mute_iconoMouseClicked
+        // TODO add your handling code here:
+        musica.Pausa();
+    }//GEN-LAST:event_mutehelp_mute_iconoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel interaccion_Panel;
