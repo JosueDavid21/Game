@@ -7,6 +7,7 @@
 package vistas;
 
 import control.Reproducir;
+import java.awt.Color;
 import java.awt.Image;
 import javax.sound.sampled.Clip;
 import javax.swing.Icon;
@@ -21,13 +22,14 @@ public class VistaPrincipal extends javax.swing.JDialog {
 
     /** Creates new form VistaPrincipal */
     Reproducir des = new Reproducir();
+    barra d = new barra();
     String nombresonido = "src/musica/juego-de-tronos-2.wav";
     Clip clip = null;
     public VistaPrincipal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        ImageIcon de = new ImageIcon("src/fondos/menu.gif");
+        person.setBackground(new Color(123,95,185,150));
+        ImageIcon de = new ImageIcon("src/fondos/vista.gif");
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(Fondo.getWidth(), Fondo.getHeight(), Image.SCALE_DEFAULT));
         Fondo.setIcon(ide);
         ImageIcon d = new ImageIcon("src/fondos/con_sonido.png");
@@ -36,11 +38,14 @@ public class VistaPrincipal extends javax.swing.JDialog {
         ImageIcon dee = new ImageIcon("src/fondos/sin_sonido.png");
         Icon idd = new ImageIcon(dee.getImage().getScaledInstance(pause.getWidth(), pause.getHeight(), Image.SCALE_DEFAULT));
         pause.setIcon(idd);
-        ImageIcon perso = new ImageIcon("src/imagenes.personajes/inicio.png");
-        Icon aux= new ImageIcon(perso.getImage().getScaledInstance(person.getWidth(), person.getHeight(), Image.SCALE_DEFAULT));
+        ImageIcon per = new ImageIcon("src/imagenes/personajes/inicio.png");
+        Icon aux= new ImageIcon(per.getImage().getScaledInstance(person.getWidth(), person.getHeight(), Image.SCALE_DEFAULT));
         person.setIcon(aux);
         this.repaint();
         this.setLocationRelativeTo(this);
+        jPanel1.setBackground(new Color(230,8,40,200));
+        
+        
         
         try {
             des.ReproducirSonido(nombresonido);
@@ -57,32 +62,40 @@ public class VistaPrincipal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        person = new javax.swing.JLabel();
         Inicio = new javax.swing.JLabel();
         pause = new javax.swing.JLabel();
         play = new javax.swing.JLabel();
         Nombreper = new javax.swing.JTextField();
-        person = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(person, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 120));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 170, 140));
 
         Inicio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Inicio.setForeground(new java.awt.Color(255, 255, 255));
         Inicio.setText("         Aceptar");
+        Inicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InicioMouseClicked(evt);
             }
         });
-        getContentPane().add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 130, 30));
+        getContentPane().add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 130, 30));
 
         pause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pauseMouseClicked(evt);
             }
         });
-        getContentPane().add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 30, 30));
+        getContentPane().add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 30, 30));
 
         play.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,8 +109,12 @@ public class VistaPrincipal extends javax.swing.JDialog {
                 NombreperMouseClicked(evt);
             }
         });
-        getContentPane().add(Nombreper, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 210, -1));
-        getContentPane().add(person, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 130, 90));
+        Nombreper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreperActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Nombreper, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 210, -1));
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
@@ -106,9 +123,11 @@ public class VistaPrincipal extends javax.swing.JDialog {
     private void InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InicioMouseClicked
         if (Nombreper.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Ingrese un nombre para poder continuar ");
-        }else{
+        }else{            
+            d.GuardarNombre(Nombreper.getText());
+            des.Pausa();
             VistaEmpezar g = new VistaEmpezar();
-            g.setVisible(true);
+            g.setAlwaysOnTop(true);
             this.dispose();
         }
     }//GEN-LAST:event_InicioMouseClicked
@@ -127,6 +146,10 @@ public class VistaPrincipal extends javax.swing.JDialog {
     private void pauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseClicked
          des.Pausa();
     }//GEN-LAST:event_pauseMouseClicked
+
+    private void NombreperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreperActionPerformed
+       
+    }//GEN-LAST:event_NombreperActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +197,7 @@ public class VistaPrincipal extends javax.swing.JDialog {
     private javax.swing.JLabel Fondo;
     private javax.swing.JLabel Inicio;
     private javax.swing.JTextField Nombreper;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pause;
     private javax.swing.JLabel person;
     private javax.swing.JLabel play;

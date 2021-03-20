@@ -5,20 +5,21 @@
  */
 package vistas;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
 
 /**
  *
  * @author edgar
  */
 public class VistaEmpezar extends javax.swing.JFrame {
-
-    /**
-     * Creates new form VistaEmpezar
-     */
+      barra d =new barra();
+      VistaPrincipal mu = new VistaPrincipal(this, rootPaneCheckingEnabled);
+      String musica= "src/musica/sonido_1.wav";
     public VistaEmpezar() {
         initComponents();
         setLocationRelativeTo(null);
@@ -26,6 +27,24 @@ public class VistaEmpezar extends javax.swing.JFrame {
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
         fondo.setIcon(ide);
         jPanel1.setBackground(new Color(125,188,200,180));
+        jPanel2.setBackground(new Color(125,52,49,180));
+        Iniciar.setForeground(new Color(255,255,255));
+        Iniciar.setBackground(Color.white);
+//        nombre.setText("Bienvenido"+d.g);
+        nombre.setForeground(Color.WHITE);
+        mu.des.Pausa();
+        try {
+             mu.des.ReproducirSonido(musica);
+        } catch (Exception e) {
+        }
+       
+    }
+    
+    public static String GuardarIsla(String g){
+    
+            String isla=g;
+          return isla;
+    
     }
 
     /**
@@ -37,11 +56,19 @@ public class VistaEmpezar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Nivel = new javax.swing.ButtonGroup();
+        nombre = new javax.swing.JLabel();
+        Iniciar = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        facil = new javax.swing.JRadioButton();
+        dificil = new javax.swing.JRadioButton();
+        medio = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        calavera = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Amor = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -49,33 +76,83 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         p = new javax.swing.JLabel();
-        facil = new javax.swing.JRadioButton();
-        medio = new javax.swing.JRadioButton();
-        dificil = new javax.swing.JRadioButton();
-        Iniciar = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 140, 30));
 
+        Iniciar.setBackground(new java.awt.Color(255, 255, 0));
+        Iniciar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Iniciar.setForeground(new java.awt.Color(255, 255, 255));
+        Iniciar.setText("   Iniciar Juego");
+        Iniciar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        getContentPane().add(Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 110, 30));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setBackground(new java.awt.Color(0, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Elegir un nivel de dificultad");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
+
+        Nivel.add(facil);
+        facil.setForeground(new java.awt.Color(255, 255, 255));
+        facil.setText("Nivel Facil");
+        facil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                facilMouseClicked(evt);
+            }
+        });
+        jPanel2.add(facil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        Nivel.add(dificil);
+        dificil.setForeground(new java.awt.Color(255, 255, 255));
+        dificil.setText("Nivel Dificil");
+        dificil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dificilMouseClicked(evt);
+            }
+        });
+        jPanel2.add(dificil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        Nivel.add(medio);
+        medio.setForeground(new java.awt.Color(255, 255, 255));
+        medio.setText("Nivel Medio");
+        medio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        medio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                medioMouseClicked(evt);
+            }
+        });
+        jPanel2.add(medio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 90, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 150, 190));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("jLabel1");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 50, 40));
 
-        jLabel3.setText("jLabel1");
-        jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 50, 40));
+        calavera.setText("Calavera");
+        calavera.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(calavera, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 50, 40));
 
         jLabel1.setText("jLabel1");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 50, 40));
 
-        jLabel2.setText("jLabel1");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 50, 40));
+        Amor.setText("Amor");
+        Amor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Amor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AmorMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Amor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 50, 40));
 
         jLabel9.setText("jLabel1");
         jLabel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -107,32 +184,26 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jPanel1.add(p, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 130, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 270));
-
-        facil.setForeground(new java.awt.Color(255, 255, 255));
-        facil.setText("Nivel Facil");
-        getContentPane().add(facil, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
-
-        medio.setForeground(new java.awt.Color(255, 255, 255));
-        medio.setText("Nivel Medio");
-        getContentPane().add(medio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
-
-        dificil.setForeground(new java.awt.Color(255, 255, 255));
-        dificil.setText("Nivel Dificil");
-        getContentPane().add(dificil, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
-
-        Iniciar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Iniciar.setForeground(new java.awt.Color(255, 255, 255));
-        Iniciar.setText("   Iniciar Juego");
-        getContentPane().add(Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 110, 30));
-
-        jLabel11.setBackground(new java.awt.Color(0, 255, 255));
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Elegir un nivel de dificultad");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 130, -1));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void facilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facilMouseClicked
+        d.Nivel(facil.getLabel());
+    }//GEN-LAST:event_facilMouseClicked
+
+    private void dificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dificilMouseClicked
+       d.Nivel(medio.getLabel());
+    }//GEN-LAST:event_dificilMouseClicked
+
+    private void medioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medioMouseClicked
+       d.Nivel(dificil.getLabel());
+    }//GEN-LAST:event_medioMouseClicked
+
+    private void AmorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AmorMouseClicked
+        GuardarIsla(Amor.getName());
+    }//GEN-LAST:event_AmorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -170,15 +241,16 @@ public class VistaEmpezar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Amor;
     private javax.swing.JLabel Iniciar;
+    private javax.swing.ButtonGroup Nivel;
+    private javax.swing.JLabel calavera;
     private javax.swing.JRadioButton dificil;
     private javax.swing.JRadioButton facil;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -186,7 +258,9 @@ public class VistaEmpezar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton medio;
+    private javax.swing.JLabel nombre;
     private javax.swing.JLabel p;
     // End of variables declaration//GEN-END:variables
 }

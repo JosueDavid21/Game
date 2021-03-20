@@ -22,7 +22,7 @@ import javax.swing.JButton;
  * @author edgar
  */
 public class barra {
-
+    public String g;
     /**
      * @param args the command line arguments
      */
@@ -38,6 +38,16 @@ public class barra {
         
 
     }   
+    
+    public void Nivel(String niv){
+        String nivel=niv;
+        
+    
+    }
+    public void GuardarNombre (String nombre){
+       g=nombre;
+    
+    }
 }
 
 
