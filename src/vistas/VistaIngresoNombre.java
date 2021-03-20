@@ -44,12 +44,15 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         person.setIcon(aux);
         this.repaint();
         this.setLocationRelativeTo(this);
-        jPanel1.setBackground(new Color(230, 8, 40, 200));
+        jPanel2.setBackground(new Color(150, 92, 40, 200));
+        jPanel3.setBackground(new Color(122,214,189,220));
         
-        try {
+        try {          
             des.ReproducirSonido(nombresonido);
         } catch (Exception e) {
         }
+        play.setVisible(false);
+        
     }
 
     /**
@@ -66,6 +69,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         person = new javax.swing.JLabel();
         Inicio = new javax.swing.JLabel();
         Nombreper = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         pause = new javax.swing.JLabel();
         play = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
@@ -75,14 +79,16 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(person, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,15 +98,18 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 57, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
+        Inicio.setBackground(new java.awt.Color(167, 151, 151));
+        Inicio.setForeground(new java.awt.Color(255, 255, 255));
         Inicio.setText("                                 Continuar");
+        Inicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InicioMouseClicked(evt);
             }
         });
-        jPanel1.add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 244, 273, 32));
+        jPanel1.add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 273, 32));
 
         Nombreper.setText("Ingrese Nombre para su personaje");
         Nombreper.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,24 +122,29 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
                 NombreperActionPerformed(evt);
             }
         });
-        jPanel1.add(Nombreper, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 213, 213, 25));
+        jPanel1.add(Nombreper, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 213, 25));
 
-        pause.setText("jLabel4");
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel3.setLayout(null);
+
         pause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pauseMouseClicked(evt);
             }
         });
-        jPanel1.add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 30, 30));
+        jPanel3.add(pause);
+        pause.setBounds(10, 10, 30, 30);
 
-        play.setText("jLabel3");
         play.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playMouseClicked(evt);
             }
         });
-        jPanel1.add(play, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
-        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 340));
+        jPanel3.add(play);
+        play.setBounds(10, 10, 30, 30);
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 50, 50));
+        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,7 +165,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreperActionPerformed
 
     private void InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InicioMouseClicked
-        if (Nombreper.getText().isEmpty()) {
+        if (Nombreper.getText().isEmpty()|| Nombreper.getText().equals("Ingrese Nombre para su personaje")) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre para poder continuar ");
         } else {
 
@@ -169,12 +183,17 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
     private void playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseClicked
          try {
             des.ReproducirSonido(nombresonido);
+            pause.setVisible(true);
+            play.setVisible(false);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_playMouseClicked
 
     private void pauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseClicked
       des.Pausa();
+      play.setVisible(true);
+      pause.setVisible(false);
+      
     }//GEN-LAST:event_pauseMouseClicked
     
     /**
@@ -218,6 +237,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
     private javax.swing.JTextField Nombreper;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel pause;
     private javax.swing.JLabel person;
     private javax.swing.JLabel play;
