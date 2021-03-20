@@ -30,13 +30,13 @@ public class VistaMenu extends javax.swing.JDialog {
 
         initComponents();
 
-        ImageIcon de = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\menu.gif");
+        ImageIcon de = new ImageIcon("src/fondos/menu.gif");
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(Fondo.getWidth(), Fondo.getHeight(), Image.SCALE_DEFAULT));
         Fondo.setIcon(ide);
-        ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\j_1.png");
+        ImageIcon d = new ImageIcon("src/fondos/con_sonido.png");
         Icon id = new ImageIcon(d.getImage().getScaledInstance(play.getWidth(), play.getHeight(), Image.SCALE_DEFAULT));
         play.setIcon(id);
-        ImageIcon dee = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\sin.png");
+        ImageIcon dee = new ImageIcon("src/fondos/sin_sonido.png");
         Icon idd = new ImageIcon(dee.getImage().getScaledInstance(pause.getWidth(), pause.getHeight(), Image.SCALE_DEFAULT));
         pause.setIcon(idd);
         this.repaint();
@@ -66,7 +66,6 @@ public class VistaMenu extends javax.swing.JDialog {
         play = new javax.swing.JLabel();
         pause = new javax.swing.JLabel();
         iniciojuego = new javax.swing.JLabel();
-        salir = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -103,14 +102,6 @@ public class VistaMenu extends javax.swing.JDialog {
             }
         });
         getContentPane().add(iniciojuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 230, 50));
-
-        salir.setText("Salir");
-        salir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                salirMouseClicked(evt);
-            }
-        });
-        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 30, 20));
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 310));
 
         pack();
@@ -132,10 +123,6 @@ public class VistaMenu extends javax.swing.JDialog {
        des.Pausa();
     }//GEN-LAST:event_pauseMouseClicked
 
-    private void salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirMouseClicked
-    System.exit(0);
-    }//GEN-LAST:event_salirMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -147,6 +134,5 @@ public class VistaMenu extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pause;
     private javax.swing.JLabel play;
-    private javax.swing.JLabel salir;
     // End of variables declaration//GEN-END:variables
 }
