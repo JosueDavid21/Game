@@ -45,7 +45,7 @@ public class VistaInicial extends javax.swing.JFrame {
 
     public void progres() {
 //        IngresoUsuario iniciar = new IngresoUsuario();
-        VistaPrincipal m = new VistaPrincipal(this, rootPaneCheckingEnabled);
+        VistaIngresoNombre m = new VistaIngresoNombre();
         try {
             for (int i = 0; i <= 100; i++) {
                 Thread.sleep(90);

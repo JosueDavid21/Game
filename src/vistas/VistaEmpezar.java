@@ -6,45 +6,58 @@
 package vistas;
 
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import entes.Isla;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Point;
+import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
+import listas.ListaMapas;
 
 /**
  *
  * @author edgar
  */
 public class VistaEmpezar extends javax.swing.JFrame {
-      barra d =new barra();
-      VistaPrincipal mu = new VistaPrincipal(this, rootPaneCheckingEnabled);
-      String musica= "src/musica/sonido_1.wav";
+
+    barra d = new barra();
+    VistaIngresoNombre mu = new VistaIngresoNombre();
+    String musica = "src/musica/sonido_1.wav";
+    String temp;
+
     public VistaEmpezar() {
         initComponents();
+
+    }
+
+    public VistaEmpezar(String jugador) {
+        initComponents();
         setLocationRelativeTo(null);
-         ImageIcon de = new ImageIcon("src/fondos/inicio secion.gif");
+        ImageIcon de = new ImageIcon("src/fondos/inicio secion.gif");
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
         fondo.setIcon(ide);
-        jPanel1.setBackground(new Color(125,188,200,180));
-        jPanel2.setBackground(new Color(125,52,49,180));
-        Iniciar.setForeground(new Color(255,255,255));
+        jPanel1.setBackground(new Color(125, 188, 200, 180));
+        jPanel2.setBackground(new Color(125, 52, 49, 180));
+        Iniciar.setForeground(new Color(255, 255, 255));
         Iniciar.setBackground(Color.white);
-//        nombre.setText("Bienvenido"+d.g);
+        nombre.setBackground(new java.awt.Color(140, 210, 250));
+        nombre.setText("Bienvenido " + jugador.toUpperCase().trim());
         nombre.setForeground(Color.WHITE);
+
         mu.des.Pausa();
         try {
-             mu.des.ReproducirSonido(musica);
+            mu.des.ReproducirSonido(musica);
         } catch (Exception e) {
         }
-       
+
     }
-    
-    public static String GuardarIsla(String g){
-    
-            String isla=g;
-          return isla;
-    
+
+    public static String GuardarIsla(String g) {
+
+        String isla = g;
+        return isla;
+
     }
 
     /**
@@ -68,7 +81,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         calavera = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        Amor = new javax.swing.JLabel();
+        amor = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -79,7 +92,10 @@ public class VistaEmpezar extends javax.swing.JFrame {
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nombre.setBackground(new java.awt.Color(255, 51, 0));
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 140, 30));
 
         Iniciar.setBackground(new java.awt.Color(255, 255, 0));
@@ -87,6 +103,11 @@ public class VistaEmpezar extends javax.swing.JFrame {
         Iniciar.setForeground(new java.awt.Color(255, 255, 255));
         Iniciar.setText("   Iniciar Juego");
         Iniciar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        Iniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IniciarMouseClicked(evt);
+            }
+        });
         getContentPane().add(Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 110, 30));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -145,14 +166,14 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 50, 40));
 
-        Amor.setText("Amor");
-        Amor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Amor.addMouseListener(new java.awt.event.MouseAdapter() {
+        amor.setText("Amor");
+        amor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        amor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AmorMouseClicked(evt);
+                amorMouseClicked(evt);
             }
         });
-        jPanel1.add(Amor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 50, 40));
+        jPanel1.add(amor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 50, 40));
 
         jLabel9.setText("jLabel1");
         jLabel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -160,7 +181,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         jLabel6.setText("jLabel1");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 50, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 50, 40));
 
         jLabel7.setText("jLabel1");
         jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -189,21 +210,26 @@ public class VistaEmpezar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void medioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medioMouseClicked
+        d.Nivel(dificil.getLabel());
+    }//GEN-LAST:event_medioMouseClicked
+
+    private void dificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dificilMouseClicked
+        d.Nivel(medio.getLabel());
+    }//GEN-LAST:event_dificilMouseClicked
+
     private void facilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facilMouseClicked
         d.Nivel(facil.getLabel());
     }//GEN-LAST:event_facilMouseClicked
 
-    private void dificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dificilMouseClicked
-       d.Nivel(medio.getLabel());
-    }//GEN-LAST:event_dificilMouseClicked
+    private void amorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseClicked
+        temp="amor";
+    }//GEN-LAST:event_amorMouseClicked
 
-    private void medioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medioMouseClicked
-       d.Nivel(dificil.getLabel());
-    }//GEN-LAST:event_medioMouseClicked
-
-    private void AmorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AmorMouseClicked
-        GuardarIsla(Amor.getName());
-    }//GEN-LAST:event_AmorMouseClicked
+    private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
+        HashMap lista = new ListaMapas().getLista();
+        new VistaIsla((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
+    }//GEN-LAST:event_IniciarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -241,9 +267,9 @@ public class VistaEmpezar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Amor;
     private javax.swing.JLabel Iniciar;
     private javax.swing.ButtonGroup Nivel;
+    private javax.swing.JLabel amor;
     private javax.swing.JLabel calavera;
     private javax.swing.JRadioButton dificil;
     private javax.swing.JRadioButton facil;
