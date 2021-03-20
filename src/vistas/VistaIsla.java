@@ -190,10 +190,9 @@ public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel au
 ////        }
 if (mapa_pantalla!=null) {
             icono2(interaccion_icono, "personaje1");
-            interaccion_texto.setText("HOLA PRRO COMO STAS??");
+            interaccion_texto.setText("HOLLA PERRO");
         }
     }
-
     public void icono_animacion(String nombre_animacion) {
         if (animacion % 20 > 8) {
             icono(personaje, nombre_animacion + "1");

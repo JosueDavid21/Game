@@ -42,7 +42,10 @@ public class Grafo {
         return -1;
     }
     char arregloruta[];
-
+int distanciatotal;
+int facil;
+        int medio;
+        int dificil;
     // encuentra la ruta mas corta desde un nodo origen a un nodo destino
     public String encontrarRutaMinimaDijkstra(char inicio, char fin) {
         // calcula la ruta mas corta del inicio a los demas
@@ -71,6 +74,7 @@ public class Grafo {
 
         }
         arregloruta = da;
+        distanciatotal=distancia;
         return distancia + " KM Recorridos | La Mejor Ruta es: " + Arrays.toString(rutaisla(arregloruta));
 
     }
@@ -142,17 +146,17 @@ public void iniciargrafo(Grafo g) {
     }
     public String[] rutaisla(char isla[]) {
         String islas[] = {
-            /*a*/"VOLCAN",
-            /*b*/"DESIERTO",
-             /*c*/"FLOR",
-             /*d*/"AMOR",
-             /*e*/"CALAVERA",
-             /*f*/"CIRCO",
-             /*g*/"MILITAR",
-             /*h*/"RUINAS",
-             /*i*/"SELVA",
-             /*j*/"PLAYA",
-             /*k*/"DULCES"};
+            /*a*/"volcan",
+            /*b*/"desierto",
+             /*c*/"flor",
+             /*d*/"amor",
+             /*e*/"calavera",
+             /*f*/"circo",
+             /*g*/"militar",
+             /*h*/"ruina",
+             /*i*/"selva",
+             /*j*/"playa",
+             /*k*/"dulce"};
         char islaschar[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'};
         String recorridoislas[] = new String[isla.length];
 //        System.out.println("arregloruta"+Arrays.toString(arregloruta));
@@ -182,23 +186,82 @@ public void iniciargrafo(Grafo g) {
         }
         return resp;
     }
+public String [] rutaDificultad(char inicio,String dificultad){
+    String ruta[]=null;
+    String rutafinal[]=null;
+    Grafo g = new Grafo("abcdefghijk");
+        g.iniciargrafo(g);
+        String rutafacil[]=null;
+        String rutamedio[]=null;
+        String rutadificl[]=null;
+        
+    for (int i = 0; i < 11; i++) {
+        
+       String respuesta= g.encontrarRutaMinimaDijkstra(inicio, g.nodos[i]);
+       ruta=g.rutaisla(g.arregloruta);
+            if (ruta.length<=2) {
+                rutafacil=ruta;
+                facil=g.distanciatotal;
+                
+        }else if(ruta.length==3  ){
+            rutamedio=ruta;
+            medio=g.distanciatotal;
+        }
+            else if(ruta.length>5 || ruta.length>=4 ){
+           rutadificl=ruta;
+           dificil=g.distanciatotal;
+        }
+        }
+switch (dificultad.toLowerCase().trim()){
+    case "facil":{
+//        System.out.println(facil);
+        rutafinal=rutafacil;
+        break;
+    }
+    case "medio":{
+        rutafinal=rutamedio;
+//        System.out.println(medio);
+        break;
+        
+    }
+    case "dificil":{
+        rutafinal=rutadificl;
+//        System.out.println(dificil);
+        break;
+    }
+}    
 
+    return rutafinal;
+}
     
 
     public static void main(String[] args) {
         Grafo g = new Grafo("abcdefghijk");
         g.iniciargrafo(g);
         
-        char inicio = 'a';//isla inicial 
+        char inicio = 'c';//isla inicial 
         
         char fin = 'e';
         System.out.println("RUTAS POSIBLES DESDE "+inicio+" hacia las demas islas");
 //        String respuesta=g.encontrarRutaMinimaDijkstra(inicio, fin);
 //            System.out.println(respuesta);
-        for (int i = 0; i < 11; i++) {
-            String respuesta=g.encontrarRutaMinimaDijkstra(inicio, g.nodos[i]);
-            System.out.println(respuesta);
-        }
+//        for (int i = 0; i < 11; i++) {
+//            String respuesta=g.encontrarRutaMinimaDijkstra(inicio, g.nodos[i]);
+//            System.out.println(respuesta);
+//        }
+//    }
+//String []da={"facil","medio","dificil"};
+//for (int i = 0; i < 3; i++) {
+//            System.out.println(Arrays.toString(g.rutaDificultad(inicio, da[i])));
+//            
+//        }
+System.out.println(Arrays.toString(g.rutaDificultad(inicio,"difiCil")));
+System.out.println(g.dificil);
+//System.out.println(g.facil);
+//            System.out.println(g.medio);
+//            System.out.println(g.dificil);
     }
+    
+    
 
 }

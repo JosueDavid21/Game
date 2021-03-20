@@ -36,7 +36,7 @@ public class Mapa_Vista extends javax.swing.JFrame   {
      
      boolean focsdus;
      
-public void icono(JLabel foto_icono, String nodo) {
+private void icono(JLabel foto_icono, String nodo) {
         Dimension d = new Dimension(420,378);
         foto_icono.setSize(d);
         
