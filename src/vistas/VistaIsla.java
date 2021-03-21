@@ -8,7 +8,6 @@ package vistas;
 import control.Grafo;
 import control.Pistas;
 import control.Reproducir;
-import control.Tecla;
 import entes.GenerarDimension;
 import entes.Isla;
 import entes.Tile;
@@ -19,12 +18,10 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
@@ -33,10 +30,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private static String rutaIsla;
     private final int[][] matrizIsla;
     GenerarDimension dimensiones;
-//    private final Tecla arriba = new Tecla();
-//    private final Tecla abajo = new Tecla();
-//    private final Tecla izquierda = new Tecla();
-//    private final Tecla derecha = new Tecla();
     boolean arriba;
     boolean abajo;
     boolean izquierda;
@@ -55,11 +48,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private final int moveX = 1;
     private final int moveY = 1;
     private boolean recogiendo = false;
-private String nombre_jugador ;
-private int cant_moneda;
-private int cant_tesoros;
+    private String nombre_jugador;
+    private int cant_moneda;
+    private int cant_tesoros;
     boolean retorno;
-    String camino[] ;
+    String camino[];
     private final Point pSI = new Point();
     private final Point pSD = new Point();
     private final Point pII = new Point();
@@ -67,6 +60,7 @@ private int cant_tesoros;
     private final Tile t = new Tile();
     Grafo g = new Grafo("abcdefghijk");
     Reproducir musica = new Reproducir();
+
     public VistaIsla(Isla isla, Point jug) {
         dimensiones = new GenerarDimension(jug);
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
@@ -78,16 +72,16 @@ private int cant_tesoros;
             musica.ReproducirSonido("src/musica/sonido_1.wav");
         } catch (Exception e) {
         }
-        
+
         g.iniciargrafo(g);
-        
+
         isla_nombre = isla.getNombre();
-nombre_jugador="pepe";
-camino=g.rutaDificultad(g.String_char(isla_nombre),"dificil");
-pista();
-System.out.println(Arrays.toString(camino));
-cant_moneda=g.dificil;
-cant_tesoros=0;
+        nombre_jugador = "pepe";
+        camino = g.rutaDificultad(g.String_char(isla_nombre), "dificil");
+        pista();
+        System.out.println(Arrays.toString(camino));
+        cant_moneda = g.dificil;
+        cant_tesoros = 0;
 
         agregarMenu(isla.getNombre());
 
@@ -104,142 +98,135 @@ cant_tesoros=0;
         this.x = personaje.getLocation().x;
         this.y = personaje.getLocation().y;
 
-        
         jPanel1.updateUI();
-        
+
     }
-    
+
     //DAVID INICIO
     String isla_nombre;
 
     public void agregarMenu(String nombreisla) {
-        fondo( jugador_fondo,1);
-        posiciones(jugador_texto, jugador_icono,"jugador",1,null);
-        fondo( moneda_fondo,1);
-        posiciones(moneda_texto, moneda_icono,"moneda",2,moneda_texto1);
-        fondo(tesoro_fondo,1);
-        posiciones(tesoro_texto, tesoro_icono,"tesoro",2,tesoro_texto1);
+        fondo(jugador_fondo, 1);
+        posiciones(jugador_texto, jugador_icono, "jugador", 1, null);
+        fondo(moneda_fondo, 1);
+        posiciones(moneda_texto, moneda_icono, "moneda", 2, moneda_texto1);
+        fondo(tesoro_fondo, 1);
+        posiciones(tesoro_texto, tesoro_icono, "tesoro", 2, tesoro_texto1);
         fondo(interaccion_fondo, 2);
-        posiciones(interaccion_texto, interaccion_icono,"interaccion",4,null);
-        fondo( mapa_fondo,1);
-        posiciones(mapa_texto, mapa_icono,"mapa",1,null);
-        fondo( nombreisla_fondo,1);
-        posiciones(nombreisla_texto, nombreisla_icono,isla_nombre,5,nombreisla_icono1);
-        fondo( mutehelp_fondo,1);
-         posiciones(mutehelp_mute_icono1, mutehelp_mute_icono,"mutehelp",3,mutehelp_help_icono);
+        posiciones(interaccion_texto, interaccion_icono, "interaccion", 4, null);
+        fondo(mapa_fondo, 1);
+        posiciones(mapa_texto, mapa_icono, "mapa", 1, null);
+        fondo(nombreisla_fondo, 1);
+        posiciones(nombreisla_texto, nombreisla_icono, isla_nombre, 5, nombreisla_icono1);
+        fondo(mutehelp_fondo, 1);
+        posiciones(mutehelp_mute_icono1, mutehelp_mute_icono, "mutehelp", 3, mutehelp_help_icono);
         jPanel1.updateUI();
     }
-public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel aux){
-    double ancho=dimensiones.getDimensionMenu().width/7;
-    double alto=dimensiones.getDimensionMenu().getHeight();
-    double por_ancho_texto= 50*ancho/100;
-    double por_alto_texto=85*alto/100;
-         
-        if (tipo==1) {
+
+    public void posiciones(JLabel texto, JLabel icon, String nombre, int tipo, JLabel aux) {
+        double ancho = dimensiones.getDimensionMenu().width / 7;
+        double alto = dimensiones.getDimensionMenu().getHeight();
+        double por_ancho_texto = 50 * ancho / 100;
+        double por_alto_texto = 85 * alto / 100;
+
+        if (tipo == 1) {
             icono2(icon, nombre);
-        if (nombre=="jugador") {
-            texto.setText(nombre_jugador.trim().toUpperCase());  
-        }else if(nombre=="mapa"){      
-            texto.setText(nombre.trim().toUpperCase()); 
+            if (nombre == "jugador") {
+                texto.setText(nombre_jugador.trim().toUpperCase());
+            } else if (nombre == "mapa") {
+                texto.setText(nombre.trim().toUpperCase());
+            }
+            texto.setSize(dimensiones.getDimensionMenu().width / 7, 20);
+            double por_ancho_icono = 50 * ancho / 100;
+            double por_alto_icono = 15 * alto / 100;
+            icon.setLocation(new Point((int) por_ancho_icono - icon.getSize().width / 2, (int) (por_alto_icono/*-icon.getSize().getHeight()/2*/)));
+            texto.setLocation(new Point((int) por_ancho_texto - texto.getSize().width / 2, (int) (por_alto_texto - texto.getSize().getHeight() / 2)));
         }
-        texto.setSize(dimensiones.getDimensionMenu().width/7,20);
-    double por_ancho_icono= 50*ancho/100;
-    double por_alto_icono= 15*alto/100;
-    icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono/*-icon.getSize().getHeight()/2*/)));
-    texto.setLocation(new Point((int)por_ancho_texto-texto.getSize().width/2,(int)(por_alto_texto-texto.getSize().getHeight()/2)));
+        if (tipo == 2) {
+
+            double por_ancho_icono = 40 * ancho / 100;
+            double por_alto_icono = 15 * alto / 100;
+            double por_ancho_aux = 70 * ancho / 100;
+            double por_alto_aux = 35 * alto / 100;
+            icono2(icon, nombre);
+            texto.setText(nombre.trim().toUpperCase());
+
+            if (nombre == "moneda") {
+                aux.setText(String.valueOf(cant_moneda));
+            } else if (nombre == "tesoro") {
+                aux.setText(String.valueOf(cant_tesoros));
+            }
+            aux.setSize(40, 20);
+            aux.setLocation(new Point((int) por_ancho_aux - aux.getSize().width / 2, (int) (por_alto_aux - aux.getSize().getHeight() / 2)));
+            texto.setSize(dimensiones.getDimensionMenu().width / 7, 20);
+            icon.setLocation(new Point((int) por_ancho_icono - icon.getSize().width / 2, (int) (por_alto_icono/*-icon.getSize().getHeight()/2*/)));
+            texto.setLocation(new Point((int) por_ancho_texto - texto.getSize().width / 2, (int) (por_alto_texto - texto.getSize().getHeight() / 2)));
         }
-    if (tipo==2) {
-           
-    double por_ancho_icono= 40*ancho/100;
-    double por_alto_icono= 15*alto/100;
-     double por_ancho_aux= 70*ancho/100;
-    double por_alto_aux=35*alto/100;
-        icono2(icon, nombre);
-         texto.setText(nombre.trim().toUpperCase());
-         
-         if (nombre=="moneda") {
-            aux.setText(String.valueOf(cant_moneda)); 
-        }else  if (nombre=="tesoro"){
-         aux.setText(String.valueOf(cant_tesoros)); 
+        if (tipo == 3) {
+            double por_ancho_icono = 30 * ancho / 100;
+            double por_alto_icono = 50 * alto / 100;
+            double por_ancho_aux = 70 * ancho / 100;
+            double por_alto_aux = 50 * alto / 100;
+            icono2(icon, "speaker");
+            icono2(texto, "speakeroff");
+            icono2(aux, "help");
+            icon.setLocation(new Point((int) por_ancho_icono - icon.getSize().width / 2, (int) (por_alto_icono - aux.getSize().getHeight() / 2)));
+            texto.setVisible(false);
+            aux.setLocation(new Point((int) por_ancho_aux - aux.getSize().width / 2, (int) (por_alto_aux - aux.getSize().getHeight() / 2)));
+            texto.setLocation(new Point((int) por_ancho_icono - icon.getSize().width / 2, (int) (por_alto_icono - aux.getSize().getHeight() / 2)));
         }
-         aux.setSize(40,20);
-         aux.setLocation(new Point((int)por_ancho_aux-aux.getSize().width/2,(int)(por_alto_aux-aux.getSize().getHeight()/2)));
-        texto.setSize(dimensiones.getDimensionMenu().width/7,20);
-        icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono/*-icon.getSize().getHeight()/2*/)));
-         texto.setLocation(new Point((int)por_ancho_texto-texto.getSize().width/2,(int)(por_alto_texto-texto.getSize().getHeight()/2)));
-}
-    if (tipo==3) {
-        double por_ancho_icono= 30*ancho/100;
-    double por_alto_icono= 50*alto/100;
-     double por_ancho_aux= 70*ancho/100;
-    double por_alto_aux=50*alto/100;
-        icono2(icon, "speaker");
-         icono2(texto, "speakeroff");
-         icono2(aux, "help");
-        icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono-aux.getSize().getHeight()/2)));
-        texto.setVisible(false);
-        aux.setLocation(new Point((int)por_ancho_aux-aux.getSize().width/2,(int)(por_alto_aux-aux.getSize().getHeight()/2)));
-        texto.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono-aux.getSize().getHeight()/2)));
-    }
-    if (tipo==4) {
-        icono2(icon, "blanco");
+        if (tipo == 4) {
+            icono2(icon, "blanco");
 //        jTextArea1.setText("HOLASKOLAMSDKL ALKDMKLAMD ALKWMDKLASMD ALKDMKLASMD ALKMDKALSMD ASKDM");
-    double por_ancho_icono= 50*ancho/100;
-    double por_alto_icono= 8*alto/100;
-    texto.setSize(dimensiones.getDimensionMenu().width/7,20);
-    icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono/*-icon.getSize().getHeight()/2*/)));
-    texto.setLocation(new Point((int)por_ancho_texto-texto.getSize().width/2,(int)(por_alto_texto-texto.getSize().getHeight()/2)));
-    }
-    if (tipo==5) {
-           icono2(icon, nombre);
-           icono2(aux, camino[camino.length-1]);
-            texto.setText(nombre.trim().toUpperCase()); 
-            texto.setSize(dimensiones.getDimensionMenu().width/7,20);
+            double por_ancho_icono = 50 * ancho / 100;
+            double por_alto_icono = 8 * alto / 100;
+            texto.setSize(dimensiones.getDimensionMenu().width / 7, 20);
+            icon.setLocation(new Point((int) por_ancho_icono - icon.getSize().width / 2, (int) (por_alto_icono/*-icon.getSize().getHeight()/2*/)));
+            texto.setLocation(new Point((int) por_ancho_texto - texto.getSize().width / 2, (int) (por_alto_texto - texto.getSize().getHeight() / 2)));
+        }
+        if (tipo == 5) {
+            icono2(icon, nombre);
+            icono2(aux, camino[camino.length - 1]);
+            texto.setText(nombre.trim().toUpperCase());
+            texto.setSize(dimensiones.getDimensionMenu().width / 7, 20);
 //            texto.setVisible(true);
-            nombreisla_texto1.setText(camino[camino.length-1].toUpperCase().trim());
-            nombreisla_texto1.setSize(dimensiones.getDimensionMenu().width/7,20);
+            nombreisla_texto1.setText(camino[camino.length - 1].toUpperCase().trim());
+            nombreisla_texto1.setSize(dimensiones.getDimensionMenu().width / 7, 20);
             icono2(nombreisla_icono_flecha, "flecha");
-            nombreisla_icono_flecha.setLocation((int)(50*ancho/100-icon.getSize().width/2), (int)(50*alto/100)-icon.getSize().height/2);
-            double por_ancho_texto1= 27*ancho/100;
-    double por_alto_texto1=85*alto/100;
-            double por_ancho_texto2= 75*ancho/100;
-    double por_alto_texto2=85*alto/100;
-           double por_ancho_icono= 27*ancho/100;
-    double por_alto_icono= 50*alto/100;
-     double por_ancho_aux= 75*ancho/100;
-    double por_alto_aux=50*alto/100;
-    icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono-aux.getSize().getHeight()/2)));
-        
-        aux.setLocation(new Point((int)por_ancho_aux-aux.getSize().width/2,(int)(por_alto_aux-aux.getSize().getHeight()/2)));
-        texto.setLocation(new Point((int)por_ancho_texto1-texto.getSize().width/2,(int)(por_alto_texto1-texto.getSize().getHeight()/2)));
-        nombreisla_texto1.setLocation(new Point((int)por_ancho_texto2-texto.getSize().width/2,(int)(por_alto_texto2-texto.getSize().getHeight()/2)));
+            nombreisla_icono_flecha.setLocation((int) (50 * ancho / 100 - icon.getSize().width / 2), (int) (50 * alto / 100) - icon.getSize().height / 2);
+            double por_ancho_texto1 = 27 * ancho / 100;
+            double por_alto_texto1 = 85 * alto / 100;
+            double por_ancho_texto2 = 75 * ancho / 100;
+            double por_alto_texto2 = 85 * alto / 100;
+            double por_ancho_icono = 27 * ancho / 100;
+            double por_alto_icono = 50 * alto / 100;
+            double por_ancho_aux = 75 * ancho / 100;
+            double por_alto_aux = 50 * alto / 100;
+            icon.setLocation(new Point((int) por_ancho_icono - icon.getSize().width / 2, (int) (por_alto_icono - aux.getSize().getHeight() / 2)));
+
+            aux.setLocation(new Point((int) por_ancho_aux - aux.getSize().width / 2, (int) (por_alto_aux - aux.getSize().getHeight() / 2)));
+            texto.setLocation(new Point((int) por_ancho_texto1 - texto.getSize().width / 2, (int) (por_alto_texto1 - texto.getSize().getHeight() / 2)));
+            nombreisla_texto1.setLocation(new Point((int) por_ancho_texto2 - texto.getSize().width / 2, (int) (por_alto_texto2 - texto.getSize().getHeight() / 2)));
+        }
     }
-}
-public void pista(){
-    String inicio_isla=camino[0];
-    String fin_isla=camino[camino.length-1];
-    System.out.println(inicio_isla+""+fin_isla);
-}
+
+    public void pista() {
+        String inicio_isla = camino[0];
+        String fin_isla = camino[camino.length - 1];
+        System.out.println(inicio_isla + "" + fin_isla);
+    }
+
     public void actualizar() {
         if (animacion < 32000) {
             animacion++;
         } else {
             animacion = 0;
         }
-        Pistas p= new Pistas();
+        Pistas p = new Pistas();
         // AQUI VA EL CAMBIO EN MONEDAS Y TESOROS
-////        if (mapa_pantalla!=null) {
-////            cant_moneda++;
-////            moneda_texto1.setText(String.valueOf(cant_moneda));
-////        }else{
-////            cant_moneda--;
-////            moneda_texto1.setText(String.valueOf(cant_moneda));
-////        }
-//if (mapa_pantalla!=null) {
-            icono2(interaccion_icono, "personaje1");
-//            interaccion_texto.setText(p.pista_texto(camino[1]));
-//        }
+        icono2(interaccion_icono, "personaje1");
     }
+
     public void icono_animacion(String nombre_animacion) {
         if (animacion % 20 > 8) {
             icono(personaje, nombre_animacion + "1");
@@ -257,31 +244,30 @@ public void pista(){
     }
 
 //DAVID FIN
-    public void icono2(JLabel label,String name ) {
-        Dimension d = new Dimension(dimensiones.getDimensionPersonaje().width+10 , dimensiones.getDimensionPersonaje().height+10);
+    public void icono2(JLabel label, String name) {
+        Dimension d = new Dimension(dimensiones.getDimensionPersonaje().width + 10, dimensiones.getDimensionPersonaje().height + 10);
         label.setSize(d);
         ImageIcon im = new ImageIcon("src/imagenes/menu/" + name + " icono.png");
         ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH));
-        
+
         label.setIcon(icono);
     }
-public void fondo(JLabel label,int tipo){
-    Dimension d = new Dimension(dimensiones.getDimensionMenu().width / 7, dimensiones.getDimensionMenu().height);
-    label.setSize(d);
-    if (tipo==1) {
-        ImageIcon im = new ImageIcon("src/imagenes/menu/fondo.png");
-        ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance((int)d.getWidth(), (int)d.getHeight(), Image.SCALE_DEFAULT));
-        label.setIcon(icono);
-    } else{
-        ImageIcon im = new ImageIcon("src/imagenes/menu/borde.png");
-        ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance((int)d.getWidth(), (int)d.getHeight(), Image.SCALE_DEFAULT));
-        label.setIcon(icono);
+
+    public void fondo(JLabel label, int tipo) {
+        Dimension d = new Dimension(dimensiones.getDimensionMenu().width / 7, dimensiones.getDimensionMenu().height);
+        label.setSize(d);
+        if (tipo == 1) {
+            ImageIcon im = new ImageIcon("src/imagenes/menu/fondo.png");
+            ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance((int) d.getWidth(), (int) d.getHeight(), Image.SCALE_DEFAULT));
+            label.setIcon(icono);
+        } else {
+            ImageIcon im = new ImageIcon("src/imagenes/menu/borde.png");
+            ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance((int) d.getWidth(), (int) d.getHeight(), Image.SCALE_DEFAULT));
+            label.setIcon(icono);
+        }
+
     }
-    
-        
-        
-        
-}
+
     private void generarIsla() {
         jLMapa.setLocation(dimensiones.getPuntoInicioJuego());
         jLMapa.setSize(dimensiones.getDimensionJuego());
@@ -363,11 +349,11 @@ public void fondo(JLabel label,int tipo){
             }
         }
     }
-    
+
     private boolean verificarMovimiento(int xSig, int ySig) {
         retorno = true;
-        recJug.setLocation(xSig, ySig+(personaje.getHeight()/2));
-        recJug.setSize(personaje.getWidth(), personaje.getHeight()/2);
+        recJug.setLocation(xSig, ySig + (personaje.getHeight() / 2));
+        recJug.setSize(personaje.getWidth(), personaje.getHeight() / 2);
         pSI.setLocation(dimensiones.getPuntoActual(recJug.x, recJug.y));
         pSD.setLocation(dimensiones.getPuntoActual(recJug.x + recJug.width, recJug.y));
         pII.setLocation(dimensiones.getPuntoActual(recJug.x, recJug.y + recJug.height));
@@ -601,36 +587,8 @@ public void fondo(JLabel label,int tipo){
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-//        tiempo1.start();
-//        switch (evt.getKeyCode()) {
-//            case KeyEvent.VK_W:
-//                arriba.teclaPulsada();
-//                icono(personaje, "arriba");
-//                break;
-//            case KeyEvent.VK_S:
-//                abajo.teclaPulsada();
-//                icono(personaje, "abajo");
-//                break;
-//            case KeyEvent.VK_A:
-//                izquierda.teclaPulsada();
-//                icono(personaje, "izquierda");
-//                break;
-//            case KeyEvent.VK_D:
-//                derecha.teclaPulsada();
-//                icono(personaje, "derecha");
-//                break;
-//            case KeyEvent.VK_E:
-//                recogiendo = true;
-//                break;
-////            case KeyEvent.VK_I:
-////                inventarioActivo = !inventarioActivo;
-////                break;
-//            case KeyEvent.VK_ESCAPE:
-//                tiempo1.stop();
-//                System.exit(0);
-//        }
-interaccion_texto.setText("");
-tiempo1.start();
+        interaccion_texto.setText("");
+        tiempo1.start();
         if (evt.getKeyCode() == 65) {
             izquierda = true;
         } else if (evt.getKeyCode() == 68) {
@@ -647,28 +605,7 @@ tiempo1.start();
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-//        switch (evt.getKeyCode()) {
-//            case KeyEvent.VK_W:
-//                arriba=false;
-//                break;
-//            case KeyEvent.VK_S:
-//                abajo=false;
-//                break;
-//            case KeyEvent.VK_A:
-//                izquierda=false;
-//                break;
-//            case KeyEvent.VK_D:
-//                derecha=false;
-//                break;
-//            case KeyEvent.VK_E:
-//                recogiendo = false;
-//                break;
-//        }
-//        if ((!arriba && !abajo && !izquierda && !derecha)) {
-//            icono(personaje, "abajo");
-//            tiempo1.stop();
-//        }
-if (evt.getKeyCode() == 65) {
+        if (evt.getKeyCode() == 65) {
 
             izquierda = false;
             icono(personaje, "izquierda");
@@ -687,8 +624,7 @@ if (evt.getKeyCode() == 65) {
             tiempo1.stop();
         }
     }//GEN-LAST:event_formKeyReleased
-    
-    
+
     Mapa_Vista mapa_pantalla;
     boolean map = false;
 
@@ -724,9 +660,9 @@ if (evt.getKeyCode() == 65) {
     private void mutehelp_help_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_help_iconoMouseClicked
         // TODO add your handling code here:
         Pistas p = new Pistas();
-        icono2(interaccion_icono,"help");
+        icono2(interaccion_icono, "help");
         interaccion_texto.setText(p.pista_texto(camino[1]));
-        
+
     }//GEN-LAST:event_mutehelp_help_iconoMouseClicked
 
     private void mapa_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapa_iconoMouseClicked
@@ -740,28 +676,28 @@ if (evt.getKeyCode() == 65) {
             System.out.println("mapa activado");
         }
     }//GEN-LAST:event_mapa_iconoMouseClicked
-boolean muc=true;
+    boolean muc = true;
     private void mutehelp_mute_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_mute_iconoMouseClicked
         // TODO add your handling code here:
 
         mutehelp_mute_icono.setVisible(false);
         mutehelp_mute_icono1.setVisible(true);
         musica.Pausa();
-        muc=false;
+        muc = false;
     }//GEN-LAST:event_mutehelp_mute_iconoMouseClicked
 
     private void mutehelp_mute_icono1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_mute_icono1MouseClicked
         // TODO add your handling code here:
-                if (!muc) {
+        if (!muc) {
             try {
-                       musica.ReproducirSonido("src/musica/sonido_1.wav");
-                    } catch (Exception e) {
-                    }
-                    mutehelp_mute_icono1.setVisible(false);
-        mutehelp_mute_icono.setVisible(true); 
+                musica.ReproducirSonido("src/musica/sonido_1.wav");
+            } catch (Exception e) {
+            }
+            mutehelp_mute_icono1.setVisible(false);
+            mutehelp_mute_icono.setVisible(true);
         }
-                
-        
+
+
     }//GEN-LAST:event_mutehelp_mute_icono1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
