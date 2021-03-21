@@ -6,6 +6,7 @@
 package vistas;
 
 import control.Grafo;
+import control.Pistas;
 import control.Reproducir;
 import control.Tecla;
 import entes.GenerarDimension;
@@ -31,7 +32,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private static String rutaPersonaje;
     private static String rutaIsla;
     private final int[][] matrizIsla;
-
     GenerarDimension dimensiones;
 //    private final Tecla arriba = new Tecla();
 //    private final Tecla abajo = new Tecla();
@@ -59,7 +59,7 @@ private String nombre_jugador ;
 private int cant_moneda;
 private int cant_tesoros;
     boolean retorno;
-     String camino[] ;
+    String camino[] ;
     private final Point pSI = new Point();
     private final Point pSD = new Point();
     private final Point pII = new Point();
@@ -82,7 +82,7 @@ private int cant_tesoros;
         g.iniciargrafo(g);
         
         isla_nombre = isla.getNombre();
-nombre_jugador="david";
+nombre_jugador="pepe";
 camino=g.rutaDificultad(g.String_char(isla_nombre),"dificil");
 pista();
 System.out.println(Arrays.toString(camino));
@@ -113,7 +113,7 @@ cant_tesoros=0;
     String isla_nombre;
 
     public void agregarMenu(String nombreisla) {
-               fondo( jugador_fondo,1);
+        fondo( jugador_fondo,1);
         posiciones(jugador_texto, jugador_icono,"jugador",1,null);
         fondo( moneda_fondo,1);
         posiciones(moneda_texto, moneda_icono,"moneda",2,moneda_texto1);
@@ -139,8 +139,6 @@ public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel au
             icono2(icon, nombre);
         if (nombre=="jugador") {
             texto.setText(nombre_jugador.trim().toUpperCase());  
-        }else if(nombre==isla_nombre){      
-            texto.setText(nombre.trim().toUpperCase()); 
         }else if(nombre=="mapa"){      
             texto.setText(nombre.trim().toUpperCase()); 
         }
@@ -176,9 +174,12 @@ public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel au
      double por_ancho_aux= 70*ancho/100;
     double por_alto_aux=50*alto/100;
         icono2(icon, "speaker");
+         icono2(texto, "speakeroff");
          icono2(aux, "help");
         icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono-aux.getSize().getHeight()/2)));
+        texto.setVisible(false);
         aux.setLocation(new Point((int)por_ancho_aux-aux.getSize().width/2,(int)(por_alto_aux-aux.getSize().getHeight()/2)));
+        texto.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono-aux.getSize().getHeight()/2)));
     }
     if (tipo==4) {
         icono2(icon, "blanco");
@@ -189,6 +190,35 @@ public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel au
     icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono/*-icon.getSize().getHeight()/2*/)));
     texto.setLocation(new Point((int)por_ancho_texto-texto.getSize().width/2,(int)(por_alto_texto-texto.getSize().getHeight()/2)));
     }
+    if (tipo==5) {
+           icono2(icon, nombre);
+           icono2(aux, camino[camino.length-1]);
+            texto.setText(nombre.trim().toUpperCase()); 
+            texto.setSize(dimensiones.getDimensionMenu().width/7,20);
+//            texto.setVisible(true);
+            nombreisla_texto1.setText(camino[camino.length-1].toUpperCase().trim());
+            nombreisla_texto1.setSize(dimensiones.getDimensionMenu().width/7,20);
+            icono2(nombreisla_icono_flecha, "flecha");
+            nombreisla_icono_flecha.setLocation((int)(50*ancho/100-icon.getSize().width/2), (int)(50*alto/100)-icon.getSize().height/2);
+            double por_ancho_texto1= 27*ancho/100;
+    double por_alto_texto1=85*alto/100;
+            double por_ancho_texto2= 75*ancho/100;
+    double por_alto_texto2=85*alto/100;
+           double por_ancho_icono= 27*ancho/100;
+    double por_alto_icono= 50*alto/100;
+     double por_ancho_aux= 75*ancho/100;
+    double por_alto_aux=50*alto/100;
+    icon.setLocation(new Point((int)por_ancho_icono-icon.getSize().width/2,(int)(por_alto_icono-aux.getSize().getHeight()/2)));
+        
+        aux.setLocation(new Point((int)por_ancho_aux-aux.getSize().width/2,(int)(por_alto_aux-aux.getSize().getHeight()/2)));
+        texto.setLocation(new Point((int)por_ancho_texto1-texto.getSize().width/2,(int)(por_alto_texto1-texto.getSize().getHeight()/2)));
+        nombreisla_texto1.setLocation(new Point((int)por_ancho_texto2-texto.getSize().width/2,(int)(por_alto_texto2-texto.getSize().getHeight()/2)));
+    }
+}
+public void pista(){
+    String inicio_isla=camino[0];
+    String fin_isla=camino[camino.length-1];
+    System.out.println(inicio_isla+""+fin_isla);
 }
     public void actualizar() {
         if (animacion < 32000) {
@@ -196,6 +226,7 @@ public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel au
         } else {
             animacion = 0;
         }
+        Pistas p= new Pistas();
         // AQUI VA EL CAMBIO EN MONEDAS Y TESOROS
 ////        if (mapa_pantalla!=null) {
 ////            cant_moneda++;
@@ -204,10 +235,10 @@ public void posiciones(JLabel texto,JLabel icon,String nombre,int tipo,JLabel au
 ////            cant_moneda--;
 ////            moneda_texto1.setText(String.valueOf(cant_moneda));
 ////        }
-if (mapa_pantalla!=null) {
+//if (mapa_pantalla!=null) {
             icono2(interaccion_icono, "personaje1");
-            interaccion_texto.setText("HOLLA PERRO");
-        }
+//            interaccion_texto.setText(p.pista_texto(camino[1]));
+//        }
     }
     public void icono_animacion(String nombre_animacion) {
         if (animacion % 20 > 8) {
@@ -382,10 +413,14 @@ public void fondo(JLabel label,int tipo){
         mapa_fondo = new javax.swing.JLabel();
         nombreisla_Panel = new javax.swing.JPanel();
         nombreisla_icono = new javax.swing.JLabel();
+        nombreisla_icono1 = new javax.swing.JLabel();
+        nombreisla_icono_flecha = new javax.swing.JLabel();
         nombreisla_texto = new javax.swing.JLabel();
+        nombreisla_texto1 = new javax.swing.JLabel();
         nombreisla_fondo = new javax.swing.JLabel();
         mutehelp_Panel = new javax.swing.JPanel();
         mutehelp_mute_icono = new javax.swing.JLabel();
+        mutehelp_mute_icono1 = new javax.swing.JLabel();
         mutehelp_help_icono = new javax.swing.JLabel();
         mutehelp_fondo = new javax.swing.JLabel();
 
@@ -510,11 +545,20 @@ public void fondo(JLabel label,int tipo){
         nombreisla_Panel.setLayout(null);
         nombreisla_Panel.add(nombreisla_icono);
         nombreisla_icono.setBounds(0, 0, 0, 0);
+        nombreisla_Panel.add(nombreisla_icono1);
+        nombreisla_icono1.setBounds(0, 0, 0, 0);
+        nombreisla_Panel.add(nombreisla_icono_flecha);
+        nombreisla_icono_flecha.setBounds(0, 0, 0, 0);
 
         nombreisla_texto.setForeground(new java.awt.Color(255, 255, 255));
         nombreisla_texto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreisla_Panel.add(nombreisla_texto);
         nombreisla_texto.setBounds(0, 0, 0, 0);
+
+        nombreisla_texto1.setForeground(new java.awt.Color(255, 255, 255));
+        nombreisla_texto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombreisla_Panel.add(nombreisla_texto1);
+        nombreisla_texto1.setBounds(0, 0, 0, 0);
         nombreisla_Panel.add(nombreisla_fondo);
         nombreisla_fondo.setBounds(0, 0, 0, 0);
 
@@ -530,6 +574,14 @@ public void fondo(JLabel label,int tipo){
         });
         mutehelp_Panel.add(mutehelp_mute_icono);
         mutehelp_mute_icono.setBounds(0, 0, 0, 0);
+
+        mutehelp_mute_icono1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mutehelp_mute_icono1MouseClicked(evt);
+            }
+        });
+        mutehelp_Panel.add(mutehelp_mute_icono1);
+        mutehelp_mute_icono1.setBounds(0, 0, 0, 0);
 
         mutehelp_help_icono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -577,6 +629,7 @@ public void fondo(JLabel label,int tipo){
 //                tiempo1.stop();
 //                System.exit(0);
 //        }
+interaccion_texto.setText("");
 tiempo1.start();
         if (evt.getKeyCode() == 65) {
             izquierda = true;
@@ -670,6 +723,9 @@ if (evt.getKeyCode() == 65) {
 
     private void mutehelp_help_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_help_iconoMouseClicked
         // TODO add your handling code here:
+        Pistas p = new Pistas();
+        icono2(interaccion_icono,"help");
+        interaccion_texto.setText(p.pista_texto(camino[1]));
         
     }//GEN-LAST:event_mutehelp_help_iconoMouseClicked
 
@@ -684,11 +740,29 @@ if (evt.getKeyCode() == 65) {
             System.out.println("mapa activado");
         }
     }//GEN-LAST:event_mapa_iconoMouseClicked
-
+boolean muc=true;
     private void mutehelp_mute_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_mute_iconoMouseClicked
         // TODO add your handling code here:
+
+        mutehelp_mute_icono.setVisible(false);
+        mutehelp_mute_icono1.setVisible(true);
         musica.Pausa();
+        muc=false;
     }//GEN-LAST:event_mutehelp_mute_iconoMouseClicked
+
+    private void mutehelp_mute_icono1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_mute_icono1MouseClicked
+        // TODO add your handling code here:
+                if (!muc) {
+            try {
+                       musica.ReproducirSonido("src/musica/sonido_1.wav");
+                    } catch (Exception e) {
+                    }
+                    mutehelp_mute_icono1.setVisible(false);
+        mutehelp_mute_icono.setVisible(true); 
+        }
+                
+        
+    }//GEN-LAST:event_mutehelp_mute_icono1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel interaccion_Panel;
@@ -713,10 +787,14 @@ if (evt.getKeyCode() == 65) {
     private javax.swing.JLabel mutehelp_fondo;
     private javax.swing.JLabel mutehelp_help_icono;
     private javax.swing.JLabel mutehelp_mute_icono;
+    private javax.swing.JLabel mutehelp_mute_icono1;
     private javax.swing.JPanel nombreisla_Panel;
     private javax.swing.JLabel nombreisla_fondo;
     private javax.swing.JLabel nombreisla_icono;
+    private javax.swing.JLabel nombreisla_icono1;
+    private javax.swing.JLabel nombreisla_icono_flecha;
     private javax.swing.JLabel nombreisla_texto;
+    private javax.swing.JLabel nombreisla_texto1;
     private javax.swing.JPanel tesoro_Panel;
     private javax.swing.JLabel tesoro_fondo;
     private javax.swing.JLabel tesoro_icono;
