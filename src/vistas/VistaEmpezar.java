@@ -49,9 +49,10 @@ public class VistaEmpezar extends javax.swing.JFrame {
         initComponents();
         new Protagonista().setNombre(jugador);
         setLocationRelativeTo(null);
-        ImageIcon de = new ImageIcon("src/fondos/inicio secion.gif");
-        Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
-        fondo.setIcon(ide);
+        
+        ImageIcon ds= new ImageIcon("src/fondos/inicio secion.gif");
+        Icon isd = new ImageIcon(ds.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
+        fondo.setIcon(isd);
         ImageIcon d = new ImageIcon("src/fondos/sin_sonido.png");
         Icon id = new ImageIcon(d.getImage().getScaledInstance(play.getWidth(), play.getHeight(), Image.SCALE_DEFAULT));
         play.setIcon(id);
@@ -371,6 +372,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 260, 320));
 
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
