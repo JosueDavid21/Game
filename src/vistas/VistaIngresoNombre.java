@@ -202,7 +202,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_InicioMouseClicked
 
     private void NombreperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreperMouseClicked
-        Nombreper.setText("");
+       Nombreper.setText("");
     }//GEN-LAST:event_NombreperMouseClicked
 
     private void playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseClicked

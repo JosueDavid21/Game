@@ -167,7 +167,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         botones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        play.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        play.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         play.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playMouseClicked(evt);
@@ -175,7 +175,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         });
         botones.add(play, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 40));
 
-        pause.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pause.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pauseMouseClicked(evt);
@@ -190,7 +190,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         Iniciar.setForeground(new java.awt.Color(255, 255, 255));
         Iniciar.setText("   Iniciar Juego");
         Iniciar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        Iniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Iniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Iniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 IniciarMouseClicked(evt);
@@ -204,12 +204,12 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jLabel11.setBackground(new java.awt.Color(0, 255, 255));
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Elegir un nivel de dificultad");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, -1));
 
         Nivel.add(facil);
         facil.setForeground(new java.awt.Color(255, 255, 255));
         facil.setText("Nivel Facil");
-        facil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        facil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         facil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 facilMouseClicked(evt);
@@ -225,7 +225,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         Nivel.add(dificil);
         dificil.setForeground(new java.awt.Color(255, 255, 255));
         dificil.setText("Nivel Dificil");
-        dificil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dificil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         dificil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dificilMouseClicked(evt);
@@ -242,14 +242,14 @@ public class VistaEmpezar extends javax.swing.JFrame {
         medio.setForeground(new java.awt.Color(255, 255, 255));
         medio.setText("Nivel Medio");
         medio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        medio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        medio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         medio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 medioMouseClicked(evt);
             }
         });
         jPanel2.add(medio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
-        jPanel2.add(escoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 164, 130, 20));
+        jPanel2.add(escoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 164, 170, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 190, 190));
 
@@ -258,7 +258,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         playa.setText("playa");
         playa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        playa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        playa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         playa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playaMouseClicked(evt);
@@ -268,7 +268,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         calavera.setText("calavera");
         calavera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        calavera.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        calavera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         calavera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 calaveraMouseClicked(evt);
@@ -278,7 +278,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         flor.setText("flor");
         flor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        flor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         flor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 florMouseClicked(evt);
@@ -288,7 +288,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         amor.setText("amor");
         amor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        amor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        amor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         amor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 amorMouseClicked(evt);
@@ -298,7 +298,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         volcan.setText("volcan");
         volcan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        volcan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volcan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volcan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 volcanMouseClicked(evt);
@@ -308,7 +308,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         selva.setText("selva");
         selva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        selva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 selvaMouseClicked(evt);
@@ -318,7 +318,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         ruina.setText("ruina");
         ruina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        ruina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ruina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ruina.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ruinaMouseClicked(evt);
@@ -328,7 +328,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         militar.setText("militar");
         militar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        militar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        militar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         militar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 militarMouseClicked(evt);
@@ -338,7 +338,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         circo.setText("circo");
         circo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        circo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        circo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         circo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 circoMouseClicked(evt);
@@ -348,7 +348,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         desierto.setText("desierto");
         desierto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        desierto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        desierto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         desierto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 desiertoMouseClicked(evt);
@@ -366,7 +366,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         dulce.setText("dulce");
         dulce.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        dulce.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dulce.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         dulce.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dulceMouseClicked(evt);
@@ -376,7 +376,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 260, 320));
 
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
