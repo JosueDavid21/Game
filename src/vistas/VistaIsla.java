@@ -19,6 +19,7 @@ import control.Pistas;
 import control.Reproducir;
 import java.util.Arrays;
 import entes.GenerarDimension;
+import entes.Inventario;
 import entes.Isla;
 import entes.Protagonista;
 import entes.Puente;
@@ -28,6 +29,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -49,8 +51,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private int[][] matrizIsla;
     
     GenerarDimension dimensiones;
-    private final HashMap listaIslas;
-    private final GestionTiles gestionTile;
+    private GestionTiles gestionTile;
     Mapa_Vista mapa_pantalla;
     
     boolean map = false;
@@ -64,10 +65,13 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     boolean cont=false;
     boolean retorno;
 
-    private final Timer tiempo1 = new Timer(1, this);
+    private Timer tiempo1 = new Timer(1, this);
 
     JLabel jLfondo = new JLabel();
     JLabel personaje = new JLabel();
+    JLabel personaje1 = new JLabel();
+    JLabel personaje2 = new JLabel();
+    JLabel personaje3 = new JLabel();
     JLabel jLMapa = new JLabel();
 
     private int x;
@@ -85,7 +89,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     Reproducir musica = new Reproducir();
 
     public VistaIsla(Isla isla, Point jug) {
-        listaIslas = new ListaIslas().getLista();
         dimensiones = new GenerarDimension(jug);
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
         rutaIsla = isla.getUrlImagen();
@@ -118,9 +121,16 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         this.setResizable(false);
         this.setLocation(0, 0);
         this.getContentPane().setBackground(Color.black);
-        generarPersonaje(rutaPersonaje);
-        generarIsla();
         gestionTile = new GestionTiles(isla.getNombre(), matrizIsla, personaje);
+        
+        generarPersonaje(rutaPersonaje);
+        ArrayList<Point> p = gestionTile.buscarPersonajes();
+        generarP1(p.get(0).x, p.get(0).y);
+        generarP2(p.get(1).x, p.get(1).y);
+        if(p.size()==3)
+            generarP3(p.get(2).x, p.get(2).y);
+        generarIsla();
+        
         this.x = personaje.getLocation().x;
         this.y = personaje.getLocation().y;
 
@@ -336,6 +346,42 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         add(personaje);
     }
 
+    private void generarP1(int x, int y) {
+        String ruta = "src/imagenes/personajes/" + isla_nombre + "/1.png";
+        Image imgEscalada = new ImageIcon(ruta).getImage().getScaledInstance(dimensiones.getDimensionCuadro().width,
+                dimensiones.getDimensionCuadro().height, Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        personaje1.setSize(dimensiones.getDimensionCuadro());
+        personaje1.setIcon(iconoEscalado);
+        personaje1.setLocation((dimensiones.getDimensionCuadro().width*x)+(dimensiones.getSobraX()/2), 
+                (dimensiones.getDimensionCuadro().height*y));
+        add(personaje1);
+    }
+    
+    private void generarP2(int x, int y) {
+        String ruta = "src/imagenes/personajes/" + isla_nombre + "/2.png";
+        Image imgEscalada = new ImageIcon(ruta).getImage().getScaledInstance(dimensiones.getDimensionCuadro().width,
+                dimensiones.getDimensionCuadro().height, Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        personaje2.setSize(dimensiones.getDimensionCuadro());
+        personaje2.setIcon(iconoEscalado);
+        personaje2.setLocation((dimensiones.getDimensionCuadro().width*x)+(dimensiones.getSobraX()/2), 
+                (dimensiones.getDimensionCuadro().height*y));
+        add(personaje2);
+    }
+
+    private void generarP3(int x, int y) {
+        String ruta = "src/imagenes/personajes/" + isla_nombre + "/3.png";
+        Image imgEscalada = new ImageIcon(ruta).getImage().getScaledInstance(dimensiones.getDimensionCuadro().width,
+                dimensiones.getDimensionCuadro().height, Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        personaje3.setSize(dimensiones.getDimensionCuadro());
+        personaje3.setIcon(iconoEscalado);
+        personaje3.setLocation((dimensiones.getDimensionCuadro().width*x)+(dimensiones.getSobraX()/2), 
+                (dimensiones.getDimensionCuadro().height*y));
+        add(personaje3);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent c) {
         actualizar();
@@ -351,9 +397,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     }
     
     private void mostrarMensaje(String[] array) {
+        tiempo1.stop();
         if (!array[0].equals("")) {
             interaccion_texto.setText(array[0]);
-            if(!array[1].equals("")){
+            tesoro_texto1.setText(String.valueOf(Inventario.tesoros.size()));
+            if (!array[1].equals("")) {
                 iconoInteraccion(interaccion_icono, array[1]);
             }
         }
@@ -361,7 +409,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     
     private void paseIsla() {
         Puente p = gestionTile.accionPasePuente(gestionTile.obtenerPuntoPASE());
-        new VistaCargar((Isla) listaIslas.get(p.getDestino()), p.getPuntoLlegada()).setVisible(true);
+        new VistaCargar(p.getDestino(), p.getPuntoLlegada()).setVisible(true);
         musica.Pausa();
         tiempo1.stop();
         this.dispose();

@@ -155,35 +155,7 @@ public class GestionTiles {
                 }
             }
             
-        }else if(x==1 && y==1){   // Abajo & Derecha
-            if(t.esTesoro(matrizIsla[pII.x][pII.y]) || t.esTesoro(matrizIsla[pID.x][pID.y]) || t.esTesoro(matrizIsla[pSD.x][pSD.y])){
-                
-            }else if(t.esPersonaje(matrizIsla[pII.x][pII.y]) || t.esPersonaje(matrizIsla[pID.x][pID.y]) || t.esPersonaje(matrizIsla[pSD.x][pSD.y])){ 
-                
-            }
-            
-        }else if(x==1 && y==-1){   // Abajo & Izquierda
-            if(t.esTesoro(matrizIsla[pII.x][pII.y]) || t.esTesoro(matrizIsla[pID.x][pID.y]) || t.esTesoro(matrizIsla[pSI.x][pSI.y])){
-               
-            }else if(t.esPersonaje(matrizIsla[pII.x][pII.y]) || t.esPersonaje(matrizIsla[pID.x][pID.y]) || t.esPersonaje(matrizIsla[pSI.x][pSI.y])){ 
-                
-            }
-            
-        }else if(x==-1 && y==1){   // Arriba & Derecha
-            if(t.esTesoro(matrizIsla[pSI.x][pSI.y]) || t.esTesoro(matrizIsla[pSD.x][pSD.y]) || t.esTesoro(matrizIsla[pID.x][pID.y])){
-              
-            }else if(t.esPersonaje(matrizIsla[pSI.x][pSI.y]) || t.esPersonaje(matrizIsla[pSD.x][pSD.y]) || t.esPersonaje(matrizIsla[pID.x][pID.y])){
-                
-            }
-            
-        }else if(x==-1 && y==-1){   // Arriba & Izquierda
-            if(t.esTesoro(matrizIsla[pSI.x][pSI.y]) || t.esTesoro(matrizIsla[pSD.x][pSD.y]) || t.esTesoro(matrizIsla[pII.x][pII.y])){
-              
-            }else if(t.esPersonaje(matrizIsla[pSI.x][pSI.y]) || t.esPersonaje(matrizIsla[pSD.x][pSD.y]) || t.esPersonaje(matrizIsla[pII.x][pII.y])){
-                
-            }
         }
-        
         return new String[]{mensajeRetorno, rutaRetorno};
     }
     
