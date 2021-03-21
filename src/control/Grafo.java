@@ -266,7 +266,7 @@ public class Grafo {
         for (int i = 0; i < 11; i++) {
             String respuesta = g.encontrarRutaMinimaDijkstra(inicio, g.nodos[i]);
             ruta = g.rutaisla(g.arregloruta);
-            if (ruta.length <= 2) {
+            if (ruta.length>1& ruta.length <= 2  ) {
                 rutafacil = ruta;
                 facil = g.distanciatotal;
 
