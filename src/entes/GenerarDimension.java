@@ -89,6 +89,10 @@ public class GenerarDimension {
         return dimensionCuadro;
     }
     
+    public int getSobraX() {
+        return sobraX;
+    }
+    
     public Point getPuntoActual(int xV, int yV){
         return new Point((xV-(sobraX/2))/dimensionCuadro.width, yV/dimensionCuadro.height);
     }

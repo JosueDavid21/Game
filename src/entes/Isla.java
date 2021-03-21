@@ -20,10 +20,14 @@ package entes;
 
 public class Isla {
     
-    private final String nombre;
-    private final String imagen;
-    private final int[][] matriz;
+    private String nombre;
+    private String imagen;
+    private int[][] matriz;
 
+    public Isla() {
+    }
+
+    
     public Isla(final String nombre, final String imagen, final int [][] matriz) {
         this.nombre = nombre;
         this.imagen = imagen;

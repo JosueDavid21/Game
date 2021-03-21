@@ -19,6 +19,7 @@ import entes.Puente;
 import entes.Tile;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import listas.ListaPersonajes;
 import listas.ListaPuentes;
@@ -211,4 +212,15 @@ public class GestionTiles {
         return !mensajeRetorno.equals("");
     }
     
+    public ArrayList<Point> buscarPersonajes(){
+        ArrayList<Point> retorno = new ArrayList();
+        for (int i = 0; i < matrizIsla.length; i++) {
+            for (int j = 0; j < matrizIsla[0].length; j++) {
+                if(t.esPersonaje(matrizIsla[i][j])){
+                    retorno.add(new Point(i, j));
+                }
+            }
+        }
+        return retorno;
+    }
 }

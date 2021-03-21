@@ -25,11 +25,12 @@ public class Protagonista {
     public Protagonista() {
     }
 
-    public void setNombre(String nombre) {
+    public static String getNombre() {
+        return nombre;
+    }
+
+    public static void setNombre(String nombre) {
         Protagonista.nombre = nombre;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 }
