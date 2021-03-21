@@ -42,12 +42,12 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         initComponents();
         person.setBackground(new Color(123, 95, 185, 150));
         ImageIcon de = new ImageIcon("src/fondos/vista.gif");
-        Icon ide = new ImageIcon(de.getImage().getScaledInstance(Fondo.getWidth(), Fondo.getHeight(), Image.SCALE_DEFAULT));
-        Fondo.setIcon(ide);
-        ImageIcon d = new ImageIcon("src/fondos/con_sonido.png");
+        Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
+        fondo.setIcon(ide);
+        ImageIcon d = new ImageIcon("src/fondos/sin_sonido.png");
         Icon id = new ImageIcon(d.getImage().getScaledInstance(play.getWidth(), play.getHeight(), Image.SCALE_DEFAULT));
         play.setIcon(id);
-        ImageIcon dee = new ImageIcon("src/fondos/sin_sonido.png");
+        ImageIcon dee = new ImageIcon("src/fondos/con_sonido.png");
         Icon idd = new ImageIcon(dee.getImage().getScaledInstance(pause.getWidth(), pause.getHeight(), Image.SCALE_DEFAULT));
         pause.setIcon(idd);
         ImageIcon per = new ImageIcon("src/imagenes/personajes/inicio.png");
@@ -57,6 +57,9 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         jPanel2.setBackground(new Color(150, 92, 40, 200));
         jPanel3.setBackground(new Color(122,214,189,220));
+        ImageIcon sa = new ImageIcon("src/fondos/x.png");
+        Icon xx = new ImageIcon(sa.getImage().getScaledInstance(exit.getWidth(), exit.getHeight(), Image.SCALE_DEFAULT));
+        exit.setIcon(xx);
     
         try {          
             des.ReproducirSonido(nombresonido);
@@ -83,7 +86,8 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         pause = new javax.swing.JLabel();
         play = new javax.swing.JLabel();
-        Fondo = new javax.swing.JLabel();
+        exit = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -115,6 +119,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         Inicio.setForeground(new java.awt.Color(255, 255, 255));
         Inicio.setText("                                 Continuar");
         Inicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InicioMouseClicked(evt);
@@ -138,6 +143,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel3.setLayout(null);
 
+        pause.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pauseMouseClicked(evt);
@@ -146,6 +152,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         jPanel3.add(pause);
         pause.setBounds(10, 10, 30, 30);
 
+        play.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         play.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playMouseClicked(evt);
@@ -154,8 +161,16 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         jPanel3.add(play);
         play.setBounds(10, 10, 30, 30);
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 50, 50));
-        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 290));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 50, 50));
+
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 40, 40));
+        jPanel1.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,10 +220,16 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
       pause.setVisible(false);
       
     }//GEN-LAST:event_pauseMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+       System.exit(WIDTH);
+    }//GEN-LAST:event_exitMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Fondo;
     private javax.swing.JLabel Inicio;
     private javax.swing.JTextField Nombreper;
+    private javax.swing.JLabel exit;
+    private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
