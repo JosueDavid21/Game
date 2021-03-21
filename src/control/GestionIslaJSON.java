@@ -28,11 +28,11 @@ import org.json.simple.parser.JSONParser;
  *
  * @author Grupo 9
  */
-public class GenerarIsla {
+public class GestionIslaJSON {
 
     private String ruta;
 
-    public GenerarIsla(String ruta) {
+    public GestionIslaJSON(String ruta) {
         this.ruta = ruta;
     }
 
@@ -63,7 +63,7 @@ public class GenerarIsla {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(GenerarIsla.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestionIslaJSON.class.getName()).log(Level.SEVERE, null, ex);
         }
         return contenido;
     }

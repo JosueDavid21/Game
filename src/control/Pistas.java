@@ -1,22 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package control;
 
 /**
  *
- * @author espin
+ * @author Grupo 9
  */
+
 public class Pistas {
     String pista;
     String destino;
 
     public Pistas() {
     }
-
-  
 
     public String pista_texto(String nom_isla){
         String txt_pista="";
@@ -43,10 +50,7 @@ public class Pistas {
         }else if(nom_isla.equals("dulce")){
             txt_pista="Tienen mucha azucar!";
         }
-        
-        
         return txt_pista;
-                
     }
     
 }

@@ -1,7 +1,22 @@
+/*
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
+ */
+
 package control;
 
-
-
+/**
+ *
+ * @author Grupo 9
+ */
 
 public class Nodo implements Comparable<Nodo> {
     char id;
