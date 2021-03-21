@@ -10,7 +10,6 @@
  *       - Teran Edgar
  * Este es un juego que implementa el algoritmo del camino mas corto
  */
-
 package vistas;
 
 import entes.Isla;
@@ -27,12 +26,12 @@ import javax.swing.Timer;
  *
  * @author Grupo 9
  */
-
 public class VistaCargar extends javax.swing.JFrame implements ActionListener {
 
     VistaIsla vistaIsla;
-    Timer tiempo1 = new Timer(1, this);
-    
+    int count = 0;
+    Timer tiempo1 = new Timer(1000, this);
+
     public VistaCargar(Isla isla, Point punto) {
         initComponents();
         this.setAlwaysOnTop(true);
@@ -42,13 +41,15 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
 //        Icon id = new ImageIcon(d.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
 //        lb3.setIcon(id);
         vistaIsla = new VistaIsla(isla, punto);
-        vistaIsla.setVisible(true);
+        
         tiempo1.start();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent c) {
-        if(vistaIsla.isActive()){
+        count++;
+        if (count==5) {
+            vistaIsla.setVisible(true);
             this.dispose();
         }
     }
