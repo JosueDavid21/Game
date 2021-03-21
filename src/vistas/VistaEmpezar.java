@@ -346,7 +346,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         botones.add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 50, 50));
 
         getContentPane().add(botones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 50, 50));
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 310));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -373,15 +373,12 @@ public class VistaEmpezar extends javax.swing.JFrame {
     }//GEN-LAST:event_amorMouseClicked
 
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
-      
-        System.out.println(temp);
-        System.out.println(nivel);
         if (temp == "" || nivel == "") {
             JOptionPane.showMessageDialog(null, "Seleeccione todos los campos para iniciar el juego");
         }else {
             // agregar nivel de dificultad y nombre del personaje 
             HashMap lista = new ListaIslas().getLista();
-            new VistaIsla((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
+            new VistaCargar((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
             mu.des.Pausa();
             this.dispose();
         }

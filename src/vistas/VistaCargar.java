@@ -17,28 +17,40 @@ import entes.Isla;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 
 /**
  *
  * @author Grupo 9
  */
 
-public class VistaCargar extends javax.swing.JFrame {
+public class VistaCargar extends javax.swing.JFrame implements ActionListener {
 
-    /**
-     * Creates new form VistaCargar
-     */
+    VistaIsla vistaIsla;
+    Timer tiempo1 = new Timer(1, this);
+    
     public VistaCargar(Isla isla, Point punto) {
         initComponents();
-        
+        this.setAlwaysOnTop(true);
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.getContentPane().setBackground(Color.black);
-        ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\cargando.gif");
-        Icon id = new ImageIcon(d.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
-        lb3.setIcon(id);
-       
+        this.getContentPane().setBackground(Color.CYAN);
+//        ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\cargando.gif");
+//        Icon id = new ImageIcon(d.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
+//        lb3.setIcon(id);
+        vistaIsla = new VistaIsla(isla, punto);
+        vistaIsla.setVisible(true);
+        tiempo1.start();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent c) {
+        if(vistaIsla.isActive()){
+            this.dispose();
+        }
     }
 
     /**

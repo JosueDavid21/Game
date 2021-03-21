@@ -14,6 +14,7 @@
 package control;
 
 import entes.GenerarDimension;
+import entes.Personaje;
 import entes.Puente;
 import entes.Tile;
 import java.awt.Point;
@@ -27,7 +28,6 @@ import listas.ListaTesoros;
  *
  * @author Grupo 9
  */
-
 public class GestionTiles {
 
     private final int[][] matrizIsla;

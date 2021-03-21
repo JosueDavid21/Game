@@ -1,8 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package vistas;
 
 import control.GestionTiles;
@@ -25,6 +33,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import listas.ListaIslas;
+
+/**
+ *
+ * @author Grupo 9
+ */
 
 public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
@@ -256,6 +269,14 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
         label.setIcon(icono);
     }
+    
+    public void iconoInteraccion(JLabel label, String name) {
+        Dimension d = new Dimension(dimensiones.getDimensionPersonaje().width + 10, dimensiones.getDimensionPersonaje().height + 10);
+        label.setSize(d);
+        ImageIcon im = new ImageIcon("src/imagenes/" + name);
+        ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH));
+        label.setIcon(icono);
+    }
 
     public void fondo(JLabel label, int tipo) {
         Dimension d = new Dimension(dimensiones.getDimensionMenu().width / 7, dimensiones.getDimensionMenu().height);
@@ -301,12 +322,16 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private void mostrarMensaje(String[] array) {
         if (!array[0].equals("")) {
             interaccion_texto.setText(array[0]);
+            if(!array[1].equals("")){
+                iconoInteraccion(interaccion_icono, array[1]);
+            }
         }
     }
     
     private void paseIsla() {
         Puente p = gestionTile.accionPasePuente(gestionTile.obtenerPuntoPASE());
         new VistaCargar((Isla) listaIslas.get(p.getDestino()), p.getPuntoLlegada()).setVisible(true);
+        musica.Pausa();
         tiempo1.stop();
         this.dispose();
     }
