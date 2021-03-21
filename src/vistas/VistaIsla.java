@@ -20,6 +20,7 @@ import control.Reproducir;
 import java.util.Arrays;
 import entes.GenerarDimension;
 import entes.Isla;
+import entes.Protagonista;
 import entes.Puente;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -92,7 +93,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         g.iniciargrafo(g);
 
         isla_nombre = isla.getNombre();
-        nombre_jugador = "pepe";
+        nombre_jugador = new Protagonista().getNombre();
         camino = g.rutaDificultad(g.String_char(isla_nombre), "dificil");
         pista();
         System.out.println(Arrays.toString(camino));

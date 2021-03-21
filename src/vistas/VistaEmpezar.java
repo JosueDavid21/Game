@@ -16,6 +16,7 @@ package vistas;
 import control.Ejecutable;
 import control.Reproducir;
 import entes.Isla;
+import entes.Protagonista;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
@@ -48,6 +49,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
     public VistaEmpezar(String jugador) {
         initComponents();
+        new Protagonista().setNombre(jugador);
         setLocationRelativeTo(null);
         ImageIcon de = new ImageIcon("src/fondos/inicio secion.gif");
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));

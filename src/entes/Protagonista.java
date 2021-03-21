@@ -20,4 +20,16 @@ package entes;
 
 public class Protagonista {
     
+    public static String nombre;
+
+    public Protagonista() {
+    }
+
+    public void setNombre(String nombre) {
+        Protagonista.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

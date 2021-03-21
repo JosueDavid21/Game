@@ -15,6 +15,7 @@ package vistas;
 
 import control.Ejecutable;
 import control.Reproducir;
+import entes.Protagonista;
 import java.awt.Color;
 import java.awt.Image;
 import javax.sound.sampled.Clip;
@@ -178,7 +179,6 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         if (Nombreper.getText().isEmpty()|| Nombreper.getText().equals("Ingrese Nombre para su personaje")) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre para poder continuar ");
         } else {
-
             des.Pausa();
             this.dispose();
             new VistaEmpezar(Nombreper.getText()).setVisible(true);
