@@ -6,6 +6,7 @@
 package vistas;
 
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import control.Reproducir;
 import entes.Isla;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import listas.ListaMapas;
@@ -30,8 +32,10 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
     barra d = new barra();
     VistaIngresoNombre mu = new VistaIngresoNombre();
+    Reproducir r=new Reproducir();
     String musica = "src/musica/sonido_1.wav";
-    String temp, nivel;
+    String temp="";
+    String nivel="";
 
     public VistaEmpezar() {
         initComponents();
@@ -44,6 +48,12 @@ public class VistaEmpezar extends javax.swing.JFrame {
         ImageIcon de = new ImageIcon("src/fondos/inicio secion.gif");
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
         fondo.setIcon(ide);
+        ImageIcon d = new ImageIcon("src/fondos/con_sonido.png");
+        Icon id = new ImageIcon(d.getImage().getScaledInstance(play.getWidth(), play.getHeight(), Image.SCALE_DEFAULT));
+        play.setIcon(id);
+        ImageIcon dee = new ImageIcon("src/fondos/sin_sonido.png");
+        Icon idd = new ImageIcon(dee.getImage().getScaledInstance(pause.getWidth(), pause.getHeight(), Image.SCALE_DEFAULT));
+        pause.setIcon(idd);
         jPanel1.setBackground(new Color(125, 188, 200, 180));
         jPanel2.setBackground(new Color(125, 52, 49, 180));
         Iniciar.setForeground(new Color(255, 255, 255));
@@ -51,7 +61,8 @@ public class VistaEmpezar extends javax.swing.JFrame {
         nombre.setBackground(new java.awt.Color(140, 210, 250));
         nombre.setText("Bienvenido " + jugador.toUpperCase().trim());
         nombre.setForeground(Color.WHITE);
-
+        botones.setBackground(new Color(125,158,220,180));
+            play.setVisible(false);
         mu.des.Pausa();
         try {
             mu.des.ReproducirSonido(musica);
@@ -71,12 +82,14 @@ public class VistaEmpezar extends javax.swing.JFrame {
         icono2(selva, "selva");
         icono2(volcan, "volcan");
     }
- public void icono2(JLabel label,String name ) {
+
+    public void icono2(JLabel label, String name) {
         ImageIcon im = new ImageIcon("src/imagenes/menu/" + name + " icono.png");
         ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH));
-        
+
         label.setIcon(icono);
     }
+
     public void comprobar(JLabel selecionado, JLabel a, JLabel b, JLabel c, JLabel d, JLabel z, JLabel f, JLabel g, JLabel h, JLabel i, JLabel j) {
 
         selecionado.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -91,7 +104,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         i.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         j.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
-    
+
 //    public void imagen (String name,JLabel g){
 //    ImageIcon de = new ImageIcon("src/imagenes/menu/"+name+"icono.png");
 //        Icon ide = new ImageIcon(de.getImage().getScaledInstance(g.getWidth(), g.getHeight(), Image.SCALE_DEFAULT));
@@ -99,7 +112,6 @@ public class VistaEmpezar extends javax.swing.JFrame {
 //    
 //    
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,6 +144,9 @@ public class VistaEmpezar extends javax.swing.JFrame {
         p = new javax.swing.JLabel();
         islaescogida = new javax.swing.JLabel();
         dulce = new javax.swing.JLabel();
+        botones = new javax.swing.JPanel();
+        play = new javax.swing.JLabel();
+        pause = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,7 +154,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nombre.setBackground(new java.awt.Color(255, 51, 0));
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 140, 30));
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 140, 20));
 
         Iniciar.setBackground(new java.awt.Color(255, 255, 0));
         Iniciar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -151,7 +166,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 IniciarMouseClicked(evt);
             }
         });
-        getContentPane().add(Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 110, 30));
+        getContentPane().add(Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 110, 30));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -203,7 +218,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jPanel2.add(medio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
         jPanel2.add(escoNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 164, 130, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 150, 190));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 160, 190));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -215,7 +230,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 playaMouseClicked(evt);
             }
         });
-        jPanel1.add(playa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 50, 40));
+        jPanel1.add(playa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 50, 40));
 
         calavera.setText("calavera");
         calavera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -233,7 +248,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 florMouseClicked(evt);
             }
         });
-        jPanel1.add(flor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 50, 40));
+        jPanel1.add(flor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 50, 40));
 
         amor.setText("amor");
         amor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -251,7 +266,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 volcanMouseClicked(evt);
             }
         });
-        jPanel1.add(volcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 50, 40));
+        jPanel1.add(volcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 50, 40));
 
         selva.setText("selva");
         selva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -260,7 +275,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 selvaMouseClicked(evt);
             }
         });
-        jPanel1.add(selva, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 50, 40));
+        jPanel1.add(selva, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 50, 40));
 
         ruina.setText("ruina");
         ruina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -269,7 +284,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 ruinaMouseClicked(evt);
             }
         });
-        jPanel1.add(ruina, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 50, 40));
+        jPanel1.add(ruina, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 50, 40));
 
         militar.setText("militar");
         militar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -287,7 +302,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 circoMouseClicked(evt);
             }
         });
-        jPanel1.add(circo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 50, 40));
+        jPanel1.add(circo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 50, 40));
 
         desierto.setText("desierto");
         desierto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -296,7 +311,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 desiertoMouseClicked(evt);
             }
         });
-        jPanel1.add(desierto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 50, 40));
+        jPanel1.add(desierto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 50, 40));
 
         p.setBackground(new java.awt.Color(0, 255, 255));
         p.setForeground(new java.awt.Color(255, 255, 255));
@@ -304,7 +319,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         jPanel1.add(p, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 130, 20));
 
         islaescogida.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(islaescogida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, 30));
+        jPanel1.add(islaescogida, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 200, 30));
 
         dulce.setText("dulce");
         dulce.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -313,9 +328,27 @@ public class VistaEmpezar extends javax.swing.JFrame {
                 dulceMouseClicked(evt);
             }
         });
-        jPanel1.add(dulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 50, 40));
+        jPanel1.add(dulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 50, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 320));
+
+        botones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        play.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                playMouseClicked(evt);
+            }
+        });
+        botones.add(play, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
+
+        pause.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pauseMouseClicked(evt);
+            }
+        });
+        botones.add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 50, 50));
+
+        getContentPane().add(botones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 50, 50));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 310));
 
         pack();
@@ -343,9 +376,23 @@ public class VistaEmpezar extends javax.swing.JFrame {
     }//GEN-LAST:event_amorMouseClicked
 
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
-
-        HashMap lista = new ListaMapas().getLista();
-        new VistaIsla((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
+      
+        System.out.println(temp);
+        System.out.println(nivel);
+        if (temp == "" || nivel == "") {
+            JOptionPane.showMessageDialog(null, "Seleeccione todos los campos para iniciar el juego");
+        } //else
+        //if(temp == "" && nivel==""){
+        //                      JOptionPane.showMessageDialog(null, "Seleeccione todos los campos para iniciar el juego");
+        //  
+        //}
+        else {
+            // agregar nivel de dificultad y nombre del personaje 
+            HashMap lista = new ListaMapas().getLista();
+            new VistaIsla((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
+            mu.des.Pausa();
+            this.dispose();
+        }
     }//GEN-LAST:event_IniciarMouseClicked
 
     private void calaveraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calaveraMouseClicked
@@ -417,6 +464,21 @@ public class VistaEmpezar extends javax.swing.JFrame {
         islaescogida.setText("La isla escogida es:" + temp);
     }//GEN-LAST:event_dulceMouseClicked
 
+    private void playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseClicked
+      try {
+            mu.des.ReproducirSonido(musica);
+            pause.setVisible(true);
+            play.setVisible(false);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_playMouseClicked
+
+    private void pauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseClicked
+        mu.des.Pausa();
+      play.setVisible(true);
+      pause.setVisible(false);
+    }//GEN-LAST:event_pauseMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -456,6 +518,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
     private javax.swing.JLabel Iniciar;
     private javax.swing.ButtonGroup Nivel;
     private javax.swing.JLabel amor;
+    private javax.swing.JPanel botones;
     private javax.swing.JLabel calavera;
     private javax.swing.JLabel circo;
     private javax.swing.JLabel desierto;
@@ -473,6 +536,8 @@ public class VistaEmpezar extends javax.swing.JFrame {
     private javax.swing.JLabel militar;
     private javax.swing.JLabel nombre;
     private javax.swing.JLabel p;
+    private javax.swing.JLabel pause;
+    private javax.swing.JLabel play;
     private javax.swing.JLabel playa;
     private javax.swing.JLabel ruina;
     private javax.swing.JLabel selva;

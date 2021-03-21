@@ -46,7 +46,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         jPanel2.setBackground(new Color(150, 92, 40, 200));
         jPanel3.setBackground(new Color(122,214,189,220));
-        
+    
         try {          
             des.ReproducirSonido(nombresonido);
         } catch (Exception e) {
