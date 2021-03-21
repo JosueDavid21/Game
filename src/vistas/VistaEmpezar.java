@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
-import listas.ListaMapas;
+import listas.ListaIslas;
 
 /**
  *
@@ -389,7 +389,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         //}
         else {
             // agregar nivel de dificultad y nombre del personaje 
-            HashMap lista = new ListaMapas().getLista();
+            HashMap lista = new ListaIslas().getLista();
             new VistaIsla((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
             mu.des.Pausa();
             this.dispose();

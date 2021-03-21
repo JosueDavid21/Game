@@ -15,7 +15,7 @@ package entes;
 
 /**
  *
- * @author Josue
+ * @author Grupo 9
  */
 
 public class Tesoro {
