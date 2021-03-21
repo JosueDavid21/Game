@@ -10,7 +10,6 @@
  *       - Teran Edgar
  * Este es un juego que implementa el algoritmo del camino mas corto
  */
-
 package vistas;
 
 import control.GestionTiles;
@@ -42,27 +41,26 @@ import listas.ListaIslas;
  *
  * @author Grupo 9
  */
-
 public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
     private static String pista;
     private String rutaPersonaje;
     private String rutaIsla;
     private int[][] matrizIsla;
-    
+
     GenerarDimension dimensiones;
     private GestionTiles gestionTile;
     Mapa_Vista mapa_pantalla;
-    
+
     boolean map = false;
     boolean pmapa = false;
     boolean arriba;
     boolean abajo;
     boolean izquierda;
     boolean derecha;
-    boolean fin_game=false;
-    boolean fin_gameover=false;
-    boolean cont=false;
+    boolean fin_game = false;
+    boolean fin_gameover = false;
+    boolean cont = false;
     boolean retorno;
 
     private Timer tiempo1 = new Timer(1, this);
@@ -80,10 +78,8 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private final int moveX = 1;
     private final int moveY = 1;
     private final String nombre_jugador;
-    private final int cant_moneda;
-    private final int cant_tesoros;
-    private int cont_pista=0;
-    
+    private int cont_pista = 0;
+
     String camino[];
     Grafo g = new Grafo("abcdefghijk");
     Reproducir musica = new Reproducir();
@@ -106,10 +102,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         nombre_jugador = new Protagonista().getNombre();
         g.rutaDificultad(g.String_char(isla_nombre), new Pistas().getDificultad());
         camino = new Pistas().getCamino_inicial();
-        System.out.println(Arrays.toString(camino)+"CAMINO INICIAL");
-//        System.out.println(Arrays.toString(camino));
-        cant_moneda = g.dificil;
-        cant_tesoros = 0;
+        System.out.println(Arrays.toString(camino) + "CAMINO INICIAL");
 
         agregarMenu(isla.getNombre());
 
@@ -122,15 +115,16 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         this.setLocation(0, 0);
         this.getContentPane().setBackground(Color.black);
         gestionTile = new GestionTiles(isla.getNombre(), matrizIsla, personaje);
-        
+
         generarPersonaje(rutaPersonaje);
         ArrayList<Point> p = gestionTile.buscarPersonajes();
         generarP1(p.get(0).x, p.get(0).y);
         generarP2(p.get(1).x, p.get(1).y);
-        if(p.size()==3)
+        if (p.size() == 3) {
             generarP3(p.get(2).x, p.get(2).y);
+        }
         generarIsla();
-        
+
         this.x = personaje.getLocation().x;
         this.y = personaje.getLocation().y;
 
@@ -188,9 +182,9 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             texto.setText(nombre.trim().toUpperCase());
 
             if (nombre == "moneda") {
-                aux.setText(String.valueOf(cant_moneda));
+                aux.setText(String.valueOf(Inventario.monedas));
             } else if (nombre == "tesoro") {
-                aux.setText(String.valueOf(cant_tesoros));
+                aux.setText(String.valueOf(Inventario.tesoros.size()));
             }
             aux.setSize(40, 20);
             aux.setLocation(new Point((int) por_ancho_aux - aux.getSize().width / 2, (int) (por_alto_aux - aux.getSize().getHeight() / 2)));
@@ -243,12 +237,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             aux.setLocation(new Point((int) por_ancho_aux - aux.getSize().width / 2, (int) (por_alto_aux - aux.getSize().getHeight() / 2)));
             texto.setLocation(new Point((int) por_ancho_texto1 - texto.getSize().width / 2, (int) (por_alto_texto1 - texto.getSize().getHeight() / 2)));
             nombreisla_texto1.setLocation(new Point((int) por_ancho_texto2 - texto.getSize().width / 2, (int) (por_alto_texto2 - texto.getSize().getHeight() / 2)));
-        if (nombreisla_texto.getText() == null ? nombreisla_texto1.getText() == null : nombreisla_texto.getText().equals(nombreisla_texto1.getText())) {
-                fin_game=true;
+            if (nombreisla_texto.getText() == null ? nombreisla_texto1.getText() == null : nombreisla_texto.getText().equals(nombreisla_texto1.getText())) {
+                fin_game = true;
             }
         }
     }
-
 
     public void actualizar() {
         if (animacion < 32000) {
@@ -259,21 +252,21 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Pistas p = new Pistas();
         // AQUI VA EL CAMBIO EN MONEDAS Y TESOROS
         icono2(interaccion_icono, "personaje1");
-        if (nombreisla_texto.getText()==nombreisla_texto1.getText()) {
-            fin_game=true;
+        if (nombreisla_texto.getText() == nombreisla_texto1.getText()) {
+            fin_game = true;
         }
         if ("dificil".equals(new Pistas().getDificultad())) {
-            String t1=nombreisla_texto.getText().toLowerCase();
-            String t2="";
-            t2=camino[new Pistas().getCont()];
-            if (cont_pista>0) {
-                 t2=camino[new Pistas().getCont()-1];
+            String t1 = nombreisla_texto.getText().toLowerCase();
+            String t2 = "";
+            t2 = camino[new Pistas().getCont()];
+            if (cont_pista > 0) {
+                t2 = camino[new Pistas().getCont() - 1];
             }
             if (t1 == null ? t2 != null : !t1.equals(t2)) {
                 System.out.println(nombreisla_texto.getText().toLowerCase());
                 System.out.println(camino[new Pistas().getCont()]);
-            fin_gameover=true;
-        }
+                fin_gameover = true;
+            }
         }
     }
 
@@ -302,7 +295,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
         label.setIcon(icono);
     }
-    
+
     public void iconoInteraccion(JLabel label, String name) {
         Dimension d = new Dimension(dimensiones.getDimensionPersonaje().width + 10, dimensiones.getDimensionPersonaje().height + 10);
         label.setSize(d);
@@ -353,11 +346,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Icon iconoEscalado = new ImageIcon(imgEscalada);
         personaje1.setSize(dimensiones.getDimensionCuadro());
         personaje1.setIcon(iconoEscalado);
-        personaje1.setLocation((dimensiones.getDimensionCuadro().width*x)+(dimensiones.getSobraX()/2), 
-                (dimensiones.getDimensionCuadro().height*y));
+        personaje1.setLocation((dimensiones.getDimensionCuadro().width * x) + (dimensiones.getSobraX() / 2),
+                (dimensiones.getDimensionCuadro().height * y));
         add(personaje1);
     }
-    
+
     private void generarP2(int x, int y) {
         String ruta = "src/imagenes/personajes/" + isla_nombre + "/2.png";
         Image imgEscalada = new ImageIcon(ruta).getImage().getScaledInstance(dimensiones.getDimensionCuadro().width,
@@ -365,8 +358,8 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Icon iconoEscalado = new ImageIcon(imgEscalada);
         personaje2.setSize(dimensiones.getDimensionCuadro());
         personaje2.setIcon(iconoEscalado);
-        personaje2.setLocation((dimensiones.getDimensionCuadro().width*x)+(dimensiones.getSobraX()/2), 
-                (dimensiones.getDimensionCuadro().height*y));
+        personaje2.setLocation((dimensiones.getDimensionCuadro().width * x) + (dimensiones.getSobraX() / 2),
+                (dimensiones.getDimensionCuadro().height * y));
         add(personaje2);
     }
 
@@ -377,11 +370,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Icon iconoEscalado = new ImageIcon(imgEscalada);
         personaje3.setSize(dimensiones.getDimensionCuadro());
         personaje3.setIcon(iconoEscalado);
-        personaje3.setLocation((dimensiones.getDimensionCuadro().width*x)+(dimensiones.getSobraX()/2), 
-                (dimensiones.getDimensionCuadro().height*y));
+        personaje3.setLocation((dimensiones.getDimensionCuadro().width * x) + (dimensiones.getSobraX() / 2),
+                (dimensiones.getDimensionCuadro().height * y));
         add(personaje3);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent c) {
         actualizar();
@@ -389,16 +382,17 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         if (fin_game) {
             JOptionPane.showMessageDialog(this, "Has llegado a tu isla destino HAS GANADO");
             System.exit(0);
-        }else if (fin_gameover){
+        } else if (fin_gameover) {
 //            System.out.println("hola");
             JOptionPane.showMessageDialog(this, "Has perdido no elegiste el camino mas corto ");
             System.exit(0);
         }
     }
-    
+
     private void mostrarMensaje(String[] array) {
         tiempo1.stop();
         if (!array[0].equals("")) {
+            moneda_texto1.setText(String.valueOf(Inventario.monedas));
             interaccion_texto.setText(array[0]);
             tesoro_texto1.setText(String.valueOf(Inventario.tesoros.size()));
             if (!array[1].equals("")) {
@@ -406,13 +400,22 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             }
         }
     }
-    
+
     private void paseIsla() {
         Puente p = gestionTile.accionPasePuente(gestionTile.obtenerPuntoPASE());
-        new VistaCargar(p.getDestino(), p.getPuntoLlegada()).setVisible(true);
-        musica.Pausa();
-        tiempo1.stop();
-        this.dispose();
+        Grafo g1 = new Grafo("abcdefghijk");
+        g1.iniciargrafo(g1);
+        g1.encontrarRutaMinimaDijkstra(g1.String_char(isla_nombre), g1.String_char(p.getDestino()));
+        int valor = g1.distanciatotal;
+        if (Inventario.monedas>=valor) {
+            Inventario.setMonedas(Inventario.monedas-valor);
+            new VistaCargar(p.getDestino(), p.getPuntoLlegada()).setVisible(true);
+            musica.Pausa();
+            tiempo1.stop();
+            this.dispose();
+        }else{
+            interaccion_texto.setText("Monedas insuficiente para cruzar");
+        }
     }
 
     private void mover() {
@@ -767,7 +770,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         }
     }//GEN-LAST:event_formKeyReleased
 
-    
     public void validarvisible() {
         if (mapa_pantalla != null) {
             if (mapa_pantalla.isVisible()) {
@@ -776,8 +778,8 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         }
 
     }
-    
-    
+
+
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
 
@@ -798,22 +800,22 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
     private void mutehelp_help_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_help_iconoMouseClicked
         // TODO add your handling code here:
-       Pistas p = new Pistas();
+        Pistas p = new Pistas();
         icono2(interaccion_icono, "help");
-       
+
         if (!cont) {
-            
-            pista=p.pistas_cruzadas(p.getDificultad(), isla_nombre);
-            if (p.getDificultad()=="facil"||p.getDificultad()=="medio" ) {
-                 interaccion_texto.setText(pista);
-            }else if(p.getDificultad()=="dificil"){
+
+            pista = p.pistas_cruzadas(p.getDificultad(), isla_nombre);
+            if (p.getDificultad() == "facil" || p.getDificultad() == "medio") {
+                interaccion_texto.setText(pista);
+            } else if (p.getDificultad() == "dificil") {
 //                System.out.println(nombreisla_texto.getText().toLowerCase()+" "+camino[cont_pista-1].toLowerCase());
                 cont_pista++;
                 interaccion_texto.setText(pista);
             }
-           
-            cont=true;
-        }else{
+
+            cont = true;
+        } else {
             interaccion_texto.setText(pista);
         }
     }//GEN-LAST:event_mutehelp_help_iconoMouseClicked

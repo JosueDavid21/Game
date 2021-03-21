@@ -72,11 +72,8 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        getContentPane().setLayout(null);
-
-        lb3.setText("jLabel1");
-        getContentPane().add(lb3);
-        lb3.setBounds(101, 135, 37, 15);
+        getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().add(lb3, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

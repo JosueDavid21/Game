@@ -16,6 +16,7 @@ import control.Ejecutable;
 import control.Grafo;
 import control.Pistas;
 import control.Reproducir;
+import entes.Inventario;
 import entes.Isla;
 import entes.Protagonista;
 import java.awt.Color;
@@ -41,7 +42,8 @@ public class VistaEmpezar extends javax.swing.JFrame {
     String musica = "src/musica/sonido_1.wav";
     String temp = "";
     String nivel = "";
-    Grafo g ;
+    Grafo g;
+
     public VistaEmpezar() {
         initComponents();
 
@@ -49,12 +51,12 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
     public VistaEmpezar(String jugador) {
         initComponents();
-         g= new Grafo("abcdefghijk");
+        g = new Grafo("abcdefghijk");
         g.iniciargrafo(g);
         new Protagonista().setNombre(jugador);
         setLocationRelativeTo(null);
-        
-        ImageIcon ds= new ImageIcon("src/fondos/inicio secion.gif");
+
+        ImageIcon ds = new ImageIcon("src/fondos/inicio secion.gif");
         Icon isd = new ImageIcon(ds.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
         fondo.setIcon(isd);
         ImageIcon d = new ImageIcon("src/fondos/sin_sonido.png");
@@ -414,10 +416,15 @@ public class VistaEmpezar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleeccione todos los campos para iniciar el juego");
         } else {
             // agregar nivel de dificultad y nombre del personaje 
-            HashMap lista = new ListaIslas().getLista();
-//            new VistaCargar((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
             new Pistas().setCamino_inicial(g.rutaDificultad(g.String_char(temp), nivel));
             new Pistas().setDificultad(nivel);
+            if (Pistas.dificultad.equals("dificil")) {
+                Inventario.setMonedas(g.dificil);
+            } else if (Pistas.dificultad.equals("medio")) {
+                Inventario.setMonedas(g.medio);
+            } else {
+                Inventario.setMonedas(g.facil+g.dificil);
+            }
             new VistaCargar(temp, new Point(16, 10)).setVisible(true);
             mu.des.Pausa();
             this.dispose();

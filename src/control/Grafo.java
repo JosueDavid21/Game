@@ -56,7 +56,7 @@ public class Grafo {
         return -1;
     }
     char arregloruta[];
-    int distanciatotal;
+    public int distanciatotal;
     public int facil;
     public int medio;
     public int dificil;

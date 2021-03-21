@@ -54,7 +54,7 @@ public class ListaPuentes {
     } 
     
     private Puente[] getSelvaPuentes(){
-        return new Puente[]{new Puente("playa", new Point(12, 18)), new Puente("ruinas", new Point(1, 18)), new Puente("circo", new Point(1, 4))};
+        return new Puente[]{new Puente("playa", new Point(12, 18)), new Puente("ruina", new Point(1, 18)), new Puente("circo", new Point(1, 4))};
     } 
     
     private Puente[] getRuinaPuentes(){

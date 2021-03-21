@@ -14,6 +14,7 @@
 package control;
 
 import entes.GenerarDimension;
+import entes.Inventario;
 import entes.Personaje;
 import entes.Puente;
 import entes.Tile;
@@ -33,26 +34,26 @@ public class GestionTiles {
 
     private final int[][] matrizIsla;
     private final GenerarDimension dimensiones = new GenerarDimension(new Point(0, 0));
-    private static final Rectangle recJug = new Rectangle(0, 0, 0, 0);
-    private static String isla = "";
-    private static JLabel personaje = new JLabel();
-    private static final ListaTesoros tesoros = new ListaTesoros();
-    private static final ListaPuentes puentes = new ListaPuentes();
-    private static final ListaPersonajes personajes = new ListaPersonajes();
+    private final Rectangle recJug = new Rectangle(0, 0, 0, 0);
+    private String nombreIsla = "";
+    private JLabel personaje = new JLabel();
+    private final ListaTesoros tesoros = new ListaTesoros();
+    private final ListaPuentes puentes = new ListaPuentes();
+    private final ListaPersonajes personajes = new ListaPersonajes();
     private String mensajeRetorno;
     private String rutaRetorno;
     private String tipo;
     private boolean auxRetorno;
-    private static final Point pSI = new Point();
-    private static final Point pSD = new Point();
-    private static final Point pII = new Point();
-    private static final Point pID = new Point();
+    private final Point pSI = new Point();
+    private final Point pSD = new Point();
+    private final Point pII = new Point();
+    private final Point pID = new Point();
     private final static Tile t = new Tile();
 
-    public GestionTiles(String isla, int[][] matriz, JLabel personaje) {
+    public GestionTiles(String nombreIsla, int[][] matriz, JLabel personaje) {
         this.matrizIsla = matriz;
-        GestionTiles.personaje = personaje;
-        GestionTiles.isla = isla;
+        this.personaje = personaje;
+        this.nombreIsla = nombreIsla;
     }
 
     public String verificarMovimiento(int xSig, int ySig) {
@@ -160,13 +161,16 @@ public class GestionTiles {
     }
     
     private boolean accionTesoros(int x, int y){
-        if(tesoros.getUbicacion(isla).equals(new Point(x, y))){
-            if(tesoros.getTesoro(isla).isEstado()){
+        if(tesoros.getUbicacion(nombreIsla).equals(new Point(x, y))){
+            if(tesoros.getTesoro(nombreIsla).isEstado()){
                 mensajeRetorno = "No hay nada aqui";
                 rutaRetorno = "";
             }else{
-                mensajeRetorno = "Encontraste: " + tesoros.getTesoro(isla).getNombre();
-                rutaRetorno = tesoros.getTesoro(isla).getRutaIMG();
+                tesoros.getTesoro(nombreIsla).setEstado(true);
+                Inventario.addTesoro(tesoros.getTesoro(nombreIsla));
+                Inventario.setMonedas(Inventario.monedas+10);
+                mensajeRetorno = "Encontraste: " + tesoros.getTesoro(nombreIsla).getNombre();
+                rutaRetorno = tesoros.getTesoro(nombreIsla).getRutaIMG();
             }
             return true;
         }else{
@@ -175,12 +179,12 @@ public class GestionTiles {
     }
     
     public Puente accionPasePuente(Point puntoActual){
-        return puentes.getPuente(isla, matrizIsla[puntoActual.x][puntoActual.y]);
+        return puentes.getPuente(nombreIsla, matrizIsla[puntoActual.x][puntoActual.y]);
     }
     
     private boolean accionPersonaje(int x, int y){
         rutaRetorno = "";
-        mensajeRetorno = personajes.getFrase(isla, matrizIsla[x][y]);
+        mensajeRetorno = personajes.getFrase(nombreIsla, matrizIsla[x][y]);
         return !mensajeRetorno.equals("");
     }
     
