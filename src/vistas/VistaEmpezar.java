@@ -13,6 +13,8 @@
 package vistas;
 
 import control.Ejecutable;
+import control.Grafo;
+import control.Pistas;
 import control.Reproducir;
 import entes.Isla;
 import entes.Protagonista;
@@ -39,7 +41,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
     String musica = "src/musica/sonido_1.wav";
     String temp = "";
     String nivel = "";
-
+    Grafo g ;
     public VistaEmpezar() {
         initComponents();
 
@@ -47,6 +49,8 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
     public VistaEmpezar(String jugador) {
         initComponents();
+         g= new Grafo("abcdefghijk");
+        g.iniciargrafo(g);
         new Protagonista().setNombre(jugador);
         setLocationRelativeTo(null);
         
@@ -411,6 +415,9 @@ public class VistaEmpezar extends javax.swing.JFrame {
         } else {
             // agregar nivel de dificultad y nombre del personaje 
             HashMap lista = new ListaIslas().getLista();
+//            new VistaCargar((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
+            new Pistas().setCamino_inicial(g.rutaDificultad(g.String_char(temp), nivel));
+            new Pistas().setDificultad(nivel);
             new VistaCargar((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
             mu.des.Pausa();
             this.dispose();

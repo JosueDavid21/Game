@@ -13,17 +13,46 @@
 
 package control;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Grupo 9
  */
 
 public class Pistas {
-    String pista;
-    String destino;
+    public static String[] camino_inicial;
+    public static int cont=1;
+    public static String dificultad;
+
+    public  String getDificultad() {
+        return dificultad;
+    }
+
+    public static void setDificultad(String dificultad) {
+        Pistas.dificultad = dificultad;
+    }
 
     public Pistas() {
     }
+
+    public  void setCamino_inicial(String[] camino_inicial) {
+        Pistas.camino_inicial = camino_inicial;
+    }
+
+
+    public  String[] getCamino_inicial() {
+        return camino_inicial;
+    }
+
+    public static int getCont() {
+        return cont;
+    }
+
+    public static void setCont(int cont) {
+        Pistas.cont = cont;
+    }
+
 
     public String pista_texto(String nom_isla){
         String txt_pista="";
@@ -51,6 +80,23 @@ public class Pistas {
             txt_pista="Tienen mucha azucar!";
         }
         return txt_pista;
+    }
+    public String pistas_cruzadas(String dificultad,String isla){
+        Grafo g= new Grafo("abcdefghijk");
+        g.iniciargrafo(g);
+        String psta="";
+        g.encontrarRutaMinimaDijkstra(g.String_char(isla),g.String_char(camino_inicial[camino_inicial.length-1]));
+        if (dificultad=="facil" || dificultad=="medio") {
+            new Pistas().setCamino_inicial(g.rutaisla(g.arregloruta));
+            System.out.println(Arrays.toString(camino_inicial)+"NUEVO CAMINO");
+            psta=pista_texto(camino_inicial[1]);
+        }else if(dificultad=="dificil"){
+            System.out.println("camino dificil "+Arrays.toString(camino_inicial)+"CONT "+cont);
+            psta=(pista_texto(camino_inicial[cont]));
+            cont++;
+        }
+        
+        return psta;
     }
     
 }
