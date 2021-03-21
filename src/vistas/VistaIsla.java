@@ -160,7 +160,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         if (tipo == 1) {
             icono2(icon, nombre);
             if (nombre == "jugador") {
-                texto.setText(nombre_jugador.trim().toUpperCase());
+                texto.setText(nombre_jugador.trim());
             } else if (nombre == "mapa") {
                 texto.setText(nombre.trim().toUpperCase());
             }
@@ -343,11 +343,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         actualizar();
         mover();
         if (fin_game) {
-            JOptionPane.showMessageDialog(this, "HAS GANADO PRRO");
+            JOptionPane.showMessageDialog(this, "Has llegado a tu isla destino HAS GANADO");
             System.exit(0);
         }else if (fin_gameover){
 //            System.out.println("hola");
-            JOptionPane.showMessageDialog(this, "HAS perdido PRRO");
+            JOptionPane.showMessageDialog(this, "Has perdido no elegiste el camino mas corto ");
             System.exit(0);
         }
     }
