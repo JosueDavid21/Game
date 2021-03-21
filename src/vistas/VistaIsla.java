@@ -287,7 +287,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
 //DAVID FIN
     public void icono2(JLabel label, String name) {
-        Dimension d = new Dimension(dimensiones.getDimensionPersonaje().width + 10, dimensiones.getDimensionPersonaje().height + 10);
+        Dimension d = new Dimension(dimensiones.getDimensionCuadro().width + 10, dimensiones.getDimensionCuadro().height + 10);
         label.setSize(d);
         ImageIcon im = new ImageIcon("src/imagenes/menu/" + name + " icono.png");
         ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH));
