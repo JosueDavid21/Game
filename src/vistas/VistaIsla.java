@@ -32,6 +32,7 @@ import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import listas.ListaIslas;
 
@@ -42,6 +43,9 @@ import listas.ListaIslas;
 
 public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
+
+ 
+    private static String pista;
     private static String rutaPersonaje;
     private static String rutaIsla;
     private final int[][] matrizIsla;
@@ -57,6 +61,10 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     boolean abajo;
     boolean izquierda;
     boolean derecha;
+    boolean fin_game=false;
+    boolean fin_gameover=false;
+    boolean cont=false;
+    boolean retorno;
 
     private final Timer tiempo1 = new Timer(1, this);
 
@@ -72,7 +80,8 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private final String nombre_jugador;
     private final int cant_moneda;
     private final int cant_tesoros;
-    boolean retorno;
+    private int cont_pista=0;
+    
     String camino[];
     Grafo g = new Grafo("abcdefghijk");
     Reproducir musica = new Reproducir();
@@ -94,9 +103,10 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
         isla_nombre = isla.getNombre();
         nombre_jugador = new Protagonista().getNombre();
-        camino = g.rutaDificultad(g.String_char(isla_nombre), "dificil");
-        pista();
-        System.out.println(Arrays.toString(camino));
+        g.rutaDificultad(g.String_char(isla_nombre), new Pistas().getDificultad());
+        camino = new Pistas().getCamino_inicial();
+        System.out.println(Arrays.toString(camino)+"CAMINO INICIAL");
+//        System.out.println(Arrays.toString(camino));
         cant_moneda = g.dificil;
         cant_tesoros = 0;
 
@@ -225,14 +235,12 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             aux.setLocation(new Point((int) por_ancho_aux - aux.getSize().width / 2, (int) (por_alto_aux - aux.getSize().getHeight() / 2)));
             texto.setLocation(new Point((int) por_ancho_texto1 - texto.getSize().width / 2, (int) (por_alto_texto1 - texto.getSize().getHeight() / 2)));
             nombreisla_texto1.setLocation(new Point((int) por_ancho_texto2 - texto.getSize().width / 2, (int) (por_alto_texto2 - texto.getSize().getHeight() / 2)));
+        if (nombreisla_texto.getText() == null ? nombreisla_texto1.getText() == null : nombreisla_texto.getText().equals(nombreisla_texto1.getText())) {
+                fin_game=true;
+            }
         }
     }
 
-    public void pista() {
-        String inicio_isla = camino[0];
-        String fin_isla = camino[camino.length - 1];
-        System.out.println(inicio_isla + "" + fin_isla);
-    }
 
     public void actualizar() {
         if (animacion < 32000) {
@@ -243,6 +251,22 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Pistas p = new Pistas();
         // AQUI VA EL CAMBIO EN MONEDAS Y TESOROS
         icono2(interaccion_icono, "personaje1");
+        if (nombreisla_texto.getText()==nombreisla_texto1.getText()) {
+            fin_game=true;
+        }
+        if ("dificil".equals(new Pistas().getDificultad())) {
+            String t1=nombreisla_texto.getText().toLowerCase();
+            String t2="";
+            t2=camino[new Pistas().getCont()];
+            if (cont_pista>0) {
+                 t2=camino[new Pistas().getCont()-1];
+            }
+            if (t1 == null ? t2 != null : !t1.equals(t2)) {
+                System.out.println(nombreisla_texto.getText().toLowerCase());
+                System.out.println(camino[new Pistas().getCont()]);
+            fin_gameover=true;
+        }
+        }
     }
 
     public void icono_animacion(String nombre_animacion) {
@@ -318,6 +342,14 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     public void actionPerformed(ActionEvent c) {
         actualizar();
         mover();
+        if (fin_game) {
+            JOptionPane.showMessageDialog(this, "HAS GANADO PRRO");
+            System.exit(0);
+        }else if (fin_gameover){
+//            System.out.println("hola");
+            JOptionPane.showMessageDialog(this, "HAS perdido PRRO");
+            System.exit(0);
+        }
     }
     
     private void mostrarMensaje(String[] array) {
@@ -720,9 +752,24 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
     private void mutehelp_help_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutehelp_help_iconoMouseClicked
         // TODO add your handling code here:
-        Pistas p = new Pistas();
+       Pistas p = new Pistas();
         icono2(interaccion_icono, "help");
-        interaccion_texto.setText(p.pista_texto(camino[1]));
+       
+        if (!cont) {
+            
+            pista=p.pistas_cruzadas(p.getDificultad(), isla_nombre);
+            if (p.getDificultad()=="facil"||p.getDificultad()=="medio" ) {
+                 interaccion_texto.setText(pista);
+            }else if(p.getDificultad()=="dificil"){
+//                System.out.println(nombreisla_texto.getText().toLowerCase()+" "+camino[cont_pista-1].toLowerCase());
+                cont_pista++;
+                interaccion_texto.setText(pista);
+            }
+           
+            cont=true;
+        }else{
+            interaccion_texto.setText(pista);
+        }
     }//GEN-LAST:event_mutehelp_help_iconoMouseClicked
 
     private void mapa_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapa_iconoMouseClicked

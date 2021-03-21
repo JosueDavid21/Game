@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class Pistas {
     public static String[] camino_inicial;
-    public static int cont=1;
+    public static int cont=0;
     public static String dificultad;
 
     public  String getDificultad() {
@@ -45,11 +45,11 @@ public class Pistas {
         return camino_inicial;
     }
 
-    public static int getCont() {
+    public  int getCont() {
         return cont;
     }
 
-    public static void setCont(int cont) {
+    public  void setCont(int cont) {
         Pistas.cont = cont;
     }
 
@@ -92,7 +92,7 @@ public class Pistas {
             psta=pista_texto(camino_inicial[1]);
         }else if(dificultad=="dificil"){
             System.out.println("camino dificil "+Arrays.toString(camino_inicial)+"CONT "+cont);
-            psta=(pista_texto(camino_inicial[cont]));
+            psta=(pista_texto(camino_inicial[cont+1]));
             cont++;
         }
         
