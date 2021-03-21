@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import control.Ejecutable;
 import control.Reproducir;
 import java.awt.Color;
 import java.awt.Image;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
 public class VistaIngresoNombre extends javax.swing.JFrame {
 
     Reproducir des = new Reproducir();
-    barra d = new barra();
+    Ejecutable d = new Ejecutable();
     String nombresonido = "src/musica/juego-de-tronos-2.wav";
     Clip clip = null;
 

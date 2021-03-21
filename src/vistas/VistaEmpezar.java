@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import control.Ejecutable;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import control.Reproducir;
 import entes.Isla;
@@ -30,7 +31,7 @@ import listas.ListaMapas;
  */
 public class VistaEmpezar extends javax.swing.JFrame {
 
-    barra d = new barra();
+    Ejecutable d = new Ejecutable();
     VistaIngresoNombre mu = new VistaIngresoNombre();
     Reproducir r=new Reproducir();
     String musica = "src/musica/sonido_1.wav";
