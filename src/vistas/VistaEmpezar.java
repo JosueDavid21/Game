@@ -1,34 +1,37 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package vistas;
 
 import control.Ejecutable;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import control.Reproducir;
 import entes.Isla;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import listas.ListaIslas;
 
 /**
  *
- * @author edgar
+ * @author Grupo 9
  */
+
 public class VistaEmpezar extends javax.swing.JFrame {
 
     Ejecutable d = new Ejecutable();
@@ -106,13 +109,6 @@ public class VistaEmpezar extends javax.swing.JFrame {
         j.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
 
-//    public void imagen (String name,JLabel g){
-//    ImageIcon de = new ImageIcon("src/imagenes/menu/"+name+"icono.png");
-//        Icon ide = new ImageIcon(de.getImage().getScaledInstance(g.getWidth(), g.getHeight(), Image.SCALE_DEFAULT));
-//        g.setIcon(ide);
-//    
-//    
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -382,12 +378,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         System.out.println(nivel);
         if (temp == "" || nivel == "") {
             JOptionPane.showMessageDialog(null, "Seleeccione todos los campos para iniciar el juego");
-        } //else
-        //if(temp == "" && nivel==""){
-        //                      JOptionPane.showMessageDialog(null, "Seleeccione todos los campos para iniciar el juego");
-        //  
-        //}
-        else {
+        }else {
             // agregar nivel de dificultad y nombre del personaje 
             HashMap lista = new ListaIslas().getLista();
             new VistaIsla((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);

@@ -1,11 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package vistas;
 
-import entes.GenerarDimension;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
@@ -13,8 +20,9 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author grace
+ * @author Grupo 9
  */
+
 public class VistaCargar extends javax.swing.JFrame {
 
     /**
@@ -25,7 +33,7 @@ public class VistaCargar extends javax.swing.JFrame {
         
         this.setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setBackground(Color.black);
-         ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\cargando.gif");
+        ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\cargando.gif");
         Icon id = new ImageIcon(d.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
         lb3.setIcon(id);
        

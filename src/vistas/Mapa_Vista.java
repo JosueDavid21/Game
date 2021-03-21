@@ -1,8 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package vistas;
 
 import java.awt.Dimension;
@@ -12,8 +20,9 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author espin
+ * @author Grupo 9
  */
+
 public class Mapa_Vista extends javax.swing.JFrame   {
 
     /**
