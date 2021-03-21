@@ -1,37 +1,32 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package vistas;
 
-import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
  *
- * @author grace
+ * @author Grupo 9
  */
 public class VistaInicial extends javax.swing.JFrame {
 
    
     public VistaInicial() {
-
         initComponents();
-
-
         jPanel2.setBackground(new Color(0, 179, 71, 90));
         setLocationRelativeTo(null);
         ImageIcon d = new ImageIcon("src/fondos/logo.png");
@@ -40,7 +35,6 @@ public class VistaInicial extends javax.swing.JFrame {
         ImageIcon de = new ImageIcon("src/fondos/Pueblo.gif");
         Icon idd = new ImageIcon(de.getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), Image.SCALE_DEFAULT));
         jLabel3.setIcon(idd);
-
     }
 
     public void progres() {
@@ -60,9 +54,7 @@ public class VistaInicial extends javax.swing.JFrame {
                                 }
             }
         } catch (Exception e) {
-
         }
-
     }
 
     /**
@@ -98,12 +90,6 @@ public class VistaInicial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JProgressBar barra;
     private javax.swing.JLabel jLabel1;
