@@ -5,31 +5,40 @@
  */
 package vistas;
 
+import control.GestionTiles;
 import control.Grafo;
 import control.Pistas;
 import control.Reproducir;
+import java.util.Arrays;
 import entes.GenerarDimension;
 import entes.Isla;
-import entes.Tile;
+import entes.Puente;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
+import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
+import listas.ListaIslas;
 
 public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
     private static String rutaPersonaje;
     private static String rutaIsla;
     private final int[][] matrizIsla;
+    
     GenerarDimension dimensiones;
+    private final HashMap listaIslas;
+    private final GestionTiles gestionTile;
+    Mapa_Vista mapa_pantalla;
+    
+    boolean map = false;
+    boolean pmapa = false;
     boolean arriba;
     boolean abajo;
     boolean izquierda;
@@ -37,7 +46,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
     private final Timer tiempo1 = new Timer(1, this);
 
-    private static final Rectangle recJug = new Rectangle(0, 0, 0, 0);
     JLabel jLfondo = new JLabel();
     JLabel personaje = new JLabel();
     JLabel jLMapa = new JLabel();
@@ -47,21 +55,16 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     private int animacion;
     private final int moveX = 1;
     private final int moveY = 1;
-    private boolean recogiendo = false;
-    private String nombre_jugador;
-    private int cant_moneda;
-    private int cant_tesoros;
+    private final String nombre_jugador;
+    private final int cant_moneda;
+    private final int cant_tesoros;
     boolean retorno;
     String camino[];
-    private final Point pSI = new Point();
-    private final Point pSD = new Point();
-    private final Point pII = new Point();
-    private final Point pID = new Point();
-    private final Tile t = new Tile();
     Grafo g = new Grafo("abcdefghijk");
     Reproducir musica = new Reproducir();
 
     public VistaIsla(Isla isla, Point jug) {
+        listaIslas = new ListaIslas().getLista();
         dimensiones = new GenerarDimension(jug);
         rutaPersonaje = "src/imagenes/personajes/inicio.png";
         rutaIsla = isla.getUrlImagen();
@@ -95,6 +98,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         this.getContentPane().setBackground(Color.black);
         generarPersonaje(rutaPersonaje);
         generarIsla();
+        gestionTile = new GestionTiles(isla.getNombre(), matrizIsla, personaje);
         this.x = personaje.getLocation().x;
         this.y = personaje.getLocation().y;
 
@@ -293,76 +297,113 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         actualizar();
         mover();
     }
+    
+    private void mostrarMensaje(String[] array) {
+        if (!array[0].equals("")) {
+            interaccion_texto.setText(array[0]);
+        }
+    }
+    
+    private void paseIsla() {
+        Puente p = gestionTile.accionPasePuente(gestionTile.obtenerPuntoPASE());
+        new VistaCargar((Isla) listaIslas.get(p.getDestino()), p.getPuntoLlegada()).setVisible(true);
+        tiempo1.stop();
+        this.dispose();
+    }
 
     private void mover() {
         if (izquierda & !derecha & !arriba & !abajo) {
-            if (verificarMovimiento(x - moveX, y)) {
+            if (gestionTile.verificarMovimiento(x - moveX, y).equals("camino")) {
                 x = x - moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("izquierda");
+            } else if (gestionTile.verificarMovimiento(x - moveX, y).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(-moveX, 0, personaje));
             }
+
         } else if (derecha & !arriba & !abajo & !izquierda) {
-            if (verificarMovimiento(x + moveX, y)) {
+            if (gestionTile.verificarMovimiento(x + moveX, y).equals("camino")) {
                 x = x + moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("derecha");
+            } else if (gestionTile.verificarMovimiento(x + moveX, y).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(moveX, 0, personaje));
             }
+
         } else if (arriba & !abajo & !izquierda & !derecha) {
-            if (verificarMovimiento(x, y - moveY)) {
+            if (gestionTile.verificarMovimiento(x, y - moveY).equals("camino")) {
                 y = y - moveY;
                 personaje.setLocation(x, y);
                 icono_animacion("arriba");
+            } else if (gestionTile.verificarMovimiento(x, y - moveY).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(0, -moveY, personaje));
             }
+
         } else if (abajo & !izquierda & !derecha & !arriba) {
-            if (verificarMovimiento(x, y + moveY)) {
+            if (gestionTile.verificarMovimiento(x, y + moveY).equals("camino")) {
                 y = y + moveY;
                 personaje.setLocation(x, y);
                 icono_animacion("abajo");
+            } else if (gestionTile.verificarMovimiento(x, y + moveY).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(0, moveY, personaje));
             }
+
         } else if (abajo & derecha) {
-            if (verificarMovimiento(x + moveX, y + moveY)) {
+            if (gestionTile.verificarMovimiento(x + moveX, y + moveY).equals("camino")) {
                 y = y + moveY;
                 x = x + moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("derecha");
+            } else if (gestionTile.verificarMovimiento(x + moveX, y + moveY).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(moveX, moveY, personaje));
             }
+
         } else if (abajo & izquierda) {
-            if (verificarMovimiento(x - moveX, y + moveY)) {
+            if (gestionTile.verificarMovimiento(x - moveX, y + moveY).equals("camino")) {
                 y = y + moveY;
                 x = x - moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("izquierda");
+            } else if (gestionTile.verificarMovimiento(x - moveX, y + moveY).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(-moveX, moveY, personaje));
             }
+
         } else if (arriba & derecha) {
-            if (verificarMovimiento(x + moveX, y - moveY)) {
+            if (gestionTile.verificarMovimiento(x + moveX, y - moveY).equals("camino")) {
                 y = y - moveY;
                 x = x + moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("derecha");
+            } else if (gestionTile.verificarMovimiento(x + moveX, y - moveY).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(moveX, -moveY, personaje));
             }
+
         } else if (arriba & izquierda) {
-            if (verificarMovimiento(x - moveX, y - moveY)) {
+            if (gestionTile.verificarMovimiento(x - moveX, y - moveY).equals("camino")) {
                 y = y - moveY;
                 x = x - moveX;
                 personaje.setLocation(x, y);
                 icono_animacion("izquierda");
+            } else if (gestionTile.verificarMovimiento(x - moveX, y - moveY).equals("pase")) {
+                paseIsla();
+            } else {
+                mostrarMensaje(gestionTile.realizarAccion(-moveX, -moveY, personaje));
             }
         }
-    }
-
-    private boolean verificarMovimiento(int xSig, int ySig) {
-        retorno = true;
-        recJug.setLocation(xSig, ySig + (personaje.getHeight() / 2));
-        recJug.setSize(personaje.getWidth(), personaje.getHeight() / 2);
-        pSI.setLocation(dimensiones.getPuntoActual(recJug.x, recJug.y));
-        pSD.setLocation(dimensiones.getPuntoActual(recJug.x + recJug.width, recJug.y));
-        pII.setLocation(dimensiones.getPuntoActual(recJug.x, recJug.y + recJug.height));
-        pID.setLocation(dimensiones.getPuntoActual(recJug.x + recJug.width, recJug.y + recJug.height));
-        retorno = retorno && t.esCamino(matrizIsla[pSI.x][pSI.y]);
-        retorno = retorno && t.esCamino(matrizIsla[pSD.x][pSD.y]);
-        retorno = retorno && t.esCamino(matrizIsla[pII.x][pII.y]);
-        retorno = retorno && t.esCamino(matrizIsla[pID.x][pID.y]);
-        return retorno;
     }
 
     /**
@@ -597,7 +638,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             arriba = true;
         } else if (evt.getKeyCode() == 83) {
             abajo = true;
-
         }
         if (evt.getKeyCode() == evt.VK_ESCAPE) {
             System.exit(0);
@@ -606,10 +646,8 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
         if (evt.getKeyCode() == 65) {
-
             izquierda = false;
             icono(personaje, "izquierda");
-
         } else if (evt.getKeyCode() == 68) {
             derecha = false;
             icono(personaje, "derecha");
@@ -625,9 +663,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         }
     }//GEN-LAST:event_formKeyReleased
 
-    Mapa_Vista mapa_pantalla;
-    boolean map = false;
-
+    
     public void validarvisible() {
         if (mapa_pantalla != null) {
             if (mapa_pantalla.isVisible()) {
@@ -636,7 +672,8 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         }
 
     }
-    boolean pmapa = false;
+    
+    
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
 
@@ -644,14 +681,12 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        System.out.println(pmapa);
         if (mapa_pantalla != null) {
             pmapa = mapa_pantalla.isVisible();
             if (pmapa) {
                 mapa_pantalla.dispose();
                 pmapa = false;
                 map = false;
-
             }
         }
 
@@ -662,18 +697,14 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Pistas p = new Pistas();
         icono2(interaccion_icono, "help");
         interaccion_texto.setText(p.pista_texto(camino[1]));
-
     }//GEN-LAST:event_mutehelp_help_iconoMouseClicked
 
     private void mapa_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapa_iconoMouseClicked
         // TODO add your handling code here:
         validarvisible();
-        System.out.println(map + " map+");
         if (map == false) {
             mapa_pantalla = new Mapa_Vista(isla_nombre);
             mapa_pantalla.setVisible(true);
-            //
-            System.out.println("mapa activado");
         }
     }//GEN-LAST:event_mapa_iconoMouseClicked
     boolean muc = true;
@@ -696,8 +727,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             mutehelp_mute_icono1.setVisible(false);
             mutehelp_mute_icono.setVisible(true);
         }
-
-
     }//GEN-LAST:event_mutehelp_mute_icono1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

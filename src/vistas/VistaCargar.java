@@ -13,8 +13,10 @@
 
 package vistas;
 
+import entes.Isla;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -28,7 +30,7 @@ public class VistaCargar extends javax.swing.JFrame {
     /**
      * Creates new form VistaCargar
      */
-    public VistaCargar() {
+    public VistaCargar(Isla isla, Point punto) {
         initComponents();
         
         this.setExtendedState(MAXIMIZED_BOTH);
