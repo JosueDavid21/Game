@@ -1,8 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Uversidad Central del Ecuador 
+ * Facultad de Ingenieria y CIencias aplicadas
+ * Ingenieria en Sistemas de Informacion
+ * Algoritmos
+ * Grupo 9 
+ * Integrantes: 
+ *       - Bolaños Josue
+ *       - Espinosa David
+ *       - Teran Edgar
+ * Este es un juego que implementa el algoritmo del camino mas corto
  */
+
 package entes;
 
 import java.awt.Dimension;
@@ -11,23 +19,25 @@ import java.awt.Toolkit;
 
 /**
  *
- * @author Josue
+ * @author Grupo 9
  */
+
 public class GenerarDimension {
     
     private final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     private final int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private final int CUADROS_V = 20;
     private final int CUADROS_H = 32;
-    private final int SOBRA_P = 4;
+    private final int SOBRA_PersonajeY = 4;
+    private final int SOBRA_PersonajeX = 24;
     private static final double POS_MENU = 0.1;
-    private int sobraX;
-    private int sobraY;
+    private final int sobraX;
+    private final int sobraY;
 
     //   Dimensiones de las pantallas
-    private Point puntoInicioMenu;
-    private Point puntoInicioJuego;
-    private Point puntoInicioJugador;
+    private final Point puntoInicioMenu;
+    private final Point puntoInicioJuego;
+    private final Point puntoInicioJugador;
     
     private static Dimension dimensionMenu , dimensionCuadro, dimensionPersonaje, dimensionJuego;
     
@@ -36,11 +46,11 @@ public class GenerarDimension {
         sobraX = WIDTH%CUADROS_H;
         dimensionMenu = new Dimension(WIDTH-sobraX, (int)(HEIGHT*POS_MENU)+sobraY);
         dimensionCuadro = new Dimension(WIDTH/CUADROS_H , (HEIGHT-dimensionMenu.height)/CUADROS_V);
-        dimensionPersonaje = new Dimension(dimensionCuadro.width-SOBRA_P, dimensionCuadro.height-SOBRA_P);
+        dimensionPersonaje = new Dimension(dimensionCuadro.width-SOBRA_PersonajeX, dimensionCuadro.height-SOBRA_PersonajeY);
         dimensionJuego = new Dimension(WIDTH-sobraX, HEIGHT-dimensionMenu.height);
         puntoInicioMenu = new Point(sobraX/2, dimensionJuego.height);
         puntoInicioJuego = new Point(sobraX/2, 0);
-        puntoInicioJugador = new Point((puntoInicial.x*dimensionCuadro.width)+(SOBRA_P/2)+(sobraX/2), (puntoInicial.y*dimensionCuadro.height)+(SOBRA_P/2));
+        puntoInicioJugador = new Point((puntoInicial.x*dimensionCuadro.width)+(SOBRA_PersonajeX/2)+(sobraX/2), (puntoInicial.y*dimensionCuadro.height)+(SOBRA_PersonajeY/2));
     }
 
     public Point getPuntoInicioMenu() {
