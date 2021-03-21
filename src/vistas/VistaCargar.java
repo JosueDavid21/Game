@@ -19,10 +19,12 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
+import listas.ListaIslas;
 
 /**
  *
@@ -34,22 +36,24 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
     int count = 0;
     Timer tiempo1 = new Timer(1000, this);
 
-    public VistaCargar(Isla isla, Point punto) {
+    public VistaCargar(String nombreIsla, Point punto) {
         initComponents();
         this.setAlwaysOnTop(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setBackground(Color.CYAN);
-//        ImageIcon d = new ImageIcon("C:\\Users\\edgar\\Documents\\NetBeansProjects\\Game\\src\\imagenes\\ayuda\\cargando.gif");
-//        Icon id = new ImageIcon(d.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
-//        lb3.setIcon(id);
-        vistaIsla = new VistaIsla(isla, punto);
-        
+        HashMap lista = new ListaIslas().getLista();
+        ImageIcon p = new ImageIcon("src/fondos/carga icono.gif");
+        Icon id = new ImageIcon(p.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
+        lb3.setIcon(id);
+        vistaIsla = new VistaIsla((Isla) lista.get(nombreIsla), punto);
+
         tiempo1.start();
     }
+
     @Override
     public void actionPerformed(ActionEvent c) {
         count++;
-        if (count==5) {
+        if (count == 5) {
             vistaIsla.setVisible(true);
             this.dispose();
         }
@@ -68,25 +72,11 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(null);
 
         lb3.setText("jLabel1");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(lb3)
-                .addContainerGap(1092, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(lb3)
-                .addContainerGap(479, Short.MAX_VALUE))
-        );
+        getContentPane().add(lb3);
+        lb3.setBounds(101, 135, 37, 15);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

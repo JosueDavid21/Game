@@ -25,7 +25,7 @@ public class ListaPersonajes {
     private final HashMap<String, String[]> lista = new HashMap<>();
     private static final String AMOR[] = {" Buen dia vecinirijillo", "Es un dia hermoso", "Te vez bien amigo"};
     private static final String CALAVERA[] = {"Forastero!!!!", "Crees en los fantasmas???", "Hoy es un gran dia para morir"};
-    private static final String VOLCAN[] = {"Cuidado las rocas", "Ese volcan no descansa....", "Entrre las rocas hay tesoros...!!!"};
+    private static final String VOLCAN[] = {"Cuidado las rocas", "Ese volcan no descansa....", "Entre las rocas hay tesoros...!!!"};
     private static final String CIRCO[] = {"Quieres un globo???", "Quiero una entrada VIP", "Se feliz amigo..."};
     private static final String DULCE[] = {"No te comas las paredes....", "mmmmm... rosquillas...", "Comi muchos dulces..."};
     private static final String PLAYA[] = {"Creo que me broncie demasiado", "Vamos nadar viejo...", "Vamos dos que tres...."};

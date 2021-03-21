@@ -22,8 +22,8 @@ import java.awt.Point;
 
 public class Puente {
     
-    private String destino;
-    private Point puntoLlegada;
+    private final String destino;
+    private final Point puntoLlegada;
 
     public Puente(String destino, Point puntoInicio) {
         this.destino = destino;

@@ -418,7 +418,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 //            new VistaCargar((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
             new Pistas().setCamino_inicial(g.rutaDificultad(g.String_char(temp), nivel));
             new Pistas().setDificultad(nivel);
-            new VistaCargar((Isla) lista.get(temp), new Point(16, 10)).setVisible(true);
+            new VistaCargar(temp, new Point(16, 10)).setVisible(true);
             mu.des.Pausa();
             this.dispose();
         }

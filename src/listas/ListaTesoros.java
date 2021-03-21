@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 public class ListaTesoros {
 
-    private static final HashMap<String, Tesoro> lista = new HashMap<>();
+    private final HashMap<String, Tesoro> lista = new HashMap<>();
     private final String ruta = "tesoros" + System.getProperty("file.separator"); 
     
     public ListaTesoros() {

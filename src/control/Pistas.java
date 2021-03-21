@@ -61,7 +61,7 @@ public class Pistas {
         }else if(nom_isla.equals("flor")){
             txt_pista="Son bonitas y huelen bien!";
         }else if(nom_isla.equals("desierto")){
-            txt_pista="Hay agua y mucha arena!";
+            txt_pista="No hay agua y mucha arena!";
         }else if(nom_isla.equals("amor")){
             txt_pista="Te amo!";
         }else if(nom_isla.equals("calavera")){

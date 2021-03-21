@@ -43,12 +43,10 @@ import listas.ListaIslas;
 
 public final class VistaIsla extends javax.swing.JFrame implements ActionListener {
 
-
- 
     private static String pista;
-    private static String rutaPersonaje;
-    private static String rutaIsla;
-    private final int[][] matrizIsla;
+    private String rutaPersonaje;
+    private String rutaIsla;
+    private int[][] matrizIsla;
     
     GenerarDimension dimensiones;
     private final HashMap listaIslas;
