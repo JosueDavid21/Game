@@ -65,7 +65,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
         Iniciar.setForeground(new Color(255, 255, 255));
         Iniciar.setBackground(Color.white);
         nombre.setBackground(new java.awt.Color(140, 210, 250));
-        nombre.setText("Bienvenido " + jugador.toUpperCase().trim());
+        nombre.setText("Bienvenido " + jugador);
         nombre.setForeground(Color.WHITE);
         botones.setBackground(new Color(125,158,220,180));
             play.setVisible(false);
