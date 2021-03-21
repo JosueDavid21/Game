@@ -37,6 +37,10 @@ public class ListaMapas {
         lista.put("selva", new Isla("selva", getRutaIMG()+"selva.png", new GenerarIsla(getRutaJSON().concat("selva.json")).obtenerMatriz()));
         lista.put("circo", new Isla("circo", getRutaIMG()+"circo.png", new GenerarIsla(getRutaJSON().concat("circo.json")).obtenerMatriz()));
         lista.put("dulce", new Isla("dulce", getRutaIMG()+"dulce.png", new GenerarIsla(getRutaJSON().concat("dulce.json")).obtenerMatriz()));
+        lista.put("ruina", new Isla("ruina", getRutaIMG()+"ruina.png", new GenerarIsla(getRutaJSON().concat("ruina.json")).obtenerMatriz()));
+        lista.put("militar", new Isla("militar", getRutaIMG()+"militar.png", new GenerarIsla(getRutaJSON().concat("militar.json")).obtenerMatriz()));
+        lista.put("flor", new Isla("flor", getRutaIMG()+"flor.png", new GenerarIsla(getRutaJSON().concat("flor.json")).obtenerMatriz()));
+        lista.put("desierto", new Isla("desierto", getRutaIMG()+"desierto.png", new GenerarIsla(getRutaJSON().concat("desierto.json")).obtenerMatriz()));
 
         
         
