@@ -71,9 +71,9 @@ public class VistaEmpezar extends javax.swing.JFrame {
         Iniciar.setBackground(Color.white);
         nombre.setBackground(new java.awt.Color(140, 210, 250));
         nombre.setText("Bienvenido " + jugador);
-        facil.setBackground(new Color(255, 255, 255, 90));
-        medio.setBackground(new Color(255, 255, 255, 90));
-        dificil.setBackground(new Color(255, 255, 255, 90));
+        facil.setBackground(new Color(255, 255, 255, 0));
+        medio.setBackground(new Color(255, 255, 255, 0));
+        dificil.setBackground(new Color(255, 255, 255, 0));
         ImageIcon sa = new ImageIcon("src/fondos/x.png");
         Icon xx = new ImageIcon(sa.getImage().getScaledInstance(exit.getWidth(), exit.getHeight(), Image.SCALE_DEFAULT));
         exit.setIcon(xx);
@@ -392,23 +392,23 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
     private void medioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_medioMouseClicked
         nivel = "medio";
-        escoNivel.setText("El nivel escojido es:" + nivel);
+        escoNivel.setText("El nivel escojido es :" + nivel);
     }//GEN-LAST:event_medioMouseClicked
 
     private void dificilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dificilMouseClicked
         nivel = "dificil";
-        escoNivel.setText("El nivel escojido es:" + nivel);
+        escoNivel.setText("El nivel escojido es :" + nivel);
     }//GEN-LAST:event_dificilMouseClicked
 
     private void facilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facilMouseClicked
         nivel = "facil";
-        escoNivel.setText("El nivel escojido es:" + nivel);
+        escoNivel.setText("El nivel escojido es :" + nivel);
     }//GEN-LAST:event_facilMouseClicked
 
     private void amorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseClicked
         temp = "amor";
         comprobar(amor, calavera, militar, volcan, flor, circo, desierto, playa, dulce, ruina, selva);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_amorMouseClicked
 
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
@@ -434,32 +434,32 @@ public class VistaEmpezar extends javax.swing.JFrame {
     private void calaveraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calaveraMouseClicked
         temp = "calavera";
         comprobar(calavera, militar, volcan, flor, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
 
     }//GEN-LAST:event_calaveraMouseClicked
 
     private void militarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_militarMouseClicked
         temp = "militar";
         comprobar(militar, calavera, volcan, flor, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_militarMouseClicked
 
     private void volcanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volcanMouseClicked
         temp = "volcan";
         comprobar(volcan, militar, calavera, flor, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_volcanMouseClicked
 
     private void florMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_florMouseClicked
         temp = "flor";
         comprobar(flor, militar, calavera, volcan, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_florMouseClicked
 
     private void circoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_circoMouseClicked
         temp = "circo";
         comprobar(circo, militar, calavera, volcan, flor, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_circoMouseClicked
 
     private void desiertoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desiertoMouseClicked
@@ -471,19 +471,19 @@ public class VistaEmpezar extends javax.swing.JFrame {
     private void playaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playaMouseClicked
         temp = "playa";
         comprobar(playa, militar, calavera, volcan, flor, circo, desierto, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_playaMouseClicked
 
     private void ruinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ruinaMouseClicked
         temp = "ruina";
         comprobar(ruina, militar, calavera, volcan, flor, circo, desierto, playa, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_ruinaMouseClicked
 
     private void selvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selvaMouseClicked
         temp = "selva";
         comprobar(selva, ruina, militar, calavera, volcan, flor, circo, desierto, playa, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_selvaMouseClicked
 
     private void facilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facilActionPerformed
@@ -497,7 +497,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
     private void dulceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dulceMouseClicked
         temp = "dulce";
         comprobar(dulce, ruina, militar, calavera, volcan, flor, circo, desierto, playa, selva, amor);
-        islaescogida.setText("La isla escogida es:" + temp);
+        islaescogida.setText("La isla escogida es :" + temp);
     }//GEN-LAST:event_dulceMouseClicked
 
     private void playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseClicked
