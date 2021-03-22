@@ -12,11 +12,14 @@
  */
 package vistas;
 
+import entes.Inventario;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import listas.ListaTesoros;
 
 /**
  *
@@ -26,44 +29,55 @@ public class InventarioVista extends javax.swing.JFrame {
 
     boolean focsdus;
     boolean focus = true;
-    
-    public class Imagen extends javax.swing.JPanel {
-
-        public Imagen() {
-            this.setSize(800, 500);
-        }
-
-        @Override
-        public void paint(Graphics grafico) {
-            Dimension dim = getSize();
-            ImageIcon Img = new ImageIcon(getClass().getResource("src/imagenes/papel_Inventario.png"));
-            grafico.drawImage(Img.getImage(), 0, 0, dim.width, dim.height, null);
-            setOpaque(false);
-            super.paintComponent(grafico);
-        }
-    }
-
-    private void cargarImg() {
-        Imagen Imagen = new Imagen();
-        jPanel1.add(Imagen);
-        jPanel1.repaint();
-    }
+    ListaTesoros lista = new ListaTesoros();
+    private final String separador = System.getProperty("file.separator"); 
+    private String ruta = "src" + separador + "imagenes" + separador;
 
     public InventarioVista() {
         initComponents();
-        this.setSize(420, 378);
         this.setLocationRelativeTo(null);
-        cargarImg();
+        verificarTesoros();
     }
 
-    private void icono(JLabel foto_icono, String nodo) {
-        Dimension d = new Dimension(420, 378);
-        foto_icono.setSize(d);
-        ImageIcon im = new ImageIcon("src/imagenes/mapas/" + nodo + " mapa.png");
-        ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(foto_icono.getWidth(), foto_icono.getHeight(), Image.SCALE_DEFAULT));
-        foto_icono.setIcon(icono);
+    private void verificarTesoros(){
+        for (int i =0 ; i<Inventario.tesoros.size(); i++){
+            graficarLabel(obtenerJLabel(Inventario.tesoros.get(i).getNombre()), ruta + Inventario.tesoros.get(i).getRutaIMG());
+        }
     }
     
+    private void graficarLabel(JLabel label, String ruta){
+        Image imgEscalada = new ImageIcon(ruta).getImage().getScaledInstance(label.getWidth(),label.getHeight(), Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        label.setIcon(iconoEscalado);
+    }
+
+    private JLabel obtenerJLabel(String comp){
+        if(comp.equals("Corazon de esmeralda")){
+            return amor;
+        }else if(comp.equals("Espada real")){
+            return calavera;
+        }else if(comp.equals("Roca de diamantes")){
+            return volcan;
+        }else if(comp.equals("Entrada VIP")){
+            return circo;
+        }else if(comp.equals("Galleta de jengibre")){
+            return dulce;
+        }else if(comp.equals("Perla")){
+            return playa;
+        }else if(comp.equals("Zafiro")){
+            return selva;
+        }else if(comp.equals("")){
+            return calavera;
+        }else if(comp.equals("Craneo de cristal")){
+            return ruina;
+        }else if(comp.equals("Lampara de oro")){
+            return desierto;
+        }else if(comp.equals("Orquidea Lareal")){
+            return flor;
+        }else{
+            return militar;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,16 +117,40 @@ public class InventarioVista extends javax.swing.JFrame {
         playa.setText("playa");
         playa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         playa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        playa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                playaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                playaMouseExited(evt);
+            }
+        });
         jPanel1.add(playa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 50, 40));
 
         calavera.setText("calavera");
         calavera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         calavera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        calavera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                calaveraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                calaveraMouseExited(evt);
+            }
+        });
         jPanel1.add(calavera, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 50, 40));
 
         flor.setText("flor");
         flor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         flor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        flor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                florMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                florMouseExited(evt);
+            }
+        });
         jPanel1.add(flor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 50, 40));
 
         amor.setText("amor");
@@ -131,31 +169,79 @@ public class InventarioVista extends javax.swing.JFrame {
         volcan.setText("volcan");
         volcan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         volcan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volcan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                volcanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                volcanMouseExited(evt);
+            }
+        });
         jPanel1.add(volcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 50, 40));
 
         selva.setText("selva");
         selva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         selva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        selva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                selvaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                selvaMouseExited(evt);
+            }
+        });
         jPanel1.add(selva, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 50, 40));
 
         ruina.setText("ruina");
         ruina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         ruina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ruina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ruinaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ruinaMouseExited(evt);
+            }
+        });
         jPanel1.add(ruina, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 50, 40));
 
         militar.setText("militar");
         militar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         militar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        militar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                militarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                militarMouseExited(evt);
+            }
+        });
         jPanel1.add(militar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 50, 40));
 
         circo.setText("circo");
         circo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         circo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        circo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                circoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                circoMouseExited(evt);
+            }
+        });
         jPanel1.add(circo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 50, 40));
 
         desierto.setText("desierto");
         desierto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         desierto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        desierto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                desiertoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                desiertoMouseExited(evt);
+            }
+        });
         jPanel1.add(desierto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 50, 40));
 
         p.setBackground(new java.awt.Color(0, 255, 255));
@@ -168,6 +254,14 @@ public class InventarioVista extends javax.swing.JFrame {
         dulce.setText("dulce");
         dulce.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         dulce.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        dulce.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dulceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dulceMouseExited(evt);
+            }
+        });
         jPanel1.add(dulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 50, 40));
 
         tesoroSelecionado.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,18 +286,96 @@ public class InventarioVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        // TODO add your handling code here:
         this.dispose();
-
     }//GEN-LAST:event_formKeyPressed
 
     private void amorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseEntered
-        // TODO add your handling code here:
+        tesoroSelecionado.setText(lista.getTesoro("amor").getNombre());
     }//GEN-LAST:event_amorMouseEntered
 
     private void amorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseExited
-        // TODO add your handling code here:
+        tesoroSelecionado.setText("");
     }//GEN-LAST:event_amorMouseExited
+
+    private void calaveraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calaveraMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("calavera").getNombre());
+    }//GEN-LAST:event_calaveraMouseEntered
+
+    private void calaveraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calaveraMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_calaveraMouseExited
+
+    private void militarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_militarMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("militar").getNombre());
+    }//GEN-LAST:event_militarMouseEntered
+
+    private void militarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_militarMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_militarMouseExited
+
+    private void volcanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volcanMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("volcan").getNombre());
+    }//GEN-LAST:event_volcanMouseEntered
+
+    private void volcanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volcanMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_volcanMouseExited
+
+    private void florMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_florMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("flor").getNombre());
+    }//GEN-LAST:event_florMouseEntered
+
+    private void florMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_florMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_florMouseExited
+
+    private void circoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_circoMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("circo").getNombre());
+    }//GEN-LAST:event_circoMouseEntered
+
+    private void circoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_circoMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_circoMouseExited
+
+    private void desiertoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desiertoMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("desierto").getNombre());
+    }//GEN-LAST:event_desiertoMouseEntered
+
+    private void desiertoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desiertoMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_desiertoMouseExited
+
+    private void playaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playaMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("playa").getNombre());
+    }//GEN-LAST:event_playaMouseEntered
+
+    private void playaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playaMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_playaMouseExited
+
+    private void ruinaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ruinaMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("ruina").getNombre());
+    }//GEN-LAST:event_ruinaMouseEntered
+
+    private void ruinaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ruinaMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_ruinaMouseExited
+
+    private void dulceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dulceMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("dulce").getNombre());
+    }//GEN-LAST:event_dulceMouseEntered
+
+    private void dulceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dulceMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_dulceMouseExited
+
+    private void selvaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selvaMouseEntered
+        tesoroSelecionado.setText(lista.getTesoro("selva").getNombre());
+    }//GEN-LAST:event_selvaMouseEntered
+
+    private void selvaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selvaMouseExited
+        tesoroSelecionado.setText("");
+    }//GEN-LAST:event_selvaMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amor;
