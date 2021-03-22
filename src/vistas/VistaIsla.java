@@ -89,6 +89,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         matrizIsla = isla.getMatriz();
 
         initComponents();
+        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
         Grafo g2 = new Grafo("abcdefghijk");
         g2.iniciargrafo(g2);
         if(!g2.validar_monedas(isla.getNombre())){

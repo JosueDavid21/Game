@@ -27,6 +27,7 @@ public class VistaInicial extends javax.swing.JFrame {
    
     public VistaInicial() {
         initComponents();
+        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
         jPanel2.setBackground(new Color(0, 179, 71, 90));
         setLocationRelativeTo(null);
         ImageIcon d = new ImageIcon("src/fondos/logo.png");
@@ -73,6 +74,7 @@ public class VistaInicial extends javax.swing.JFrame {
         barra = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

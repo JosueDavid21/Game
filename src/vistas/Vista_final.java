@@ -38,7 +38,7 @@ public class Vista_final extends javax.swing.JDialog {
     public Vista_final(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);

@@ -40,6 +40,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
      */
     public VistaIngresoNombre() {
         initComponents();
+        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
         TextPrompt t= new TextPrompt("Ingrese Su nombre", Nombreper);
         person.setBackground(new Color(123, 95, 185, 150));
         ImageIcon de = new ImageIcon("src/fondos/vista.gif");
