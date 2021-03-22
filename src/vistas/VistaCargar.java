@@ -12,6 +12,7 @@
  */
 package vistas;
 
+import control.GenerarDimension;
 import entes.Isla;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,9 +42,10 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
         this.setAlwaysOnTop(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setBackground(Color.CYAN);
+        this.setSize(GenerarDimension.WIDTH, GenerarDimension.HEIGHT);
         HashMap lista = new ListaIslas().getLista();
         ImageIcon p = new ImageIcon("src/fondos/carga icono.gif");
-        Icon id = new ImageIcon(p.getImage().getScaledInstance(lb3.getWidth(), lb3.getHeight(), Image.SCALE_DEFAULT));
+        Icon id = new ImageIcon(p.getImage().getScaledInstance(GenerarDimension.WIDTH, GenerarDimension.HEIGHT, Image.SCALE_DEFAULT));
         lb3.setIcon(id);
         vistaIsla = new VistaIsla((Isla) lista.get(nombreIsla), punto);
 

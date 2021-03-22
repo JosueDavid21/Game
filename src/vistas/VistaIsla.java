@@ -17,7 +17,7 @@ import control.Grafo;
 import control.Pistas;
 import control.Reproducir;
 import java.util.Arrays;
-import entes.GenerarDimension;
+import control.GenerarDimension;
 import entes.Inventario;
 import entes.Isla;
 import entes.Protagonista;
@@ -63,7 +63,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
     boolean cont = false;
     boolean retorno;
 
-    private Timer tiempo1 = new Timer(1, this);
+    private Timer tiempo1 = new Timer(10, this);
 
     JLabel jLfondo = new JLabel();
     JLabel personaje = new JLabel();
@@ -251,7 +251,6 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         }
         Pistas p = new Pistas();
         // AQUI VA EL CAMBIO EN MONEDAS Y TESOROS
-        icono2(interaccion_icono, "personaje1");
         if (nombreisla_texto.getText() == nombreisla_texto1.getText()) {
             fin_game = true;
         }

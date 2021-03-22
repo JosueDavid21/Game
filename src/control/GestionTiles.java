@@ -13,7 +13,6 @@
 
 package control;
 
-import entes.GenerarDimension;
 import entes.Inventario;
 import entes.Personaje;
 import entes.Puente;

@@ -11,7 +11,7 @@
  * Este es un juego que implementa el algoritmo del camino mas corto
  */
 
-package entes;
+package control;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -24,8 +24,8 @@ import java.awt.Toolkit;
 
 public class GenerarDimension {
     
-    private final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-    private final int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public static final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public static final int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private final int CUADROS_V = 20;
     private final int CUADROS_H = 32;
     private final int SOBRA_PersonajeY = 4;
