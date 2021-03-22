@@ -29,13 +29,11 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import listas.ListaIslas;
 
 /**
  *
@@ -91,6 +89,13 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         matrizIsla = isla.getMatriz();
 
         initComponents();
+        Grafo g2 = new Grafo("abcdefghijk");
+        g2.iniciargrafo(g2);
+        if(!g2.validar_monedas(isla.getNombre())){
+//            if(Inventario.getTesoros().get(moveX)){
+//                
+//            }
+        }
         try {
             musica.ReproducirSonido("src/musica/sonido_1.wav");
         } catch (Exception e) {
