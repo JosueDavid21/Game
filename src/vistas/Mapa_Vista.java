@@ -10,10 +10,10 @@
  *       - Teran Edgar
  * Este es un juego que implementa el algoritmo del camino mas corto
  */
-
 package vistas;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -22,38 +22,31 @@ import javax.swing.JLabel;
  *
  * @author Grupo 9
  */
+public class Mapa_Vista extends javax.swing.JFrame {
 
-public class Mapa_Vista extends javax.swing.JFrame   {
-
-    /**
-     * Creates new form Mapa_VIsta
-     */
     public Mapa_Vista() {
         initComponents();
-        this.setSize(420,378);
+        this.setSize(420, 378);
         this.setLocationRelativeTo(null);
-        
     }
-     public Mapa_Vista(String mapa) {
-         
+
+    public Mapa_Vista(String mapa) {
         initComponents();
-        this.setSize(420,378);
+        this.setSize(420, 378);
         this.setLocationRelativeTo(null);
-         icono(jLabel1, mapa);
-         System.out.println("fff");
+        icono(jLabel1, mapa);
     }
-     
-     boolean focsdus;
-     
-private void icono(JLabel foto_icono, String nodo) {
-        Dimension d = new Dimension(420,378);
+
+    boolean focsdus;
+
+    private void icono(JLabel foto_icono, String nodo) {
+        Dimension d = new Dimension(420, 378);
         foto_icono.setSize(d);
-        
         ImageIcon im = new ImageIcon("src/imagenes/mapas/" + nodo + " mapa.png");
         ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(foto_icono.getWidth(), foto_icono.getHeight(), Image.SCALE_DEFAULT));
         foto_icono.setIcon(icono);
     }
-boolean focus=true;
+    boolean focus = true;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,11 +91,10 @@ boolean focus=true;
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
         this.dispose();
-        
+
     }//GEN-LAST:event_formKeyPressed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
-   
 }

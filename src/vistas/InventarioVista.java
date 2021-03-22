@@ -10,10 +10,10 @@
  *       - Teran Edgar
  * Este es un juego que implementa el algoritmo del camino mas corto
  */
-
 package vistas;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -22,39 +22,48 @@ import javax.swing.JLabel;
  *
  * @author Grupo 9
  */
+public class InventarioVista extends javax.swing.JFrame {
 
-public class InventarioVista extends javax.swing.JFrame   {
+    boolean focsdus;
+    boolean focus = true;
+    
+    public class Imagen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Mapa_VIsta
-     */
+        public Imagen() {
+            this.setSize(800, 500);
+        }
+
+        @Override
+        public void paint(Graphics grafico) {
+            Dimension dim = getSize();
+            ImageIcon Img = new ImageIcon(getClass().getResource("src/imagenes/papel_Inventario.png"));
+            grafico.drawImage(Img.getImage(), 0, 0, dim.width, dim.height, null);
+            setOpaque(false);
+            super.paintComponent(grafico);
+        }
+    }
+
+    private void cargarImg() {
+        Imagen Imagen = new Imagen();
+        jPanel1.add(Imagen);
+        jPanel1.repaint();
+    }
+
     public InventarioVista() {
         initComponents();
-        this.setSize(420,378);
+        this.setSize(420, 378);
         this.setLocationRelativeTo(null);
-        
+        cargarImg();
     }
-     public InventarioVista(String mapa) {
-         
-        initComponents();
-        this.setSize(420,378);
-        this.setLocationRelativeTo(null);
-         icono(jLabel1, mapa);
-         System.out.println("fff");
-    }
-     
-     boolean focsdus;
-     
-private void icono(JLabel foto_icono, String nodo) {
-        Dimension d = new Dimension(420,378);
+
+    private void icono(JLabel foto_icono, String nodo) {
+        Dimension d = new Dimension(420, 378);
         foto_icono.setSize(d);
-        
         ImageIcon im = new ImageIcon("src/imagenes/mapas/" + nodo + " mapa.png");
         ImageIcon icono = new ImageIcon(im.getImage().getScaledInstance(foto_icono.getWidth(), foto_icono.getHeight(), Image.SCALE_DEFAULT));
         foto_icono.setIcon(icono);
     }
-boolean focus=true;
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +86,7 @@ boolean focus=true;
         desierto = new javax.swing.JLabel();
         p = new javax.swing.JLabel();
         dulce = new javax.swing.JLabel();
-        islaescogida = new javax.swing.JLabel();
+        tesoroSelecionado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -94,138 +103,81 @@ boolean focus=true;
         playa.setText("playa");
         playa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         playa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        playa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                playaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(playa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 50, 40));
+        jPanel1.add(playa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 50, 40));
 
         calavera.setText("calavera");
         calavera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         calavera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        calavera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                calaveraMouseClicked(evt);
-            }
-        });
-        jPanel1.add(calavera, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 50, 40));
+        jPanel1.add(calavera, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 50, 40));
 
         flor.setText("flor");
         flor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         flor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        flor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                florMouseClicked(evt);
-            }
-        });
-        jPanel1.add(flor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 50, 40));
+        jPanel1.add(flor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 50, 40));
 
         amor.setText("amor");
         amor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         amor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        amor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                amorMouseClicked(evt);
-            }
-        });
-        jPanel1.add(amor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 50, 40));
+        jPanel1.add(amor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 50, 40));
 
         volcan.setText("volcan");
         volcan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         volcan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        volcan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                volcanMouseClicked(evt);
-            }
-        });
-        jPanel1.add(volcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 50, 40));
+        jPanel1.add(volcan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 50, 40));
 
         selva.setText("selva");
         selva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         selva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        selva.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selvaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(selva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 50, 40));
+        jPanel1.add(selva, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 50, 40));
 
         ruina.setText("ruina");
         ruina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         ruina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ruina.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ruinaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(ruina, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 50, 40));
+        jPanel1.add(ruina, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 50, 40));
 
         militar.setText("militar");
         militar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         militar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        militar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                militarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(militar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 50, 40));
+        jPanel1.add(militar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 50, 40));
 
         circo.setText("circo");
         circo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         circo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        circo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                circoMouseClicked(evt);
-            }
-        });
-        jPanel1.add(circo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 50, 40));
+        jPanel1.add(circo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 50, 40));
 
         desierto.setText("desierto");
         desierto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         desierto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        desierto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                desiertoMouseClicked(evt);
-            }
-        });
-        jPanel1.add(desierto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 50, 40));
+        jPanel1.add(desierto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 50, 40));
 
         p.setBackground(new java.awt.Color(0, 255, 255));
+        p.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         p.setForeground(new java.awt.Color(255, 255, 255));
         p.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p.setText("Inventario");
-        jPanel1.add(p, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 130, 20));
+        jPanel1.add(p, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 250, 30));
 
         dulce.setText("dulce");
         dulce.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         dulce.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        dulce.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dulceMouseClicked(evt);
-            }
-        });
-        jPanel1.add(dulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 50, 40));
+        jPanel1.add(dulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 50, 40));
 
-        islaescogida.setBackground(new java.awt.Color(255, 255, 255));
-        islaescogida.setFont(new java.awt.Font("Eras Medium ITC", 0, 14)); // NOI18N
-        islaescogida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(islaescogida, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 200, 30));
+        tesoroSelecionado.setBackground(new java.awt.Color(255, 255, 255));
+        tesoroSelecionado.setFont(new java.awt.Font("Eras Medium ITC", 0, 14)); // NOI18N
+        tesoroSelecionado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(tesoroSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
         );
 
         pack();
@@ -234,74 +186,8 @@ boolean focus=true;
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
         this.dispose();
-        
+
     }//GEN-LAST:event_formKeyPressed
-
-    private void playaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playaMouseClicked
-        temp = "playa";
-        comprobar(playa, militar, calavera, volcan, flor, circo, desierto, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_playaMouseClicked
-
-    private void calaveraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calaveraMouseClicked
-        temp = "calavera";
-        comprobar(calavera, militar, volcan, flor, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_calaveraMouseClicked
-
-    private void florMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_florMouseClicked
-        temp = "flor";
-        comprobar(flor, militar, calavera, volcan, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_florMouseClicked
-
-    private void amorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseClicked
-        temp = "amor";
-        comprobar(amor, calavera, militar, volcan, flor, circo, desierto, playa, dulce, ruina, selva);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_amorMouseClicked
-
-    private void volcanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volcanMouseClicked
-        temp = "volcan";
-        comprobar(volcan, militar, calavera, flor, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_volcanMouseClicked
-
-    private void selvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selvaMouseClicked
-        temp = "selva";
-        comprobar(selva, ruina, militar, calavera, volcan, flor, circo, desierto, playa, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_selvaMouseClicked
-
-    private void ruinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ruinaMouseClicked
-        temp = "ruina";
-        comprobar(ruina, militar, calavera, volcan, flor, circo, desierto, playa, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_ruinaMouseClicked
-
-    private void militarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_militarMouseClicked
-        temp = "militar";
-        comprobar(militar, calavera, volcan, flor, circo, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_militarMouseClicked
-
-    private void circoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_circoMouseClicked
-        temp = "circo";
-        comprobar(circo, militar, calavera, volcan, flor, desierto, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_circoMouseClicked
-
-    private void desiertoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desiertoMouseClicked
-        temp = "desierto";
-        comprobar(desierto, militar, calavera, volcan, flor, circo, playa, ruina, selva, amor, dulce);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_desiertoMouseClicked
-
-    private void dulceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dulceMouseClicked
-        temp = "dulce";
-        comprobar(dulce, ruina, militar, calavera, volcan, flor, circo, desierto, playa, selva, amor);
-        islaescogida.setText("La isla escogida es:" + temp);
-    }//GEN-LAST:event_dulceMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amor;
@@ -310,15 +196,14 @@ boolean focus=true;
     private javax.swing.JLabel desierto;
     private javax.swing.JLabel dulce;
     private javax.swing.JLabel flor;
-    private javax.swing.JLabel islaescogida;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel militar;
     private javax.swing.JLabel p;
     private javax.swing.JLabel playa;
     private javax.swing.JLabel ruina;
     private javax.swing.JLabel selva;
+    private javax.swing.JLabel tesoroSelecionado;
     private javax.swing.JLabel volcan;
     // End of variables declaration//GEN-END:variables
 
-   
 }
