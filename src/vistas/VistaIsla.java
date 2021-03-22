@@ -378,18 +378,26 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
                 (dimensiones.getDimensionCuadro().height * y));
         add(personaje3);
     }
-
+Vista_final f;
     @Override
     public void actionPerformed(ActionEvent c) {
         actualizar();
         mover();
         if (fin_game) {
-            JOptionPane.showMessageDialog(this, "Has llegado a tu isla destino HAS GANADO");
-            System.exit(0);
+//            JOptionPane.showMessageDialog(this, "Has llegado a tu isla destino HAS GANADO");
+//            new VistaFinal(1).setVisible(true);
+f=new Vista_final(null, map, 1);
+f.setVisible(true);
+fin_game=false;
         } else if (fin_gameover) {
 //            System.out.println("hola");
-            JOptionPane.showMessageDialog(this, "Has perdido no elegiste el camino mas corto ");
-            System.exit(0);
+//            JOptionPane.showMessageDialog(this, "Has perdido no elegiste el camino mas corto ");
+//             new VistaFinal(0).setVisible(true);
+f=new Vista_final(null, map, 0);
+f.setVisible(true);
+f.setAlwaysOnTop(true);
+fin_gameover=false;
+
         }
     }
 
@@ -811,14 +819,8 @@ boolean inv=false;
 
     }//GEN-LAST:event_jPanel1MouseClicked
 boolean pinv=false;
-Vista_final f;
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-         if (f!=null) {
-            if (f.isVisible()) {
-                System.exit(0);
-            }
-        }
         if (mapa_pantalla != null  ) {
             pmapa = mapa_pantalla.isVisible();
             
