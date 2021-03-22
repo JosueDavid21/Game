@@ -811,8 +811,14 @@ boolean inv=false;
 
     }//GEN-LAST:event_jPanel1MouseClicked
 boolean pinv=false;
+Vista_final f;
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
+         if (f!=null) {
+            if (f.isVisible()) {
+                System.exit(0);
+            }
+        }
         if (mapa_pantalla != null  ) {
             pmapa = mapa_pantalla.isVisible();
             
