@@ -15,9 +15,11 @@ package vistas;
 
 import control.Ejecutable;
 import control.Reproducir;
+import control.TextPrompt;
 import entes.Protagonista;
 import java.awt.Color;
 import java.awt.Image;
+import javafx.scene.text.Text;
 import javax.sound.sampled.Clip;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,7 +31,7 @@ import javax.swing.JOptionPane;
  */
 
 public class VistaIngresoNombre extends javax.swing.JFrame {
-
+    
     Reproducir des = new Reproducir();
     Ejecutable d = new Ejecutable();
     String nombresonido = "src/musica/juego-de-tronos-2.wav";
@@ -40,6 +42,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
      */
     public VistaIngresoNombre() {
         initComponents();
+        TextPrompt t= new TextPrompt("Ingrese Su nombre", Nombreper);
         person.setBackground(new Color(123, 95, 185, 150));
         ImageIcon de = new ImageIcon("src/fondos/vista.gif");
         Icon ide = new ImageIcon(de.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
@@ -119,7 +122,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         Inicio.setForeground(new java.awt.Color(255, 255, 255));
         Inicio.setText("                                 Continuar");
         Inicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        Inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Inicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InicioMouseClicked(evt);
@@ -127,7 +130,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         });
         jPanel1.add(Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 273, 32));
 
-        Nombreper.setText("Ingrese Nombre para su personaje");
+        Nombreper.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Nombreper.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 NombreperMouseClicked(evt);
@@ -143,7 +146,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel3.setLayout(null);
 
-        pause.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pause.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pause.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pauseMouseClicked(evt);
@@ -152,7 +155,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         jPanel3.add(pause);
         pause.setBounds(10, 10, 30, 30);
 
-        play.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        play.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         play.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playMouseClicked(evt);
@@ -163,7 +166,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 50, 50));
 
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
@@ -186,12 +189,8 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreperActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreperActionPerformed
-
     private void InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InicioMouseClicked
-        if (Nombreper.getText().isEmpty()|| Nombreper.getText().equals("Ingrese Nombre para su personaje")) {
+        if (Nombreper.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre para poder continuar ");
         } else {
             des.Pausa();
@@ -200,10 +199,6 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_InicioMouseClicked
-
-    private void NombreperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreperMouseClicked
-       Nombreper.setText("");
-    }//GEN-LAST:event_NombreperMouseClicked
 
     private void playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playMouseClicked
          try {
@@ -224,6 +219,13 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
        System.exit(WIDTH);
     }//GEN-LAST:event_exitMouseClicked
+
+    private void NombreperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreperActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreperActionPerformed
+
+    private void NombreperMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreperMouseClicked
+    }//GEN-LAST:event_NombreperMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Inicio;
