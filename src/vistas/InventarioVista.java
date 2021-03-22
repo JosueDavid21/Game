@@ -118,6 +118,14 @@ public class InventarioVista extends javax.swing.JFrame {
         amor.setText("amor");
         amor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         amor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        amor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                amorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                amorMouseExited(evt);
+            }
+        });
         jPanel1.add(amor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 50, 40));
 
         volcan.setText("volcan");
@@ -188,6 +196,14 @@ public class InventarioVista extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_formKeyPressed
+
+    private void amorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amorMouseEntered
+
+    private void amorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amorMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amorMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amor;

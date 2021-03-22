@@ -12,6 +12,7 @@
  */
 package control;
 
+import entes.Inventario;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +24,6 @@ import java.util.Stack;
  *
  * @author Grupo 9
  */
-
 public class Grafo {
 
     char[] nodos;  // Letras de identificacion de nodo
@@ -36,6 +36,40 @@ public class Grafo {
     public Grafo(String serieNodos) {
         nodos = serieNodos.toCharArray();
         grafo = new int[nodos.length][nodos.length];
+    }
+
+    // Valida las monedas disponibles 
+    public boolean validar_monedas(String isla) {
+        Grafo g = new Grafo("abcdefghijk");
+        g.iniciargrafo(g);
+        int cont = 0;
+        int cont1 = 0;
+        int[] da = new int[5];
+        for (int i = 0; i < 5; i++) {
+            da[i] = 0;
+        }
+        boolean res = true;
+        for (int i = 0; i < 11; i++) {
+            g.encontrarRutaMinimaDijkstra(String_char(isla), g.nodos[i]);
+            if (g.arregloruta.length == 2) {
+                da[cont1] = g.distanciatotal;
+                cont1++;
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (da[i] != 0) {
+                cont++;
+            }
+        }
+        for (int i = 0; i < cont; i++) {
+            if (Inventario.getMonedas() >= da[i]) {
+                res = true;
+                break;
+            } else {
+                res = false;
+            }
+        }
+        return res;
     }
 
     // asigna el tamano de la arista entre dos nodos
@@ -266,7 +300,7 @@ public class Grafo {
         for (int i = 0; i < 11; i++) {
             String respuesta = g.encontrarRutaMinimaDijkstra(inicio, g.nodos[i]);
             ruta = g.rutaisla(g.arregloruta);
-            if (ruta.length>1& ruta.length <= 2  ) {
+            if (ruta.length > 1 & ruta.length <= 2) {
                 rutafacil = ruta;
                 facil = g.distanciatotal;
 
