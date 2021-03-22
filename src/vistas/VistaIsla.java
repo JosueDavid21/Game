@@ -97,7 +97,7 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 //            }
         }
         try {
-            musica.ReproducirSonido("src/musica/sonido_1.wav");
+            musica.ReproducirSonido("src/musica/naturaleza.wav");
         } catch (Exception e) {
         }
 
@@ -885,7 +885,7 @@ boolean pinv=false;
         // TODO add your handling code here:
         if (!muc) {
             try {
-                musica.ReproducirSonido("src/musica/sonido_1.wav");
+                musica.ReproducirSonido("src/musica/naturaleza.wav");
             } catch (Exception e) {
             }
             mutehelp_mute_icono1.setVisible(false);

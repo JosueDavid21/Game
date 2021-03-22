@@ -192,7 +192,7 @@ public class Reproducir {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(nombreSonido).getAbsoluteFile());
 
             clip.open(audioInputStream);
-            clip.loop(1);
+            clip.loop(5);
 
         } catch (IOException | LineUnavailableException ex) {
             System.out.println("Error al reproducir el sonido.");

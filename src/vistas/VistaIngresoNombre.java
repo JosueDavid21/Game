@@ -32,7 +32,7 @@ public class VistaIngresoNombre extends javax.swing.JFrame {
     
     Reproducir des = new Reproducir();
     Ejecutable d = new Ejecutable();
-    String nombresonido = "src/musica/juego-de-tronos-2.wav";
+    String nombresonido = "src/musica/mario.wav";
     Clip clip = null;
 
     /**

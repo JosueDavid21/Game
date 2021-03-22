@@ -39,7 +39,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
     Ejecutable d = new Ejecutable();
     VistaIngresoNombre mu = new VistaIngresoNombre();
     Reproducir r = new Reproducir();
-    String musica = "src/musica/sonido_1.wav";
+    String musica = "src/musica/naturaleza.wav";
     String temp = "";
     String nivel = "";
     Grafo g;
