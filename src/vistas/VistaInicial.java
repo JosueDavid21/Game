@@ -27,7 +27,7 @@ public class VistaInicial extends javax.swing.JFrame {
    
     public VistaInicial() {
         initComponents();
-        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
+        this.setIconImage(new ImageIcon("src/fondos/logo1.png").getImage() );
         jPanel2.setBackground(new Color(0, 179, 71, 90));
         setLocationRelativeTo(null);
         ImageIcon d = new ImageIcon("src/fondos/logo.png");

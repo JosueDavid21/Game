@@ -39,7 +39,7 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
 
     public VistaCargar(String nombreIsla, Point punto) {
         initComponents();
-        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
+        this.setIconImage(new ImageIcon("src/fondos/logo1.png").getImage() );
         this.setAlwaysOnTop(true);
         this.setExtendedState(MAXIMIZED_BOTH);
 //        this.getContentPane().setBackground(Color.CYAN);

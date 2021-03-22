@@ -51,7 +51,7 @@ public class VistaEmpezar extends javax.swing.JFrame {
 
     public VistaEmpezar(String jugador) {
         initComponents();
-        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
+        this.setIconImage(new ImageIcon("src/fondos/logo1.png").getImage() );
         g = new Grafo("abcdefghijk");
         g.iniciargrafo(g);
         new Protagonista().setNombre(jugador);

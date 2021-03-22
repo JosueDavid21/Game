@@ -32,7 +32,7 @@ public class Mapa_Vista extends javax.swing.JFrame {
 
     public Mapa_Vista(String mapa) {
         initComponents();
-        this.setIconImage(new ImageIcon("src/fondos/logo.png").getImage() );
+        this.setIconImage(new ImageIcon("src/fondos/logo1.png").getImage() );
         this.setSize(420, 378);
         this.setLocationRelativeTo(null);
         icono(jLabel1, mapa);
