@@ -41,7 +41,7 @@ public class VistaCargar extends javax.swing.JFrame implements ActionListener {
         initComponents();
         this.setAlwaysOnTop(true);
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.getContentPane().setBackground(Color.CYAN);
+//        this.getContentPane().setBackground(Color.CYAN);
         this.setSize(GenerarDimension.WIDTH, GenerarDimension.HEIGHT);
         HashMap lista = new ListaIslas().getLista();
         ImageIcon p = new ImageIcon("src/fondos/carga icono.gif");

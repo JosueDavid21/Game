@@ -623,6 +623,12 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
         tesoro_Panel.setBackground(new java.awt.Color(153, 153, 0));
         tesoro_Panel.setLayout(null);
+
+        tesoro_icono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tesoro_iconoMouseClicked(evt);
+            }
+        });
         tesoro_Panel.add(tesoro_icono);
         tesoro_icono.setBounds(0, 0, 0, 0);
 
@@ -768,32 +774,65 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             tiempo1.stop();
         }
     }//GEN-LAST:event_formKeyReleased
-
+InventarioVista inv_vista;
+boolean inv=false;
     public void validarvisible() {
-        if (mapa_pantalla != null) {
-            if (mapa_pantalla.isVisible()) {
+        if (mapa_pantalla != null ) {
+            if (mapa_pantalla.isVisible() ) {
                 map = true;
             }
+           
         }
+        if ( inv_vista!=null) {
+             if (inv_vista.isVisible()) {
+                inv=true;
+            }
+        }
+       
 
     }
+//    public void validarvisible1() {
+//         if ( inv_vista!=null) {
+//             if (inv_vista.isVisible()) {
+//                inv=true;
+//            }
+//        }
+//
+//    }
 
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jPanel1MouseClicked
-
+boolean pinv=false;
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        if (mapa_pantalla != null) {
+        if (mapa_pantalla != null  ) {
             pmapa = mapa_pantalla.isVisible();
-            if (pmapa) {
+            
+            if (pmapa ) {
                 mapa_pantalla.dispose();
                 pmapa = false;
                 map = false;
             }
         }
+        if (inv_vista!=null) {
+                pinv=inv_vista.isVisible();
+            if (pinv) {
+                inv_vista.dispose();
+                pinv = false;
+                inv = false;
+            }
+        }
+//        if (mapa_pantalla != null) {
+//            pmapa = mapa_pantalla.isVisible();
+//            if (pmapa) {
+//                mapa_pantalla.dispose();
+//                pmapa = false;
+//                map = false;
+//            }
+//        }
 
     }//GEN-LAST:event_formMouseClicked
 
@@ -848,6 +887,15 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
             mutehelp_mute_icono.setVisible(true);
         }
     }//GEN-LAST:event_mutehelp_mute_icono1MouseClicked
+
+    private void tesoro_iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tesoro_iconoMouseClicked
+        // TODO add your handling code here:
+        validarvisible();
+        if (inv == false) {
+           inv_vista = new InventarioVista();
+            inv_vista.setVisible(true);
+        }
+    }//GEN-LAST:event_tesoro_iconoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel interaccion_Panel;
