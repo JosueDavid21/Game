@@ -92,9 +92,11 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
         Grafo g2 = new Grafo("abcdefghijk");
         g2.iniciargrafo(g2);
         if(!g2.validar_monedas(isla.getNombre())){
-//            if(Inventario.getTesoros().get(moveX)){
-//                
-//            }
+            if(verificarJuego(isla.getNombre())){
+                f = new Vista_final(null, true, 0);
+                f.setVisible(true);
+                f.setAlwaysOnTop(true);
+            }
         }
         try {
             musica.ReproducirSonido("src/musica/naturaleza.wav");
@@ -135,6 +137,17 @@ public final class VistaIsla extends javax.swing.JFrame implements ActionListene
 
         jPanel1.updateUI();
 
+    }
+    
+    // retorna false si el tesoro no ha sido descubierto
+    private boolean verificarJuego(String isla){
+        boolean retorno = false;
+        for (int i = 0; i < Inventario.tesoros.size(); i++) {
+            if(Inventario.tesoros.get(i).getIslaUbicacion().equals(isla)){
+                retorno = true;
+            }
+        }
+        return retorno;
     }
 
     //DAVID INICIO

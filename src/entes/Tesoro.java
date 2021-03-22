@@ -25,13 +25,15 @@ public class Tesoro {
     private final int posicionY;
     private final String rutaIMG;
     private boolean estado;
+    private final String islaUbicacion;
 
-    public Tesoro(final String nombre, final int posicionX, final int posicionY, final String rutaIMG, final boolean estado) {
+    public Tesoro(final String nombre, final int posicionX, final int posicionY, final String rutaIMG, final boolean estado, final String islaUbicacion) {
         this.nombre = nombre;
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.rutaIMG = rutaIMG;
         this.estado = estado;
+        this.islaUbicacion = islaUbicacion;
     }
 
     public String getNombre() {
@@ -45,10 +47,13 @@ public class Tesoro {
     public int getPosicionY() {
         return posicionY;
     }
-
     
     public String getRutaIMG() {
         return rutaIMG;
+    }
+
+    public String getIslaUbicacion() {
+        return islaUbicacion;
     }
     
     /**

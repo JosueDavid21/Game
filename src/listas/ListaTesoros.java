@@ -33,27 +33,27 @@ public class ListaTesoros {
     
     private void cargarTesoros(){
         lista.put("amor", new Tesoro("Corazon de esmeralda", 
-                3, 6, ruta+"Tamor.png", false));
+                3, 6, ruta+"Tamor.png", false, "amor"));
         lista.put("calavera", new Tesoro("Espada real", 
-                10, 7, ruta+"Tcalavera.png", false));
+                10, 7, ruta+"Tcalavera.png", false, "calavera"));
         lista.put("volcan", new Tesoro("Roca de diamantes", 
-                3, 9, ruta+"Tvolcan.png", false));
+                3, 9, ruta+"Tvolcan.png", false, "volcan"));
         lista.put("circo", new Tesoro("Entrada VIP", 
-                6, 16, ruta+"Tcirco.png", false));
+                6, 16, ruta+"Tcirco.png", false, "circo"));
         lista.put("dulce", new Tesoro("Galleta de jengibre", 
-                18, 16, ruta+"Tdulce.png", false));
+                18, 16, ruta+"Tdulce.png", false, "dulce"));
         lista.put("playa", new Tesoro("Perla", 
-                13, 12, ruta+"Tplaya.png", false));
+                13, 12, ruta+"Tplaya.png", false, "playa"));
         lista.put("selva", new Tesoro("Zafiro", 
-                13, 14, ruta+"Tselva.png", false));
+                13, 14, ruta+"Tselva.png", false, "selva"));
         lista.put("ruina", new Tesoro("Craneo de cristal", 
-                13, 16, ruta+"Truina.png", false));
+                13, 16, ruta+"Truina.png", false, "ruina"));
         lista.put("desierto", new Tesoro("Lampara de oro", 
-                15, 6, ruta+"Tdesierto.png", false));
+                15, 6, ruta+"Tdesierto.png", false, "desierto"));
         lista.put("flor", new Tesoro("Orquidea Lareal", 
-                9, 4, ruta+"Tflor.png", false));
+                9, 4, ruta+"Tflor.png", false, "flor"));
         lista.put("militar", new Tesoro("Medalla de honor", 
-                14, 14, ruta+"Tmilitar.png", false));
+                14, 14, ruta+"Tmilitar.png", false, "militar"));
     }
     
     public Point getUbicacion(String isla){
