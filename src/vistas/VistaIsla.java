@@ -386,14 +386,15 @@ Vista_final f;
         if (fin_game) {
 //            JOptionPane.showMessageDialog(this, "Has llegado a tu isla destino HAS GANADO");
 //            new VistaFinal(1).setVisible(true);
-f=new Vista_final(null, map, 1);
+f=new Vista_final(null, true, 1);
 f.setVisible(true);
+
 fin_game=false;
         } else if (fin_gameover) {
 //            System.out.println("hola");
 //            JOptionPane.showMessageDialog(this, "Has perdido no elegiste el camino mas corto ");
 //             new VistaFinal(0).setVisible(true);
-f=new Vista_final(null, map, 0);
+f=new Vista_final(null, true, 0);
 f.setVisible(true);
 f.setAlwaysOnTop(true);
 fin_gameover=false;
